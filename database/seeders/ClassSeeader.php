@@ -17,7 +17,14 @@ class ClassSeeader extends Seeder
     public function run()
     {
         DB::table('class')->insert([
-            'name' => 'A',
+            // 'name' => 'A',
+            // 'created_by' => 1,
+            // 'updated_by' => 1,
+            // 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            // 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            // 'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+
+            'name' => 'B',
             'created_by' => 1,
             'updated_by' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

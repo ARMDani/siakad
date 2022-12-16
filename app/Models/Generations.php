@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Generations extends Model
 {
-    use HasFactory;
+    protected $table  = 'generations';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'name'];
+    public function student()
+    {
+        return $this->hasOne('App\Models\Student');
+    }
 }

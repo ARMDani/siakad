@@ -64,10 +64,10 @@
                                 <td>{{ $student->nim }}</td>
                                 <td>{{ $student->gender }}</td>
                                 <td>{{ $student->religion }}</td>
-                                <td>{{ $student->study_program_id }}</td>
-                                <td>{{ $student->districts_id }}</td>
-                                <td>{{ $student->class_id }}</td>
-                                <td>{{ $student->generations_id }}</td>
+                                <td>{{ $student->study_program->name }}</td>
+                                <td>{{ $student->districts->name }}</td>
+                                <td>{{ $student->class->name }}</td>
+                                <td>{{ $student->generations->name }}</td>
                                 <td>{{ $student->photo }}</td>
 
                                 <td >
@@ -78,6 +78,12 @@
                             @endforeach
                       
                         </table>
+                        {{-- <div class="d-flex">
+                          {!! $student->links() !!}
+                      </div> --}}
+                    
+
+
                       </div>
                        </div>
                 </div>
@@ -87,6 +93,7 @@
       </div>
             </div>
         <br/>
+        
     </body>
 
 @endsection

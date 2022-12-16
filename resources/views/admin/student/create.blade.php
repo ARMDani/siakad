@@ -15,12 +15,12 @@
                             <form action="/student/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
                             {{ csrf_field() }} 
                             <div class="form-group">
-                                <label>Nim<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="text" name="Nim"placeholder="Masukkan Nim ..." required="required">
-                            </div>
-                            <div class="form-group">
                                 <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
                                 <input class="form-control" type="text" name="nama" placeholder="Masukan Nama ..." type="text" name="nama" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Nim<span class="required" style="color: #dd4b39;">*</span></label>
+                                <input class="form-control" type="text" name="nim"placeholder="Masukkan Nim ..." required="required">
                             </div>
                             <div class="form-group ">
                                 <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
@@ -34,28 +34,56 @@
                             </div>
 							<div class="form-group">
                                 <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                <textarea class="form-control" name="agama" placeholder="Masukan Agama..." name="agama" required="required"></textarea> 
+                                <select class="form-control" name="agama">
+                                    <option value="">- Pilih Agama -</option>
+                                    <option value="1" >Islam</option>
+                                    <option value="0" >Hindu</option>
+                                    <option value="1" >Kristen</option>
+                                    <option value="1" >Katolik</option>
+                                    <option value="1" >Budha</option>
+                                    <option value="1" >Konghucu</option>
+                                </select>
                             </div>
 							<div class="form-group">
                                 <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                <textarea class="form-control" name="program_studi" placeholder="Masukan Program Studi ..." name="program_studi" required="required"></textarea> 
+                                <select class="form-control" name="program_studi">
+                                    <option value="">- Pilih Program Studi -</option>
+                                    <option value="1" >FKIP</option>
+                                    <option value="1" >FT</option>
+                                </select>
                             </div>
 							<div class="form-group">
                                 <label>Asal Daerah<span class="required" style="color: #dd4b39;">*</span></label>
-                                <textarea class="form-control" name="asal_daerah" placeholder="Masukan Asal Daerah ..." name="asal_daerah" required="required"></textarea> 
+                                <select class="form-control" name="asal_daerah">
+                                    <option value="">- Asal Daerah -</option>
+                                    <option value="1" >Bombana</option>
+                                    <option value="1" >Muna</option>
+                                </select>
                             </div>
 							<div class="form-group">
                                 <label>Kelas<span class="required" style="color: #dd4b39;">*</span></label>
-                                <textarea class="form-control" name="kelas" placeholder="Masukan Kelas ..." name="kelas" required="required"></textarea> 
+                               <select class="form-control" name="kelas">
+                                    <option value="">- Kelas -</option>
+                                    <option value="5" >A</option>
+                                    <option value="1" >B</option>
+                                </select> 
                             </div>
 							<div class="form-group">
                                 <label>Angkatan<span class="required" style="color: #dd4b39;">*</span></label>
-                                <textarea class="form-control" name="angkatan" placeholder="Masukan Angkatan ..." name="angkatan" required="required"></textarea> 
+                                <select class="form-control" name="angkatan">
+                                    <option value="">- Angkatan -</option>
+                                    @foreach ($generations as $data)
+                                    <option value="{{$data->id}}">
+                                        {{$data->name}}
+                                    </option>
+                                    @endforeach 
+                                </select>
+                               
                             </div>
 							<div class="form-group">
                                 <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
                                 <div class="">
-                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="cover" value="" accept=".png, .jpeg, .jpg">
+                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="foto" value="" accept=".png, .jpeg, .jpg">
                                     <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
                                 </div>
                             </div>

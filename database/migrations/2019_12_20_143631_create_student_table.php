@@ -35,8 +35,8 @@ return new class extends Migration
             $table->foreign('generations_id')->references('id')->on('generations');
 
             $table->binary('photo');
-            $table->bigInteger('created_by');
-            $table->bigInteger('updated_by');
+            $table->bigInteger('created_by')->nulllable;
+            $table->bigInteger('updated_by')->nulllable;
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

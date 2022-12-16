@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Study_Program extends Model
 {
-    use HasFactory;
+    protected $table  = 'study_program';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'code_prodi', 'name', 'study_faculty_id'];
+    public function student()
+    {
+        return $this->hasOne('App\Models\Student');
+    }
 }

@@ -16,10 +16,27 @@ class GenerationsSeeader extends Seeder
      */
     public function run()
     {
+        // DB::table('generations')->insert([
+        //     'name' => 2019,
+        //     'created_by' => 1,
+        //     'updated_by' => 1,
+        //     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        //     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        //     'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        // ]);
+
         DB::table('generations')->insert([
-            'name' => 2019,
-            'created_by' => 1,
-            'updated_by' => 1,
+            'name' => 2021,
+            'created_by' => 2,
+            'updated_by' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        DB::table('generations')->insert([
+            'name' => 2022,
+            'created_by' => 2,
+            'updated_by' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
