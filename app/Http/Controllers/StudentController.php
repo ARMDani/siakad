@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use App\Models\Study_Program;
+use App\Models\Districts;
+use App\Models\ClassModel;
 use App\Models\Generations;
 
 class StudentController extends Controller
@@ -22,13 +24,13 @@ class StudentController extends Controller
 
     public function create()
     {
-        $studi_program = Study_Program::get();
+
         $generations = Generations::get();
-        $generations = Generations::get();
-        $generations = Generations::get();
-        $generations = Generations::get();
+        $study_program = Study_Program::get();
+        $districts = Districts::get();
+        $class = ClassModel::get();
         //memanggil view create
-        return view('admin.student.create', ['generations' => $generations], ['Study_Program' => $studi_program]);
+        return view('admin.student.create', ['generations' => $generations], ['study_program' => $study_program], ['districts' => $districts], ['class' => $class]);
     }
 
 

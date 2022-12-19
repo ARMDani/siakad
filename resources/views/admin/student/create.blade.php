@@ -48,24 +48,33 @@
                                 <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
                                 <select class="form-control" name="program_studi">
                                     <option value="">- Pilih Program Studi -</option>
-                                    <option value="1" >FKIP</option>
-                                    <option value="1" >FT</option>
+                                    @foreach ($study_program as $data)
+                                    <option value="{{$data->id}}">
+                                        {{$data->name}}
+                                    </option>
+                                    @endforeach 
                                 </select>
                             </div>
 							<div class="form-group">
                                 <label>Asal Daerah<span class="required" style="color: #dd4b39;">*</span></label>
                                 <select class="form-control" name="asal_daerah">
                                     <option value="">- Asal Daerah -</option>
-                                    <option value="1" >Bombana</option>
-                                    <option value="1" >Muna</option>
+                                    @foreach ($districts as $data)
+                                    <option value="{{$data->id}}">
+                                        {{$data->name}}
+                                    </option>
+                                    @endforeach 
                                 </select>
                             </div>
 							<div class="form-group">
                                 <label>Kelas<span class="required" style="color: #dd4b39;">*</span></label>
                                <select class="form-control" name="kelas">
                                     <option value="">- Kelas -</option>
-                                    <option value="5" >A</option>
-                                    <option value="1" >B</option>
+                                    @foreach ($class as $data)
+                                    <option value="{{$data->id}}">
+                                        {{$data->name}}
+                                    </option>
+                                    @endforeach 
                                 </select> 
                             </div>
 							<div class="form-group">

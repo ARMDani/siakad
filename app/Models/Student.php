@@ -19,12 +19,12 @@ class Student extends Model
     {
         return $this->belongsTo('App\Models\Districts');
     }
-    public function generations()
-    {
-        return $this->belongsTo('App\Models\Generations');
-    }
     public function class()
     {
         return $this->belongsTo('App\Models\ClassModel');
+    }
+    public function generations()
+    {
+        return $this->belongsTo('App\Models\Generations');
     }
 }
