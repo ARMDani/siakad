@@ -96,8 +96,7 @@
                                     <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
                                 </div>
                             </div>
-                            <form action="/student/store" method="post">
-                                {{ csrf_field() }}
+                        
                                 <input class="btn btn-secondary" type="submit" value="Simpan Data">
                                 <a href="/student" class="btn btn-danger">Kembali</a>
                             </form>

@@ -28,7 +28,7 @@
                          <div class="col-sm-12 col-md-4">
                          <div class="dt-buttons btn-group flex-wrap mt-5">
                           <div class="btn-group" role="group" aria-label="Basic outlined example">
-                            <a href="/student/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
+                            <a href="/fakultas/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
                             <button type="button" class="btn btn-outline-warning">Export</button>
                             <button type="button" class="btn btn-outline-warning btn-flat">Inport</button>
                           </div>
@@ -47,32 +47,17 @@
                         <table class="table table-bordered table-hover table-wrapper">
                             <tr>
                             <th>No</th>
+                            <th>Code</th>
                             <th>Nama</th>
-                            <th>NIM</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Agama</th>
-                            <th>Program Studi</th>
-                            <th>Asal Daerah</th>
-                            <th>Kelas</th>
-                            <th>Angkatan</th>
-                            <th>Photo</th>
                             <th>Opsi</th>
-                            @foreach ($student as $student)
+                            @foreach ($faculty as $faculti)
                             <tr>
-                                <td>{{ $student->id }}</td>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->nim }}</td>
-                                <td>{{ $student->gender }}</td>
-                                <td>{{ $student->religion }}</td>
-                                <td>{{ $student->study_program_id }}</td>
-                                <td>{{ $student->districts_id }}</td>
-                                <td>{{ $student->class_id }}</td>
-                                <td>{{ $student->generations_id }}</td>
-                                <td>{{ $student->photo }}</td>
-
+                                <td>{{ $faculti->id }}</td>
+                                <td>{{ $faculti->code_faculty }}</td>
+                                <td>{{ $faculti->name }}</td>
                                 <td >
-                                    <a href="/admin/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
-                                    <a href="/admin/student/hapus/{{ $student->id }}"class="btn btn-danger"> Hapus </a>
+                                    <a href="/fakultas/edit/{{ $faculti->id }}" class="btn btn-secondary"> Edit </a>
+                                    <a href="/fakultas/hapus/{{ $faculti->id }}"class="btn btn-danger"> Hapus </a>
                                 </td>
                             </tr>
                             @endforeach

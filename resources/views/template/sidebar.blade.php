@@ -57,7 +57,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/data_fakultas" class="nav-link">
+              <a href="/fakultas" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Fakultas</p>
               </a>

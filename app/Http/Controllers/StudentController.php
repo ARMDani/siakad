@@ -30,13 +30,12 @@ class StudentController extends Controller
         $districts = Districts::get();
         $class = ClassModel::get();
         //memanggil view create
-        return view('admin.student.create', ['generations' => $generations], ['study_program' => $study_program], ['districts' => $districts], ['class' => $class]);
+        return view('admin.student.create', ['generations' => $generations, 'study_program' => $study_program, 'districts' => $districts, 'class' => $class]);
     }
-
 
     public function store(Request $request)
     {
-        DB::table('student')->insert([
+        Student::insert([
             // 'id' => $request->no,
             'name' => $request->nama,
             'nim' => $request->nim,
