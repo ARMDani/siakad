@@ -65,54 +65,44 @@ class FacultyController extends Controller
 
     public function destroy($id)
     {
-        // menghapus data pegawai berdasarkan id yang dipilih
         Study_Faculty::where('id', $id)->delete();
-
-        // alihkan halaman ke halaman pegawai
         return redirect('/fakultas');
     }
-    public function cari(Request $request)
+    public function search(Request $request)
     {
-        // // menangkap data pencarian
-        // $cari = $request->cari;
-
-        // // mengambil data dari table pegawai sesuai pencarian data
-        // $faculty = DB::table('faculty')
-        //     ->where('name', 'like', "%" . $cari . "%")
-        //     ->paginate(4);
-
-        // // mengirim data pegawai ke view index
-        // return view('faculty', ['faculty' => $faculty]);
+        $cari = $request->cari;
+        $faculty = Study_Faculty::where('code_faculty', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        return view('admin.faculty.index', ['faculty' =>  $faculty]);
     }
-    public function export_excel()
-    {
-        // return Excel::download(new FacultyExport, 'faculty.xlsx');
-        //dd($faculty);
-    }
+    // public function export_excel()
+    // {
+    //     // return Excel::download(new FacultyExport, 'faculty.xlsx');
+    //     //dd($faculty);
+    // }
 
-    public function import_excel(Request $request)
-    {
-        // validasi
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
+    // public function import_excel(Request $request)
+    // {
+    //     // validasi
+    //     $this->validate($request, [
+    //         'file' => 'required|mimes:csv,xls,xlsx'
+    //     ]);
 
-        // menangkap file excel
-        $file = $request->file('file');
+    //     // menangkap file excel
+    //     $file = $request->file('file');
 
-        // membuat nama file unik
-        $nama_file = rand() . $file->getClientOriginalName();
+    //     // membuat nama file unik
+    //     $nama_file = rand() . $file->getClientOriginalName();
 
-        // upload ke folder file_siswa di dalam folder public
-        $file->move('file_faculty', $nama_file);
+    //     // upload ke folder file_siswa di dalam folder public
+    //     $file->move('file_faculty', $nama_file);
 
-        // import data
-        // Excel::import(new FacultyImport, public_path('/file_faculty/' . $nama_file));
+    //     // import data
+    //     // Excel::import(new FacultyImport, public_path('/file_faculty/' . $nama_file));
 
-        // // notifikasi dengan session
-        // Session::flash('sukses', 'Data Faculty Berhasil Diimport!');
+    //     // // notifikasi dengan session
+    //     // Session::flash('sukses', 'Data Faculty Berhasil Diimport!');
 
-        // alihkan halaman kembali
-        return redirect('/faculty');
-    }
+    //     // alihkan halaman kembali
+    //     return redirect('/faculty');
+    // }
 }

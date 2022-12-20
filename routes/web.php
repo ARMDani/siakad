@@ -25,6 +25,7 @@ Route::post('/fakultas/store', [App\Http\Controllers\FacultyController::class, '
 Route::get('/fakultas/edit/{id}', [App\Http\Controllers\FacultyController::class, 'edit']);
 Route::post('/fakultas/update', [App\Http\Controllers\FacultyController::class, 'update']);
 Route::get('/fakultas/hapus/{id}', [App\Http\Controllers\FacultyController::class, 'destroy']);
+Route::get('/fakultas/cari', [App\Http\Controllers\FacultyController::class, 'search']);
 // Route::get('/faculty/cari', [App\Http\Controllers\FacultyController::class, 'cari']);
 // Route::post('/siswa/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
 // Route::get('/faculty/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
@@ -45,13 +46,13 @@ Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class,
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
 
-Route::get('/prodi', [App\Http\Controllers\StudentController::class, 'index']);
-Route::get('/prodi/create', [App\Http\Controllers\StudentController::class, 'create']);
-Route::post('/prodi/store', [App\Http\Controllers\StudentController::class, 'store']);
-Route::get('/prodi/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit']);
-Route::post('/prodi/update', [App\Http\Controllers\StudentController::class, 'update']);
-Route::get('/prodi/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
-Route::get('/prodi/cari', [App\Http\Controllers\StudentController::class, 'search']);
+Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index']);
+Route::get('/prodi/create', [App\Http\Controllers\StudiprogramController::class, 'create']);
+Route::post('/prodi/store', [App\Http\Controllers\StudiprogramController::class, 'store']);
+Route::get('/prodi/edit/{id}', [App\Http\Controllers\StudiprogramController::class, 'edit']);
+Route::post('/prodi/update', [App\Http\Controllers\StudiprogramController::class, 'update']);
+Route::get('/prodi/hapus/{id}', [App\Http\Controllers\StudiprogramController::class, 'destroy']);
+Route::get('/prodi/cari', [App\Http\Controllers\StudiprogramController::class, 'search']);
 
 Route::get('/kelas', [App\Http\Controllers\StudentController::class, 'index']);
 Route::get('/kelas/create', [App\Http\Controllers\StudentController::class, 'create']);

@@ -63,19 +63,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/data_prodi" class="nav-link">
+              <a href="/prodi" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Prodi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/data_dosen" class="nav-link">
+              <a href="/kelas" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Data Ruangan</p>
+                <p>Data Kelas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/data_dosen" class="nav-link">
+              <a href="/matakuliah" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Mata Kuliah</p>
               </a>
