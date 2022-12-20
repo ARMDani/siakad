@@ -1,0 +1,70 @@
+@extends('template.home')
+@section('content')
+<html>
+    <head>
+        <title>Tambah data dosen</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card-mt-5">
+                        <div class="card-boy">
+                            <h3>Tambah Data Dosen </h3>
+                            <form action="/leacture/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
+                                <input class="form-control" type="text" name="name" placeholder="Masukan Nama ..." type="number" name="name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
+                                <input class="form-control" type="number" name="nidn"placeholder="Masukkan NIDN ..." required="required">
+                            </div>
+                            <div class="form-group ">
+                                <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="gender">
+                                        <option value="">- Pilih Jenis Kelamin -</option>
+                                        <option value="1" >Laki-Laki</option>
+                                        <option value="0" >Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
+                                <select class="form-control" name="religion">
+                                    <option value="">- Pilih Agama -</option>
+                                    <option value="1" >Islam</option>
+                                    <option value="0" >Hindu</option>
+                                    <option value="1" >Kristen</option>
+                                    <option value="1" >Katolik</option>
+                                    <option value="1" >Budha</option>
+                                    <option value="1" >Konghucu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat<span class="required" style="color: #dd4b39;">*</span></label>
+                                <input class="form-control" type="text" name="address"placeholder="Masukkan Alamat ..." required="required">
+                            </div>
+                            <div class="form-group">
+                                <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
+                                <div class="">
+                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg">
+                                    <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
+                                </div>
+                            </div>
+                                <input class="btn btn-secondary" type="submit" value="Simpan Data">
+                                <a href="/leacture" class="btn btn-danger">Kembali</a>
+                            </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+@endsection

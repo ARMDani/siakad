@@ -53,14 +53,6 @@ class FacultyController extends Controller
 
     public function update(Request $request)
     {
-        // // update data pegawai
-        // DB::table('faculty')->where('code_faculty', $request->id)->update([
-        //     'code_faculty' => $request->code_faculty,
-        //     'name' => $request->name
-
-        // ]);
-        // // alihkan halaman ke halaman pegawai
-        // return redirect('/faculty');
         Study_Faculty::where('id', $request->id)->update([
             'code_faculty' => $request->code_faculty,
             'name' => $request->name,

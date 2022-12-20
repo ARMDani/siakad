@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lecturer extends Model
 {
-    use HasFactory;
+    protected $table  = 'lecturer';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'name', 'nidn', 'gender', 'religion', 'address', 'photo'];
 }

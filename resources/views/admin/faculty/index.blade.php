@@ -27,6 +27,7 @@
                          <div class="row">
                          <div class="col-sm-12 col-md-4">
                          <div class="dt-buttons btn-group flex-wrap mt-5">
+                          <h3>Data Fakultas</h3>
                           <div class="btn-group" role="group" aria-label="Basic outlined example">
                             <a href="/fakultas/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
                             <button type="button" class="btn btn-outline-warning">Export</button>

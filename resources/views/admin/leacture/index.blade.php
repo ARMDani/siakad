@@ -1,13 +1,6 @@
 @extends('template.home')
 
 @section('content')
-<style type="text/css">
-  .pagination li{
-    float: left;
-    list-style-type: none;
-    margin:5px;
-  }
-</style>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -19,14 +12,14 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item active">Data Mahasiswa</li>
+              <li class="breadcrumb-item active">Data Dosen</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+ 
         <div class="container">
             <div class="card-body">
                        <div class="card-body">
@@ -34,9 +27,9 @@
                          <div class="row">
                          <div class="col-sm-12 col-md-4">
                          <div class="dt-buttons btn-group flex-wrap mt-5">
-                          <h3>Data Mahasiswa</h3>
+                          <h3>Data Dosen</h3>
                           <div class="btn-group" role="group" aria-label="Basic outlined example">
-                            <a href="/student/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
+                            <a href="/leacture/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
                             <button type="button" class="btn btn-outline-warning">Export</button>
                             <button type="button" class="btn btn-outline-warning btn-flat">Inport</button>
                           </div>
@@ -46,47 +39,37 @@
                        </div>
                       </div>
                       <div class="input-group mb-3">
-	                      <form action="/student/cari" method="GET">
                         <input type="text" class="form-control rounded-0">
                         <span class="input-group-append">
-                          <input type="text" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
-		                      <input type="submit" value="CARI">
+                          <button type="button" class="btn btn-success">Cari!</button>
                         </span>
-                      </form>
                       </div>
                       <div class="container-fuild">
                         <table class="table table-bordered table-hover table-wrapper">
                             <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>NIM</th>
+                            <th>NIDN</th>
                             <th>Jenis Kelamin</th>
                             <th>Agama</th>
-                            <th>Program Studi</th>
-                            <th>Asal Daerah</th>
-                            <th>Kelas</th>
-                            <th>Angkatan</th>
-                            <th>Photo</th>
-                            <th>Opsi</th>
-                            @foreach ($students as $student)
+                            <th>Alamat</th>
+                            <th>Foto</th>
+                            @foreach ($leacture as $leactures)
                             <tr>
-                                <td>{{ $student->id }}</td>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->nim }}</td>
-                                <td>{{ $student->gender }}</td>
-                                <td>{{ $student->religion }}</td>
-                                <td>{{ $student->study_program->name }}</td>
-                                <td>{{ $student->districts->name }}</td>
-                                <td>{{ $student->class->name }}</td>
-                                <td>{{ $student->generations->name }}</td>
-                                <td>{{ $student->photo }}</td>
-
+                                <td>{{ $leactures->id }}</td>
+                                <td>{{ $leactures->name }}</td>
+                                <td>{{ $leactures->nidn }}</td>
+                                <td>{{ $leactures->gender }}</td>
+                                <td>{{ $leactures->religion }}</td>
+                                <td>{{ $leactures->address }}</td>
+                                <td>{{ $leactures->photo }}</td>
                                 <td >
-                                    <a href="/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
-                                    <a href="/student/hapus/{{ $student->id }}"class="btn btn-danger"> Hapus </a>
+                                    <a href="/leacture/edit/{{ $leactures->id }}" class="btn btn-secondary"> Edit </a>
+                                    <a href="/leacture/hapus/{{ $leactures->id }}"class="btn btn-danger"> Hapus </a>
                                 </td>
                             </tr>
                             @endforeach
+                      
                         </table>
                       </div>
                        </div>
@@ -97,13 +80,8 @@
       </div>
             </div>
         <br/>
-        Halaman : {{ $students->currentPage() }} <br/>
-	      Jumlah Data : {{ $students->total() }} <br/>
-	      Data Per Halaman : {{ $students->perPage() }} <br/>
- 
- 
-	      {{ $students->links() }}
     </body>
+
 @endsection
 
 

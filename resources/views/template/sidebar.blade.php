@@ -81,7 +81,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/data_dosen" class="nav-link">
+              <a href="/leacture" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Dosen</p>
               </a>
