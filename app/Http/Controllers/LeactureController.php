@@ -72,4 +72,15 @@ class LeactureController extends Controller
         Lecturer::where('id', $id)->delete();
         return redirect('/leacture');
     }
+    public function search(Request $request)
+    {
+        // menangkap data pencarian
+        $cari = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+
+        // mengirim data pegawai ke view index
+        return view('admin.leacture.index', ['leacture' => $leacture]);
+    }
 }

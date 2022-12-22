@@ -19,7 +19,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item active">Data Mahasiswa</li>
+              <li class="breadcrumb-item active">Data Mata Kuliah</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,9 +33,9 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-4">
                                 <div class="dt-buttons btn-group flex-wrap mt-5">
-                                  <h3>Data Mahasiswa</h3>
+                                  <h3>Data Mata Kuliah</h3>
                                   <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <a href="/student/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
+                                    <a href="/matakuliah/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
                                     <button type="button" class="btn btn-outline-warning">Export</button>
                                     <button type="button" class="btn btn-outline-warning btn-flat">Inport</button>
                                   </div>
@@ -45,10 +45,10 @@
                       </div>
                   </div>
                   <div class="input-group mb-3">
-                    <form action="/student/cari" method="GET">
+                    <form action="/matakuliah/cari" method="GET">
                       <input type="text" class="form-control rounded-0">
                       <span class="input-group-append">
-                        <input type="text" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
+                        <input type="text" name="cari" placeholder="Cari Mata Kuliah .." value="{{ old('cari') }}">
                         <input type="submit" value="CARI">
                       </span>
                     </form>
@@ -57,43 +57,35 @@
                     <table class="table table-bordered table-hover table-wrapper">
                         <tr>
                           <th>No</th>
+                          <th>Kode Mata Kuliah</th>
                           <th>Nama</th>
-                          <th>NIM</th>
-                          <th>Jenis Kelamin</th>
-                          <th>Agama</th>
-                          <th>Program Studi</th>
-                          <th>Asal Daerah</th>
-                          <th>Kelas</th>
-                          <th>Angkatan</th>
-                          <th>Photo</th>
+                          <th>SKS</th>
+                          <th>Semester</th>
+                          <th>Dosen</th>
                           <th>Opsi</th>
                         </tr>
-                        <?php $no = $students->currentPage() * $students->perPage() -9 ; ?>
-                        @foreach ($students as $student)
+                        <?php $no = $course->currentPage() * $course->perPage() -9 ; ?>
+                        @foreach ($course as $courses)
                         <tr>
                             <td>{{ $no }}</td>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->nim }}</td>
-                            <td>{{ $student->gender }}</td>
-                            <td>{{ $student->religion }}</td>
-                            <td>{{ $student->study_program->name }}</td>
-                            <td>{{ $student->districts->name }}</td>
-                            <td>{{ $student->class->name }}</td>
-                            <td>{{ $student->generations->name }}</td>
-                            <td>{{ $student->photo }}</td>
+                            <td>{{ $courses->course_code }}</td>
+                            <td>{{ $courses->name }}</td>
+                            <td>{{ $courses->sk }}</td>
+                            <td>{{ $courses->semester }}</td>
+                            <td>{{ $courses->lecturer->name }}</td>
                             <td >
-                                <a href="/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
-                                <a href="/student/hapus/{{ $student->id }}"class="btn btn-danger"> Hapus </a>
+                                <a href="/matakuliah/edit/{{ $courses->id }}" class="btn btn-secondary"> Edit </a>
+                                <a href="/matakuliah/hapus/{{ $courses->id }}"class="btn btn-danger"> Hapus </a>
                             </td>
                         </tr>
                         <?php $no++ ?>
                         @endforeach
                     </table>
                     <br/>
-                    Halaman : {{ $students->currentPage() }} <br/>
-                    Jumlah Data : {{ $students->total() }} <br/>
-                    Data Per Halaman : {{ $students->perPage() }} <br/>
-                    {{ $students->links() }}
+                    Halaman : {{ $course->currentPage() }} <br/>
+                    Jumlah Data : {{ $course->total() }} <br/>
+                    Data Per Halaman : {{ $course->perPage() }} <br/>
+                    {{ $course->links() }}
                   </div>
         </div>
     </div>

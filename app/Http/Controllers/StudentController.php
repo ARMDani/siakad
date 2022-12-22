@@ -102,7 +102,7 @@ class StudentController extends Controller
         $cari = $request->cari;
 
         // mengambil data dari table pegawai sesuai pencarian data
-        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->orwhere('districts_id', 'like', "%" . $cari . "%")->paginate();
 
         // mengirim data pegawai ke view index
         return view('admin.student.index', ['students' => $students]);

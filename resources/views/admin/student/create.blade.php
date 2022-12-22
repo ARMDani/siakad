@@ -24,8 +24,7 @@
                             </div>
                             <div class="form-group ">
                                 <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" name="group_id">
                                         <option value="">- Pilih Jenis Kelamin -</option>
                                         <option value="1" >Laki-Laki</option>
                                         <option value="0" >Perempuan</option>
@@ -34,7 +33,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="agama">
+                                <select class="form-control" name="agama" name="group_id">
                                     <option value="">- Pilih Agama -</option>
                                     <option value="Islam" >Islam</option>
                                     <option value="Hindu" >Hindu</option>

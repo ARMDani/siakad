@@ -54,18 +54,18 @@ Route::post('/prodi/update', [App\Http\Controllers\StudiprogramController::class
 Route::get('/prodi/hapus/{id}', [App\Http\Controllers\StudiprogramController::class, 'destroy']);
 Route::get('/prodi/cari', [App\Http\Controllers\StudiprogramController::class, 'search']);
 
-Route::get('/kelas', [App\Http\Controllers\StudentController::class, 'index']);
-Route::get('/kelas/create', [App\Http\Controllers\StudentController::class, 'create']);
-Route::post('/kelas/store', [App\Http\Controllers\StudentController::class, 'store']);
-Route::get('/kelas/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit']);
-Route::post('/kelas/update', [App\Http\Controllers\StudentController::class, 'update']);
-Route::get('/kelas/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
-Route::get('/kelas/cari', [App\Http\Controllers\StudentController::class, 'search']);
+Route::get('/kelas', [App\Http\Controllers\ClassController::class, 'index']);
+Route::get('/kelas/create', [App\Http\Controllers\ClassController::class, 'create']);
+Route::post('/kelas/store', [App\Http\Controllers\ClassController::class, 'store']);
+Route::get('/kelas/edit/{id}', [App\Http\Controllers\ClassController::class, 'edit']);
+Route::post('/kelas/update', [App\Http\Controllers\ClassController::class, 'update']);
+Route::get('/kelas/hapus/{id}', [App\Http\Controllers\ClassController::class, 'destroy']);
+Route::get('/kelas/cari', [App\Http\Controllers\ClassController::class, 'search']);
 
-Route::get('/matakuliah', [App\Http\Controllers\StudentController::class, 'index']);
-Route::get('/matakuliah/create', [App\Http\Controllers\StudentController::class, 'create']);
-Route::post('/matakuliah/store', [App\Http\Controllers\StudentController::class, 'store']);
-Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit']);
-Route::post('/matakuliah/update', [App\Http\Controllers\StudentController::class, 'update']);
-Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
-Route::get('/matakuliah/cari', [App\Http\Controllers\StudentController::class, 'search']);
+Route::get('/matakuliah', [App\Http\Controllers\SubjekcourseController::class, 'index']);
+Route::get('/matakuliah/create', [App\Http\Controllers\SubjekcourseController::class, 'create']);
+Route::post('/matakuliah/store', [App\Http\Controllers\SubjekcourseController::class, 'store']);
+Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SubjekcourseController::class, 'edit']);
+Route::post('/matakuliah/update', [App\Http\Controllers\SubjekcourseController::class, 'update']);
+Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SubjekcourseController::class, 'destroy']);
+Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::class, 'search']);

@@ -14,39 +14,31 @@ use App\Http\Controllers\Controller;
 
 class FacultyController extends Controller
 {
-
     public function index()
     {
         $faculty = Study_Faculty::paginate(10);
         return view('admin.faculty.index', ['faculty' => $faculty]);
     }
-
     public function create()
     {
         return view('admin.faculty.create');
     }
-
     public function store(Request $request)
     {
-
         Study_Faculty::insert([
             'code_faculty' => $request->code_faculty,
             'name' => $request->name,
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
         return redirect('/fakultas');
     }
-
     public function show()
     {
         //
     }
-
     public function edit($id)
     {
-
         $faculty = Study_Faculty::where('id', $id)->get();
         return view('admin.faculty.edit', ['faculty' => $faculty]);
     }
@@ -59,10 +51,8 @@ class FacultyController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
         return redirect('/fakultas');
     }
-
     public function destroy($id)
     {
         Study_Faculty::where('id', $id)->delete();
