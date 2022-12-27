@@ -92,7 +92,7 @@
 							<div class="form-group">
                                 <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
                                 <div class="">
-                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="foto" value="" accept=".png, .jpeg, .jpg">
+                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg">
                                     <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
                                 </div>
                             </div>

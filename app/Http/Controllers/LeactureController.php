@@ -22,13 +22,20 @@ class LeactureController extends Controller
 
     public function store(Request $request)
     {
-        Lecturer::insert([
+        $photo = null;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $photo = $filename;
+        }
+        $leactures = Lecturer::insert([
             'name' => $request->name,
             'nidn' => $request->nidn,
             'gender' => $request->gender,
             'religion' => $request->religion,
             'address' => $request->address,
-            'photo' => $request->photo,
+            'photo' => $photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
@@ -53,6 +60,13 @@ class LeactureController extends Controller
 
     public function update(Request $request)
     {
+        $photo = null;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $photo = $filename;
+        }
         Lecturer::where('id', $request->id)->update([
             'name' => $request->name,
             'nidn' => $request->nidn,

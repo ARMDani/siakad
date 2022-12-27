@@ -71,7 +71,12 @@
                                   <td>{{ $leactures->gender }}</td>
                                   <td>{{ $leactures->religion }}</td>
                                   <td>{{ $leactures->address }}</td>
-                                  <td>{{ $leactures->photo }}</td>
+                                
+                                    <td>
+                                      <img src="{{ url('public/Image/'.$leactures->photo) }}"
+                                      style="height: 100px; width: 150px;">
+                                    </td>
+                            
                                   <td >
                                     <a href="/leacture/edit/{{ $leactures->id }}" class="btn btn-secondary"> Edit </a>
                                     <a href="/leacture/hapus/{{ $leactures->id }}"class="btn btn-danger"> Hapus </a>

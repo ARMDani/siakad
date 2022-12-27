@@ -2,7 +2,7 @@
 @section('content')
 <html>
     <head>
-        <title>Edit data Mahasiswa</title>
+        <title>Edit data mata kuliah</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
     </head>
     <body>

@@ -21,8 +21,8 @@
                                     <input type="text" required="required" name="name" value="{{ $leactures->name }}"> <br/>
                                 </div>
                                 <div class="form-group">
-                                <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input type="number" required="required" name="nidn" value="{{ $leactures->nidn }}"> <br/>
+                                    <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
+                                    <input type="number" required="required" name="nidn" value="{{ $leactures->nidn }}"> <br/>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="photo" value="{{ $leactures->photo }}"> <br/>
+                                    <input type="file" required="required" name="photo" value="{{ $leactures->photo }}"> <br/>
                                 </div>
                                
                                 <input class="btn btn-secondary" type="submit" value="Simpan Data">
