@@ -51,7 +51,7 @@ class ClassController extends Controller
     public function search(Request $request)
     {
         $cari = $request->cari;
-        $class = ClassModel::where('id', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $class = ClassModel::where('id', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
         return view('admin.class.index', ['class' =>  $class]);
     }
 }

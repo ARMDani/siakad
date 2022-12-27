@@ -20,11 +20,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Nim<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="text" name="nim"placeholder="Masukkan Nim ..." required="required">
+                                <input class="form-control" type="number" name="nim" placeholder="Masukkan Nim ..." required="required">
                             </div>
                             <div class="form-group ">
                                 <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="gender" name="group_id">
+                                    <select class="form-control" name="gender" name="group_id" required="required">
                                         <option value="">- Pilih Jenis Kelamin -</option>
                                         <option value="1" >Laki-Laki</option>
                                         <option value="0" >Perempuan</option>
@@ -33,7 +33,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="agama" name="group_id">
+                                <select class="form-control" name="agama" name="group_id" required="required">
                                     <option value="">- Pilih Agama -</option>
                                     <option value="Islam" >Islam</option>
                                     <option value="Hindu" >Hindu</option>
@@ -46,7 +46,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="program_studi">
+                                <select class="form-control" name="program_studi" required="required">
                                     <option value="">- Pilih Program Studi -</option>
                                     @foreach ($study_program as $data)
                                     <option value="{{$data->id}}">
@@ -57,7 +57,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Asal Daerah<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="asal_daerah">
+                                <select class="form-control" name="asal_daerah" required="required">
                                     <option value="">- Asal Daerah -</option>
                                     @foreach ($districts as $data)
                                     <option value="{{$data->id}}">
@@ -68,7 +68,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Kelas<span class="required" style="color: #dd4b39;">*</span></label>
-                               <select class="form-control" name="kelas">
+                               <select class="form-control" name="kelas" required="required">
                                     <option value="">- Kelas -</option>
                                     @foreach ($class as $data)
                                     <option value="{{$data->id}}">
@@ -79,7 +79,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Angkatan<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="angkatan">
+                                <select class="form-control" name="angkatan" required="required">
                                     <option value="">- Angkatan -</option>
                                     @foreach ($generations as $data)
                                     <option value="{{$data->id}}">
@@ -92,7 +92,7 @@
 							<div class="form-group">
                                 <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
                                 <div class="">
-                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg">
+                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg" required="required">
                                     <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
                                 </div>
                             </div>

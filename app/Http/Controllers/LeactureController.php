@@ -73,7 +73,7 @@ class LeactureController extends Controller
             'gender' => $request->gender,
             'religion' => $request->religion,
             'address' => $request->address,
-            'photo' => $request->photo,
+            'photo' => $photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
@@ -92,7 +92,7 @@ class LeactureController extends Controller
         $cari = $request->cari;
 
         // mengambil data dari table pegawai sesuai pencarian data
-        $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
 
         // mengirim data pegawai ke view index
         return view('admin.leacture.index', ['leacture' => $leacture]);

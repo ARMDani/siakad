@@ -88,7 +88,7 @@ class StudentController extends Controller
             $file = $request->file('photo');
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('public/Image'), $filename);
-            $photo['photo'] = $filename;
+            $photo = $filename;
         }
         $students = Student::where('id', $request->id)->update([
             'name' => $request->name,
@@ -115,9 +115,9 @@ class StudentController extends Controller
     {
         // menangkap data pencarian
         $cari = $request->cari;
-
         // mengambil data dari table pegawai sesuai pencarian data
-        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->orwhere('districts_id', 'like', "%" . $cari . "%")->paginate();
+        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->orwhere('districts_id', 'like', "%" . $cari . "%")->paginate(10);
+        // dd($students);
 
         // mengirim data pegawai ke view index
         return view('admin.student.index', ['students' => $students]);

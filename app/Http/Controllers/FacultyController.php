@@ -61,7 +61,7 @@ class FacultyController extends Controller
     public function search(Request $request)
     {
         $cari = $request->cari;
-        $faculty = Study_Faculty::where('code_faculty', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $faculty = Study_Faculty::where('code_faculty', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
         return view('admin.faculty.index', ['faculty' =>  $faculty]);
     }
     // public function export_excel()

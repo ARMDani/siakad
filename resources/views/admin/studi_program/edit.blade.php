@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Fakultas<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="study_faculty_id">
+                                    <select class="form-control" name="study_faculty_id" required="required">
                                         <option value="">- Pilih Fakultas -</option>
                                         @foreach ($study_faculty_id as $data)
                                         <option value="{{$data->id}}" <?php echo $data->id == $prodis->study_faculty_id ? 'selected' : ' ';  ?>>

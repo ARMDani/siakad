@@ -40,14 +40,10 @@
                             </div>
                           </div>
                         </div>
-
-
-                        
-                        
                           <form action="/leacture/cari" method="GET">
                             <input type="text" class="form-control rounded-0">
                               <span class="input-group-append">
-                                <input class="input-group mb-3" type="text" name="cari" placeholder="Cari Data Mata Kuliah .." value="{{ old('cari') }}">
+                                <input class="input-group mb-3" type="text" name="cari" placeholder="Cari Data Dosen .." value="{{ old('cari') }}">
                                 <button type="submit" class="btn btn-success" value="CARI">Cari!</button>
                               </span>
                           </form>
@@ -71,12 +67,10 @@
                                   <td>{{ $leactures->gender }}</td>
                                   <td>{{ $leactures->religion }}</td>
                                   <td>{{ $leactures->address }}</td>
-                                
                                     <td>
                                       <img src="{{ url('public/Image/'.$leactures->photo) }}"
                                       style="height: 100px; width: 150px;">
                                     </td>
-                            
                                   <td >
                                     <a href="/leacture/edit/{{ $leactures->id }}" class="btn btn-secondary"> Edit </a>
                                     <a href="/leacture/hapus/{{ $leactures->id }}"class="btn btn-danger"> Hapus </a>

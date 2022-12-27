@@ -18,23 +18,23 @@
                             <input type="hidden" name="id" value="{{ $course->id }}"> <br/>
                                 <div class="form-group">
                                     <label>Kode Mata Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="number" required="required" name="course_code" value="{{ $course->course_code }}"> <br/>
+                                    <input class="form-control" type="number" required="required" name="course_code" value="{{ $course->course_code }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="name" value="{{ $course->name }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="name" value="{{ $course->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label>SKS<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="number" required="required" name="sk" value="{{ $course->sk }}"> <br/>
+                                    <input class="form-control" type="number" required="required" name="sk" value="{{ $course->sk }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Semester<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="number" required="required" name="semester" value="{{ $course->semester }}"> <br/>
+                                    <input class="form-control" type="number" required="required" name="semester" value="{{ $course->semester }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Dosen<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="lecturer_id">
+                                    <select class="form-control" name="lecturer_id" required="required">
                                         @foreach ($leacture as $data)
                                         <option value="{{$data->id}}" <?php echo $data->id == $course->lecturer_id ? 'selected' : ' ';  ?>>
                                             {{$data->name}}

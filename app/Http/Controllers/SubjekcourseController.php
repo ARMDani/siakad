@@ -70,7 +70,7 @@ class SubjekcourseController extends Controller
     public function search(Request $request)
     {
         $cari = $request->cari;
-        $course = Subject_Course::where('course_code', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $course = Subject_Course::where('course_code', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
         return view('admin.subject_course.index', ['course' =>  $course]);
     }
 }

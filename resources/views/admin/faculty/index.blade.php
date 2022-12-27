@@ -56,7 +56,7 @@
                             <tr>
                               <th>No</th>
                               <th>Code</th>
-                              <th>Nama</th>
+                              <th>Fakultas</th>
                               <th>Opsi</th>
                             </tr>
                             <?php $no = $faculty->currentPage() * $faculty->perPage() -9 ; ?>

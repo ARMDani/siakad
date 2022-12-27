@@ -57,8 +57,8 @@
                     <table class="table table-bordered table-hover table-wrapper">
                         <tr>
                           <th>No</th>
-                          <th>Kode Program Studi</th>
-                          <th>Nama Program Studi</th>
+                          <th>Kode</th>
+                          <th>Program Studi</th>
                           <th>Fakultas</th>
                           <th>Opsi</th>
                         </tr>

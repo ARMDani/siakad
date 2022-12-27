@@ -57,8 +57,8 @@
                     <table class="table table-bordered table-hover table-wrapper">
                         <tr>
                           <th>No</th>
-                          <th>Kode Mata Kuliah</th>
-                          <th>Nama</th>
+                          <th>Kode</th>
+                          <th>Mata Kuliah</th>
                           <th>SKS</th>
                           <th>Semester</th>
                           <th>Dosen</th>

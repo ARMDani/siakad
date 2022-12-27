@@ -28,11 +28,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Semester<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="text" name="semester"placeholder="Masukkan Semester  ..." required="required">
+                                <input class="form-control" type="number" name="semester"placeholder="Masukkan Semester  ..." required="required">
                             </div>
 							<div class="form-group">
                                 <label>Dosen<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="lecturer_id">
+                                <select class="form-control" name="lecturer_id" required="required">
                                     <option value="">- Dosen -</option>
                                     @foreach ($leacture as $data)
                                     <option value="{{$data->id}}">

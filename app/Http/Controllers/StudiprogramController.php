@@ -73,7 +73,7 @@ class StudiprogramController extends Controller
         $cari = $request->cari;
 
         // mengambil data dari table pegawai sesuai pencarian data
-        $prodi = Study_Program::where('code_prodi', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $prodi = Study_Program::where('code_prodi', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
 
         // mengirim data pegawai ke view index
         return view('admin.studi_program.index', ['prodi' => $prodi]);
