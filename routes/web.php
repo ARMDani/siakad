@@ -22,10 +22,27 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// ______________________________________LOGIN CONTROLLER___________________________________________________________
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('home');})->middleware('auth');
+  
+Auth::routes();
+  
+Route::middleware(['auth', 'cekLogin:user'])->group(function () {
+  
+    Route::get('/home', [LoginController::class, 'index'])->name('home');
+});
+
+
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
 
-Route::get('/fakultas', [App\Http\Controllers\FacultyController::class, 'index']);
+Route::get('/fakultas', [App\Http\Controllers\FacultyController::class, 'index'])->middleware('auth');
 Route::get('/fakultas/create', [App\Http\Controllers\FacultyController::class, 'create']);
 Route::post('/fakultas/store', [App\Http\Controllers\FacultyController::class, 'store']);
 Route::get('/fakultas/edit/{id}', [App\Http\Controllers\FacultyController::class, 'edit']);
@@ -44,7 +61,7 @@ Route::post('/student/update', [App\Http\Controllers\StudentController::class, '
 Route::get('/student/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
 Route::get('/student/cari', [App\Http\Controllers\StudentController::class, 'search']);
 
-Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index']);
+Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
 Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
 Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
@@ -52,7 +69,7 @@ Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class,
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
 
-Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index']);
+Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index'])->middleware('auth');
 Route::get('/prodi/create', [App\Http\Controllers\StudiprogramController::class, 'create']);
 Route::post('/prodi/store', [App\Http\Controllers\StudiprogramController::class, 'store']);
 Route::get('/prodi/edit/{id}', [App\Http\Controllers\StudiprogramController::class, 'edit']);
@@ -79,51 +96,3 @@ Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::cla
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// ______________________________________LOGIN CONTROLLER___________________________________________________________
-
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('/', function () {
-    return view('home');})->middleware('auth');
-  
-Auth::routes();
-  
-/*------------------------------------------
---------------------------------------------
-All Normal Users Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:user'])->group(function () {
-  
-    Route::get('/home', [LoginController::class, 'index'])->name('home');
-});
-/*------------------------------------------
---------------------------------------------
-All Super Admin Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:super-admin'])->group(function () {
-  
-    Route::get('/super-admin/home', [LoginController::class, 'superAdminHome'])->name('super.admin.home');
-});
-  
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:manager'])->group(function () {
-  
-    Route::get('/manager/home', [LoginController::class, 'managerHome'])->name('manager.home');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -27,7 +27,7 @@ class FacultySeeader extends Seeder
         // ]);
         DB::table('study_faculty')->insert([
             'code_faculty' => 11111,
-            'name' => 'Fakultas Teknik',
+            'name' => 'Fakultas Teknologi dan Kesehatan',
             'created_by' => 2,
             'updated_by' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

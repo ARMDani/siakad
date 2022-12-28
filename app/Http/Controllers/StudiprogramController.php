@@ -78,4 +78,6 @@ class StudiprogramController extends Controller
         // mengirim data pegawai ke view index
         return view('admin.studi_program.index', ['prodi' => $prodi]);
     }
+    // ________________________________fungsi jadwal____________________________________________________________________________
+    
 }
