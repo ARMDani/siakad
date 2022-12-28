@@ -57,6 +57,7 @@
                     <table class="table table-bordered table-hover table-wrapper">
                         <tr>
                           <th>No</th>
+                          <th>Nama</th>
                           <th>Kelas</th>
                           <th>Opsi</th>
                         </tr>

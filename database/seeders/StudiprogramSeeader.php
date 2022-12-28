@@ -22,29 +22,29 @@ class StudiprogramSeeader extends Seeder
         //     'study_faculty_id' => 1,
         //     'created_by' => 1,
         //     'updated_by' => 1,
-        //     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        //     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
         //     'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
         // ]);
         DB::table('study_program')->insert([
             'code_prodi' => 22223,
             'name' => 'Administrasi',
-            'study_faculty_id' => 2,
+            'study_faculty_id' => 1,
             'created_by' => 2,
             'updated_by' => 2,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'deleted_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('study_program')->insert([
             'code_prodi' => 22224,
             'name' => 'Kimia',
-            'study_faculty_id' => 3,
+            'study_faculty_id' => 1,
             'created_by' => 3,
             'updated_by' => 3,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'deleted_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }
