@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject_Course extends Model
 {
-    use HasFactory;
+    protected $table  = 'subject_course';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'course_code', 'name', 'sk', 'semester', 'lecturer_id'];
+
+    public function lecturer()
+    {
+        return $this->belongsTo('App\Models\Lecturer');
+    }
 }
