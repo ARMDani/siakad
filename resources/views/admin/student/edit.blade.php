@@ -18,15 +18,15 @@
                             <input type="hidden" name="id" value="{{ $students->id }}"> <br/>
                                 <div class="form-group">
                                     <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="name" value="{{ $students->name }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="name" value="{{ $students->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Nim<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="number" required="required" name="nim" value="{{ $students->nim }}"> <br/>
+                                    <input class="form-control" type="number" required="required" name="nim" value="{{ $students->nim }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required="required">
                                         <option value="">- Pilih Jenis Kelamin -</option>
                                         <option value="Laki-Laki" <?php echo "Laki-Laki" == $students->gender ? 'selected' : ' ';  ?>>Laki-Laki</option>
                                         <option value="Perempuan" <?php echo "Perempuan" == $students->gender ? 'selected' : ' ';  ?>>Perempuan</option>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="religion">
+                                    <select class="form-control" name="religion" required="required">
                                         <option value="">- Pilih Agama -</option>
                                         <option value="Islam" <?php echo "Islam" == $students->religion ? 'selected' : ' ';  ?>>Islam</option>
                                         <option value="Hindu" <?php echo "Hindu" == $students->religion ? 'selected' : ' ';  ?>>Hindu</option>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="study_program_id">
+                                    <select class="form-control" name="study_program_id" required="required">
                                         <option value="">- Pilih Program Studi -</option>
                                         @foreach ($study_program as $data)
                                         <option value="{{$data->id}}" <?php echo $data->id == $students->study_program_id ? 'selected' : ' ';  ?>>
@@ -58,7 +58,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Asal Daerah<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="districts_id">
+                                    <select class="form-control" name="districts_id" required="required">
+                                    <option value="">- Pilih Asal Daerah -</option>
                                     @foreach ($districts as $data)
                                     <option value="{{$data->id}}" <?php echo $data->id == $students->districts_id ? 'selected' : ' ';  ?>>
                                         {{$data->name}}
@@ -68,7 +69,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kelas<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="class_id">
+                                    <select class="form-control" name="class_id" required="required">
+                                        <option value="">- Pilih Kelas -</option>
                                         @foreach ($class as $data)
                                         <option value="{{$data->id}}" <?php echo $data->id == $students->class_id ? 'selected' : ' ';  ?>>
                                             {{$data->name}}
@@ -78,7 +80,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Angkatan<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <select class="form-control" name="generations_id">
+                                    <select class="form-control" name="generations_id" required="required">
+                                        <option value="">- Pilih Angkatan -</option>
                                         @foreach ($generations as $data)
                                         <option value="{{$data->id}}" <?php echo $data->id == $students->generations_id ? 'selected' : ' ';  ?>>
                                             {{$data->name}}
@@ -86,10 +89,20 @@
                                         @endforeach 
                                         </select>
                                 </div>
+
                                 <div class="form-group">
-                                    <label>Foto<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="photo" value="{{ $students->photo }}"> <br/>
+                                    <label class=" control-label">Foto<span class="required" style="color: #dd4b39;">*</span></label>
+                                    <div class="">
+                                        <input lass="form-control" type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="{{ $students->photo }}" accept=".png, .jpeg, .jpg" required="required"><br/>
+                                        <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
+                                    </div>
                                 </div>
+
+
+                                {{-- <div class="form-group">
+                                    <label>Foto<span class="required" style="color: #dd4b39;">*</span></label>
+                                    <input type="file" required="required" name="photo" value="{{ $students->photo }}"> <br/>
+                                </div> --}}
                             <input class="btn btn-secondary" type="submit" value="Simpan Data">
                             <a href="/student" class="btn btn-danger">Kembali</a>
                             </form>

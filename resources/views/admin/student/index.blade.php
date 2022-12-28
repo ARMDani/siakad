@@ -80,8 +80,11 @@
                             <td>{{ $student->districts->name }}</td>
                             <td>{{ $student->class->name }}</td>
                             <td>{{ $student->generations->name }}</td>
-                            <td>{{ $student->photo }}</td>
-                            <td >
+                            <td>
+                              <img src="{{ url('public/Image/'.$student->photo) }}"
+                              style="height: 100px; width: 150px;">
+                            </td>
+                            <td>
                                 <a href="/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
                                 <a href="/student/hapus/{{ $student->id }}"class="btn btn-danger"> Hapus </a>
                             </td>

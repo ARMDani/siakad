@@ -16,7 +16,7 @@
                             {{ csrf_field() }} 
                             <div class="form-group">
                                 <label>Kode Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="number" name="code_prodi"placeholder="Masukkan Program Studi ..." required="required">
+                                <input class="form-control" type="number" name="code_prodi" placeholder="Masukkan Program Studi ..." required="required">
                             </div>
                             <div class="form-group">
                                 <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
@@ -24,7 +24,7 @@
                             </div>
 							<div class="form-group">
                                 <label>Fakultas<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="study_faculty">
+                                <select class="form-control" name="study_faculty" required="required">
                                     <option value="">- Pilih Fakultas -</option>
                                     @foreach ($study_faculty_id as $data)
                                     <option value="{{$data->id}}">

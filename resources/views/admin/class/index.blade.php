@@ -58,6 +58,7 @@
                         <tr>
                           <th>No</th>
                           <th>Nama</th>
+                          <th>Kelas</th>
                           <th>Opsi</th>
                         </tr>
                         <?php $no = $class->currentPage() * $class->perPage() -9 ; ?>

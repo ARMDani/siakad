@@ -18,27 +18,27 @@
                                 <input type="hidden" name="id" value="{{ $leactures->id }}"> <br/>
                                 <div class="form-group">
                                     <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="name" value="{{ $leactures->name }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="name" value="{{ $leactures->name }}">
                                 </div>
                                 <div class="form-group">
-                                <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input type="number" required="required" name="nidn" value="{{ $leactures->nidn }}"> <br/>
+                                    <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
+                                    <input class="form-control" type="number" required="required" name="nidn" value="{{ $leactures->nidn }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="gender" value="{{ $leactures->gender }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="gender" value="{{ $leactures->gender }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="religion" value="{{ $leactures->religion }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="religion" value="{{ $leactures->religion }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="address" value="{{ $leactures->address }}"> <br/>
+                                    <input class="form-control" type="text" required="required" name="address" value="{{ $leactures->address }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Foto<span class="required" style="color: #dd4b39;">*</span></label>
-                                    <input type="text" required="required" name="photo" value="{{ $leactures->photo }}"> <br/>
+                                    <input class="form-control" type="file" required="required" name="photo" value="{{ $leactures->photo }}"> 
                                 </div>
                                
                                 <input class="btn btn-secondary" type="submit" value="Simpan Data">

@@ -37,7 +37,15 @@ class StudentController extends Controller
     }
     public function store(Request $request)
     {
-        Student::insert([
+        $photo = null;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $photo = $filename;
+        }
+
+        $students = Student::insert([
             'name' => $request->nama,
             'nim' => $request->nim,
             'gender' => $request->gender,
@@ -46,10 +54,11 @@ class StudentController extends Controller
             'districts_id' => $request->asal_daerah,
             'class_id' => $request->kelas,
             'generations_id' => $request->angkatan,
-            'photo' => $request->foto,
+            'photo' => $photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
+
         return redirect('/student');
     }
     public function show($id)
@@ -70,12 +79,18 @@ class StudentController extends Controller
             'study_program' => $study_program,
             'districts' => $districts,
             'class' => $class
-
         ]);
     }
     public function update(Request $request)
     {
-        Student::where('id', $request->id)->update([
+        $photo = null;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $photo = $filename;
+        }
+        $students = Student::where('id', $request->id)->update([
             'name' => $request->name,
             'nim' => $request->nim,
             'gender' => $request->gender,
@@ -84,7 +99,7 @@ class StudentController extends Controller
             'districts_id' => $request->districts_id,
             'class_id' => $request->class_id,
             'generations_id' => $request->generations_id,
-            'photo' => $request->photo,
+            'photo' => $photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
@@ -100,9 +115,9 @@ class StudentController extends Controller
     {
         // menangkap data pencarian
         $cari = $request->cari;
-
         // mengambil data dari table pegawai sesuai pencarian data
-        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate();
+        $students = Student::where('nim', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->orwhere('districts_id', 'like', "%" . $cari . "%")->paginate(10);
+        // dd($students);
 
         // mengirim data pegawai ke view index
         return view('admin.student.index', ['students' => $students]);

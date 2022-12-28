@@ -24,17 +24,17 @@
                             </div>
                             <div class="form-group ">
                                 <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="gender">
+                                
+                                    <select class="form-control" name="gender" required="required">
                                         <option value="">- Pilih Jenis Kelamin -</option>
                                         <option value="1" >Laki-Laki</option>
                                         <option value="0" >Perempuan</option>
                                     </select>
-                                </div>
+    
                             </div>
 							<div class="form-group">
                                 <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="religion">
+                                <select class="form-control" name="religion" required="required">
                                     <option value="">- Pilih Agama -</option>
                                     <option value="1" >Islam</option>
                                     <option value="0" >Hindu</option>
@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
                                 <div class="">
-                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg">
+                                    <input type="file" class="form-control" placeholder="Cover/Thumbnail Informasi" name="photo" value="" accept=".png, .jpeg, .jpg" required="required">
                                     <span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
                                 </div>
                             </div>
