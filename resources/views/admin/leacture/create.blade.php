@@ -30,7 +30,6 @@
                                         <option value="1" >Laki-Laki</option>
                                         <option value="0" >Perempuan</option>
                                     </select>
-    
                             </div>
 							<div class="form-group">
                                 <label>Agama<span class="required" style="color: #dd4b39;">*</span></label>

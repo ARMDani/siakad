@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bidding_Time extends Model
 {
-    use HasFactory;
+    protected $table  = 'bidding_time';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'start bidding', 'end of bidding'];
 }

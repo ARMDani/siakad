@@ -69,7 +69,7 @@
                                   <td>{{ $leactures->address }}</td>
                                     <td>
                                       <img src="{{ url('public/Image/'.$leactures->photo) }}"
-                                      style="height: 100px; width: 150px;">
+                                      style="width: 150px;">
                                     </td>
                                   <td >
                                     <a href="/leacture/edit/{{ $leactures->id }}" class="btn btn-secondary"> Edit </a>

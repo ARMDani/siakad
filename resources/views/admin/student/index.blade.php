@@ -82,7 +82,7 @@
                             <td>{{ $student->generations->name }}</td>
                             <td>
                               <img src="{{ url('public/Image/'.$student->photo) }}"
-                              style="height: 100px; width: 150px;">
+                              style="width: 150px;">
                             </td>
                             <td>
                                 <a href="/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
