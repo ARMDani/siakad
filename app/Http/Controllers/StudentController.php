@@ -10,9 +10,11 @@ use App\Models\Study_Program;
 use App\Models\Districts;
 use App\Models\ClassModel;
 use App\Models\Generations;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
+
     public function index()
     {
         // mengambil data dari tabel student

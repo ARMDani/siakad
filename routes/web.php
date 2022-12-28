@@ -22,6 +22,24 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// ______________________________________LOGIN CONTROLLER___________________________________________________________
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('home');
+})->middleware('auth');
+
+Auth::routes();
+
+
+Route::middleware(['auth', 'cekLogin:user'])->group(function () {
+
+    Route::get('/home', [LoginController::class, 'index'])->name('home');
+});
+
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
 
@@ -78,52 +96,13 @@ Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::cla
 
 
 
+Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
+Route::get('/sksmhs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
+Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
+Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
+Route::post('/matakuliah/update', [App\Http\Controllers\SksmhsController::class, 'update']);
+Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
+Route::get('/matakuliah/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// ______________________________________LOGIN CONTROLLER___________________________________________________________
-
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('/', function () {
-    return view('home');})->middleware('auth');
-  
-Auth::routes();
-  
-/*------------------------------------------
---------------------------------------------
-All Normal Users Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:user'])->group(function () {
-  
-    Route::get('/home', [LoginController::class, 'index'])->name('home');
-});
-/*------------------------------------------
---------------------------------------------
-All Super Admin Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:super-admin'])->group(function () {
-  
-    Route::get('/super-admin/home', [LoginController::class, 'superAdminHome'])->name('super.admin.home');
-});
-  
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'cekLogin:manager'])->group(function () {
-  
-    Route::get('/manager/home', [LoginController::class, 'managerHome'])->name('manager.home');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

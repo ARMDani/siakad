@@ -45,42 +45,39 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function index() 
+    public function index()
     {
         return view('auth.login', [
-        'title' => 'Login',
+            'title' => 'Login',
         ]);
-     }
+    }
 
 
     public function login(Request $request)
-    {   
+    {
         $input = $request->all();
-     
+
         $this->validate($request, [
             'username ' => 'required',
             'password' => 'required',
         ]);
-     
-        if(auth()->attempt(array('username' => $input['username'], 'password' => $input['password'])))
-        {
+
+        if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             if (auth()->user()->role->id == '1') {
                 return redirect()->route('home');
-            }else if (auth()->user()->role->id == '2') {
+            } else if (auth()->user()->role->id == '2') {
                 return redirect()->route('manager.home');
-            }else{
+            } else {
                 return redirect()->route('home');
             }
-        }else{
-            return redirect()->route('login')->with('error','username And Password Are Wrong.');
+        } else {
+            return redirect()->route('login')->with('error', 'username And Password Are Wrong.');
         }
-          
     }
     public function logout(Request $request)
     {
-       $request->session()->flush();
-       Auth::logout();
-       return redirect('login');
+        $request->session()->flush();
+        Auth::logout();
+        return redirect('login');
     }
-    
 }
