@@ -77,6 +77,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="/ruangan" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Ruangan</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/matakuliah" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Mata Kuliah</p>

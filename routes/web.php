@@ -94,6 +94,13 @@ Route::post('/matakuliah/update', [App\Http\Controllers\SubjekcourseController::
 Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SubjekcourseController::class, 'destroy']);
 Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::class, 'search']);
 
+Route::get('/ruangan', [App\Http\Controllers\RoomController::class, 'index']);
+Route::get('/ruangan/create', [App\Http\Controllers\RoomController::class, 'create']);
+Route::post('/ruangan/store', [App\Http\Controllers\RoomController::class, 'store']);
+Route::get('/ruangan/edit/{id}', [App\Http\Controllers\RoomController::class, 'edit']);
+Route::post('/ruangan/update', [App\Http\Controllers\RoomController::class, 'update']);
+Route::get('/ruangan/hapus/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
+Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search']);
 
 
 Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
