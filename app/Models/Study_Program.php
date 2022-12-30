@@ -18,4 +18,8 @@ class Study_Program extends Model
     {
         return $this->hasOne('App\Models\Student');
     }
+    public function lectureScheduling()
+    {
+        return $this->hasOne('App\Models\LectureScheduling');
+    }
 }

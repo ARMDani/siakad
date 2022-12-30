@@ -10,13 +10,15 @@ use App\Models\Study_Program;
 use App\Models\Districts;
 use App\Models\ClassModel;
 use App\Models\Generations;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
+
     public function index()
     {
         // mengambil data dari tabel student
-        $students = Student::paginate(10)->fragment('students');;
+        $students = Student::paginate(10)->fragment('students');
         // dd($student);
         // //Mengirim data Ke View 
         return view('admin.student.index', ['students' => $students]);

@@ -32,7 +32,7 @@ class User extends Authenticatable
         'password',
         'roles_id'
 
-       
+
     ];
 
     /**
@@ -53,16 +53,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-  
-   public function role()
-   {
-       return $this->belongsTo(Role::class, 'roles_id', 'id');
-   }
-   protected function roles(): Attribute
-   {
-       return new Attribute(
-           get: fn ($value) =>  ["Administrator", "Prodi", "Dosen", "Mahasiswa"][$value],
-       );
-   }
-   
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roles_id', 'id');
+    }
+    protected function roles(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["Administrator", "Prodi", "Dosen", "Mahasiswa"][$value],
+        );
+    }
 }

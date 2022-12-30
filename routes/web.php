@@ -29,15 +29,16 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
-    return view('home');})->middleware('auth');
-  
+    return view('home');
+})->middleware('auth');
+
 Auth::routes();
-  
+
+
 Route::middleware(['auth', 'cekLogin:user'])->group(function () {
-  
+
     Route::get('/home', [LoginController::class, 'index'])->name('home');
 });
-
 
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
@@ -95,4 +96,25 @@ Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::cla
 
 
 
+Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
+Route::get('/sksmhs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
+Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
+Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
+Route::post('/matakuliah/update', [App\Http\Controllers\SksmhsController::class, 'update']);
+Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
+Route::get('/matakuliah/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
+
+// ---------------------------------------penjadwalan kuliah-------------------------------------------------------
+Route::get('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
+Route::get('/penjadwalan/create', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
+Route::post('/penjadwalan/store', [App\Http\Controllers\LectureSchedulingController::class, 'store']);
+Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
+Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
+Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'destroy']);
+Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -16,7 +16,7 @@
                             {{ csrf_field() }} 
                             <div class="form-group">
                                 <label>Kode Mata Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="number" name="course_code"placeholder="Masukkan Kode Mata Kuliah  ..." required="required">
+                                <input class="form-control" type="text" name="course_code"placeholder="Masukkan Kode Mata Kuliah  ..." required="required">
                             </div>
                             <div class="form-group">
                                 <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>

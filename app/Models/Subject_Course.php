@@ -15,4 +15,8 @@ class Subject_Course extends Model
     {
         return $this->belongsTo('App\Models\Lecturer');
     }
+    public function lectureScheduling()
+    {
+        return $this->hasOne('App\Models\LectureScheduling');
+    }
 }
