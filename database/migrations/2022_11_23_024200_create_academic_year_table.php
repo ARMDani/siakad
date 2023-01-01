@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('academic_year', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('academic_year')->unsigned();
+            $table->bigInteger('name')->unsigned();
             $table->bigInteger('semester')->unsigned();
 
             $table->unsignedBigInteger('value_input_time_id');

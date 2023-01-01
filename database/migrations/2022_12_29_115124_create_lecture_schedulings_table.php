@@ -28,13 +28,17 @@ return new class extends Migration
             $table->unsignedBigInteger('subject_course_id');
             $table->foreign('subject_course_id')->references('id')->on('subject_course');
 
+            $table->unsignedBigInteger('lecturer_id');
+            $table->foreign('lecturer_id')->references('id')->on('lecturer');
+
             $table->unsignedBigInteger('academic_day_id');
             $table->foreign('academic_day_id')->references('id')->on('academic_day');
 
-            $table->time('lecture_hours')->nullable();
+            $table->time('start_time');
+            $table->time('hour_over');
 
-            $table->unsignedBigInteger('lecturer_id');
-            $table->foreign('lecturer_id')->references('id')->on('lecturer');
+            $table->unsignedBigInteger('academic_room_id');
+            $table->foreign('academic_room_id')->references('id')->on('academic_room');
 
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
     </head>
     <body>
+        
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">

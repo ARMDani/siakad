@@ -94,6 +94,13 @@ Route::post('/matakuliah/update', [App\Http\Controllers\SubjekcourseController::
 Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SubjekcourseController::class, 'destroy']);
 Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::class, 'search']);
 
+Route::get('/ruangan', [App\Http\Controllers\RoomController::class, 'index']);
+Route::get('/ruangan/create', [App\Http\Controllers\RoomController::class, 'create']);
+Route::post('/ruangan/store', [App\Http\Controllers\RoomController::class, 'store']);
+Route::get('/ruangan/edit/{id}', [App\Http\Controllers\RoomController::class, 'edit']);
+Route::post('/ruangan/update', [App\Http\Controllers\RoomController::class, 'update']);
+Route::get('/ruangan/hapus/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
+Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search']);
 
 
 Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
@@ -112,6 +119,16 @@ Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingCont
 Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
 Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'destroy']);
 Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
+
+// ---------------------------------------tahun akademik-------------------------------------------------------
+Route::get('/ta', [App\Http\Controllers\AcademicYearController::class, 'index']);
+Route::get('/ta/create', [App\Http\Controllers\AcademicYearController::class, 'create']);
+Route::post('/ta/store', [App\Http\Controllers\AcademicYearController::class, 'store']);
+Route::get('/ta/edit/{id}', [App\Http\Controllers\AcademicYearController::class, 'edit']);
+Route::post('/ta/update', [App\Http\Controllers\AcademicYearController::class, 'update']);
+Route::get('/takuliah/hapus/{id}', [App\Http\Controllers\AcademicYearController::class, 'destroy']);
+Route::get('/ta/cari', [App\Http\Controllers\AcademicYearController::class, 'search']);
+Route::get('/ta/activeta', [App\Http\Controllers\AcademicYearController::class, 'activeta']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">: Administrasi Rumah Sakit</li>
+              <li class="list-group-item">: {{ Auth::user()->name }}</a></li>
               <li class="list-group-item">
                   <select class="form-control" name="religion" required="required">
                     <option value="">- Pilih Tahun Akademik -</option>
@@ -49,47 +49,39 @@
       {{-- -------------------------------------tabel jadwal----------------------------------------------------------------------- --}}
      <div class="card-body">
         <table class="table table-bordered table-hover table-wrapper">
-            <tr>
+            <tr class="text-center">
               <th>No</th>
-              <th>Kode MK</th>
               <th>Mata Kuliah</th>
-              <th>SKS</th>
-              <th>Semester</th>
+              <th>Kelas</th>
+              <th>Hari</th>
               <th>Jam Kuliah</th>
+              <th>Selesai Kuliah</th>
               <th>Dosen Pengajar</th>
+              <th>Ruangan</th>
               <th>Opsi</th>
             </tr>
             <?php $no = $penjadwalankuliah->currentPage() * $penjadwalankuliah->perPage() -9 ; ?>
             @foreach ($penjadwalankuliah as $penjadwalankuliahs)
-            <tr>
+            <tr class="text-center">
                 <td>{{ $no }}</td>
-                <td>{{ $penjadwalankuliahs->subject_course->course_code }}</td>
                 <td>{{ $penjadwalankuliahs->subject_course->name }}</td>
-                <td>{{ $penjadwalankuliahs->subject_course->sk }}</td>
-                <td>{{ $penjadwalankuliahs->subject_course->semester }}</td>
-                <td>{{ $penjadwalankuliahs->lecture_hours }}</td>
+                <td>{{ $penjadwalankuliahs->class->name }}</td>
+                <td>{{ $penjadwalankuliahs->academic_day->name }}</td>
+                <td>{{ $penjadwalankuliahs->start_time }}</td>
+                <td>{{ $penjadwalankuliahs->hour_over }}</td>
                 <td>{{ $penjadwalankuliahs->lecturer->name }}</td>
+                <td>{{ $penjadwalankuliahs->academic_room->name }}</td>
                 <td >
-                    <a href="/penjadwalankuliah/edit/{{ $penjadwalankuliahs->id }}" class="btn btn-secondary"> Edit </a>
-                    <a href="/penjadwalankuliah/hapus/{{ $penjadwalankuliahs->id }}"class="btn btn-danger"> Hapus </a>
+                    <a href="/penjadwalankuliah/edit/{{ $penjadwalankuliahs->id }}" class="btn btn-secondary"> <i class="nav-icon fas fa-edit"></i></a>
+                    <a href="/penjadwalankuliah/hapus/{{ $penjadwalankuliahs->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
                 </td>
             </tr>
             <?php $no++ ?>
             @endforeach
         </table>
       </div>
-      {{-- //-- -----------------------------------------tabel jadwal----------------------------------------------------------------------- --// --}}
+
     </div>
   </div>
         <!-- /.card-body -->
-@endsection
-
-
-
-
-
-
-
-
-
-  
+@endsection 

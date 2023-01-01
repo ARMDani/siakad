@@ -1,88 +1,131 @@
 @extends('template.home')
 @section('content')
 <html>
-    <head>
+<head>
         <title>Tambah Jadwal</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card-mt-5">
-                        <div class="card-boy">
-                            <h3>Tambah Jadwal </h3>
-                            <form action="/penjadwalan/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label>Mata Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="subject_course" required="required">
-                                    <option value="">- Pilih Mata Kuliah -</option>
-                                    @foreach ($subject_course as $data)
-                                    <option value="{{$data->id}}">
-                                        {{$data->name}}
-                                    </option>
-                                    @endforeach 
-                                </select>
+ </head>
+ <body>
+    <div class="content-wrapper">
+        <div class="col-sm-12">
+         <div class="card">
+          <div class="card-body">
+           <h3>Tambah Jadwal </h3>
+           <form action="/penjadwalan/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="col-sm-3">
+                  <div class="card bg-dark ">
+                    <div class="card-body">
+                        <select class="form-control" name="study_program" required="required">
+                            <option value="">- Pilih Program Studi -</option>
+                            @foreach ($study_program as $data)
+                            <option value="{{$data->id}}">
+                            {{$data->name}}
+                            </option>
+                            @endforeach 
+                        </select>
+                        <br>
+                        <select class="form-control" name="academic_year" required="required">
+                            <option value="">- Pilih Tahun Akademik -</option>
+                            @foreach ($academic_year as $data)
+                            <option value="{{$data->id}}">
+                            {{$data->name}}
+                            </option>
+                            @endforeach 
+                        </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-9">
+                  <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Mata Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
+                            <select class="form-control" name="subject_course" required="required">
+                                <option value="">- Pilih Mata Kuliah -</option>
+                                @foreach ($subject_course as $data)
+                                <option value="{{$data->id}}">
+                                   {{$data->name}}
+                                </option>
+                                @endforeach 
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kelas<span class="required" style="color: #dd4b39;">*</span></label>
+                            <select class="form-control" name="class" required="required">
+                                <option value="">- Pilih Kelas -</option>
+                                @foreach ($class as $data)
+                                <option value="{{$data->id}}">
+                                    {{$data->name}}
+                                </option>
+                                @endforeach 
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hari<span class="required" style="color: #dd4b39;">*</span></label>
+                            <select class="form-control" name="academic_day" required="required">
+                                <option value="">- Pilih Hari -</option>
+                                @foreach ($academic_day as $data)
+                                <option value="{{$data->id}}">
+                                    {{$data->name}}
+                                </option>
+                                @endforeach 
+                            </select>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label>Jam Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
+                            <input class="form-control" type="time" name="start_time"placeholder="Masukkan Alamat ..." required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Selesai Kuliahk<span class="required" style="color: #dd4b39;">*</span></label>
+                            <input class="form-control" type="time" name="hour_over"placeholder="Masukkan Alamat ..." required="required">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Dosen Pengajar<span class="required" style="color: #dd4b39;">*</span></label>
+                            <select class="form-control" name="lecturer" required="required">
+                                <option value="">- Pilih Dosen -</option>
+                                @foreach ($lecturer as $data)
+                                <option value="{{$data->id}}">
+                                    {{$data->name}}
+                                </option>
+                                @endforeach 
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ruangan<span class="required" style="color: #dd4b39;">*</span></label>
+                            <select class="form-control" name="academic_room" required="required">
+                                <option value="">- Pilih Ruangan -</option>
+                                @foreach ($academic_room as $data)
+                                <option value="{{$data->id}}">
+                                    {{$data->name}}
+                                </option>
+                                @endforeach 
+                            </select>
+                        </div>
+                            <input class="btn btn-primary" type="submit" value="Simpan Data">
+                            
+                            <a href="/penjadwalan" class="btn btn-danger">Kembali</a>
+                    </form>
+                    </div>
+                    </div>
+                  </div>
                             </div>
-                            <div class="form-group">
-                                <label>Kode MK<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="lecturer_id" required="required">
-                                    <option value="">- Pilih Kode MK -</option>
-                                    @foreach ($subject_course as $data)
-                                    <option value="{{$data->id}}">
-                                        {{$data->course_code}}
-                                    </option>
-                                    @endforeach 
-                                </select>
-                            </div>
-                            <div class="form-group ">
-                                <label>SKS<span class="required" style="color: #dd4b39;">*</span></label>
-                                
-                                    <select class="form-control" name="sks" required="required">
-                                        <option value="">- Pilih SKS -</option>
-                                        <option value="1" >2</option>
-                                        <option value="0" >3</option>
-                                    </select>
-                            </div>
-							<div class="form-group">
-                                <label>Semester<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="semester" required="required">
-                                    <option value="">- Pilih Semester -</option>
-                                    <option value="1" >1</option>
-                                    <option value="0" >2</option>
-                                    <option value="1" >2</option>
-                                    <option value="1" >4</option>
-                                    <option value="1" >5</option>
-                                    <option value="1" >6</option>
-                                    <option value="1" >7</option>
-                                    <option value="1" >8</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Jam Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="time" name="lecture_hours"placeholder="Masukkan Alamat ..." required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Dosen Pengajar<span class="required" style="color: #dd4b39;">*</span></label>
-                                <select class="form-control" name="lecturer" required="required">
-                                    <option value="">- Pilih Dosen -</option>
-                                    @foreach ($lecturer as $data)
-                                    <option value="{{$data->id}}">
-                                        {{$data->name}}
-                                    </option>
-                                    @endforeach 
-                                </select>
-                            </div>
-                                <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                                <a href="/penjadwalan" class="btn btn-danger">Kembali</a>
-                            </form>
-                            </form>
                         </div>
                     </div>
                 </div>
+              </div>
             </div>
+            </div>
+          </div>
         </div>
+       
     </body>
 </html>
 
