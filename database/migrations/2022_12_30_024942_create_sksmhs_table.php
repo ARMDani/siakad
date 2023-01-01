@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bidding_time', function (Blueprint $table) {
+        Schema::create('sksmhs', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('student');
 
-            $table->dateTime('start time');
-            $table->dateTime('end of time');
+            $table->unsignedBigInteger('academic_year_id');
+            $table->foreign('academic_year_id')->references('id')->on('academic_year');
 
+            $table->bigInteger('sks');
 
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bidding_time');
+        Schema::dropIfExists('sksmhs');
     }
 };

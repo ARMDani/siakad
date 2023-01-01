@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
 
 
-            $table->time('start bidding value');
-            $table->time('end of bidding value');
+            $table->dateTime('start time');
+            $table->dateTime('end of time');
 
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');

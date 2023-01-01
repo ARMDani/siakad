@@ -104,12 +104,7 @@ Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search
 
 
 Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
-Route::get('/sksmhs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
-Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
-Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
-Route::post('/matakuliah/update', [App\Http\Controllers\SksmhsController::class, 'update']);
-Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
-Route::get('/matakuliah/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
-
+Route::post('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
+Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);                                                                                            
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
