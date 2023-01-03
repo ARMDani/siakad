@@ -128,16 +128,7 @@ Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedul
 Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
 
 // ---------------------------------------tahun akademik-------------------------------------------------------
-Route::get('/ta', [App\Http\Controllers\AcademicYearController::class, 'index']);
-Route::get('/ta/create', [App\Http\Controllers\AcademicYearController::class, 'create']);
-Route::post('/ta/store', [App\Http\Controllers\AcademicYearController::class, 'store']);
-Route::get('/ta/edit/{id}', [App\Http\Controllers\AcademicYearController::class, 'edit']);
-Route::post('/ta/update', [App\Http\Controllers\AcademicYearController::class, 'update']);
-Route::get('/takuliah/hapus/{id}', [App\Http\Controllers\AcademicYearController::class, 'destroy']);
-Route::get('/ta/cari', [App\Http\Controllers\AcademicYearController::class, 'search']);
-Route::get('/ta/activeta', [App\Http\Controllers\AcademicYearController::class, 'activeta']);
-Route::post('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
-Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);                                                                                            
+                                                                                        
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

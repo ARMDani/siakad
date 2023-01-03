@@ -13,8 +13,7 @@ class AcademicYearController extends Controller
 
     public function index()
     {
-        $tahunakademik = Academic_Year::paginate(10)->fragment('prodi');;
-        return view('admin.tahunakademik.index', ['tahunakademik' => $tahunakademik]);
+      
         $ta = Academic_Year::paginate(10);
         return view('admin.Academic_Year.index', ['ta' => $ta]);
     }
@@ -42,7 +41,7 @@ class AcademicYearController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-        return redirect('/prodi');
+        return redirect('/tahun_akademik');
     }
 
     public function show($id)
