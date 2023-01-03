@@ -127,7 +127,7 @@ Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingContro
 Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'destroy']);
 Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
 
-
+// -----------------------------------------KRS Prodi ----------------------------------------------------------------------
 Route::get('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::get('/krs/create', [App\Http\Controllers\KRSController::class, 'create']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
@@ -136,8 +136,14 @@ Route::post('/krs/update', [App\Http\Controllers\KRSController::class, 'update']
 Route::get('/krs/hapus/{id}', [App\Http\Controllers\KRSController::class, 'destroy']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
-// ---------------------------------------tahun akademik-------------------------------------------------------
-
+// ---------------------------------------KRS Mahasiswa-------------------------------------------------------
+Route::get('/krsmahasiswa', [App\Http\Controllers\KRSController::class, 'indexmahasiswa']);
+Route::get('/krsmahasiswa/create', [App\Http\Controllers\krsmahasiswaController::class, 'create']);
+Route::post('/krsmahasiswa/store', [App\Http\Controllers\krsmahasiswaController::class, 'store']);
+Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\krsmahasiswaController::class, 'edit']);
+Route::post('/krsmahasiswa/update', [App\Http\Controllers\krsmahasiswaController::class, 'update']);
+Route::get('/krsmahasiswa/hapus/{id}', [App\Http\Controllers\krsmahasiswaController::class, 'destroy']);
+Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

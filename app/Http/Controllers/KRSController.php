@@ -4,13 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Study_Value;
 use Illuminate\Http\Request;
+use App\Models\Academic_Year;
 
 class KRSController extends Controller
 {
-    public function index()
+    public function indexmahasiswa(Request $request)
     {
-        // $krs = Study_Value::paginate(10);
-        return view('prodi.krs.index');
+       $academic_year = Academic_Year::get();
+        // $params = ['tahun_akademik' =>  null];
+
+        $tahun_akademik = $request->tahun_akademik_id ?? null;
+            $mahasiswa = Study_Value::where('study_value.student_id', $tahun_akademik)                
+                ->get();
+        
+        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
+        // $params = ['tahun_akademik' => $tahun_akademik];
+            
+        return view('mahasiswa.krs.index')->with([
+            'academic_year' => $academic_year, 
+            'mahasiswa' => $mahasiswa,
+            'tahun_akademik' => $tahun_akademik
+            
+            ]);
     }
     public function create()
     {

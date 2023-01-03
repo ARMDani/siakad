@@ -46,6 +46,10 @@ class LectureScheduling extends Model
     {
         return $this->belongsTo('App\Models\Academic_Room');
     }
+    public function study_value()
+    {
+        return $this->hasMany('App\Models\Study_Value');
+    }
    
     
 }
