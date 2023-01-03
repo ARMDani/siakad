@@ -22,6 +22,17 @@ class AcademicYearController extends Controller
 
     public function store(Request $request)
     {
+        Academic_Year::insert([
+            'academic_year' => $request->tahun_akademik,
+            'semester' => $request->semester,
+            'value_input_time_id' => $request->batas_penawaran,
+            'bidding_time_id' => $request->batas_input_nilai,
+            'active' => $request->aktif,
+            'created_by' => 1,
+            'updated_by' => 1
+
+        ]);
+        return redirect('/tahun_akademik');
         //
     }
 

@@ -22,25 +22,25 @@
                 <div class="form">
                   <form action="/tahun_akademik/store" method="get">
                     {{ csrf_field() }}
-            
-                    <form action="/kelas/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
-                        {{ csrf_field() }} 
+      
                         <div class="form-group">
                             <label>Tahun Akademik<span class="required" style="color: #dd4b39;">*</span></label>
-                            <input class="form-control" type="text" name="name" placeholder="Masukan Kelas ..." type="text" name="name" required="required">
+                            <input class="form-control" type="number" name="tahun_akademik" placeholder="Masukan Tahun Akademik ..." type="number" name="tahun_akademik" required="required">
                         </div>
-                        <div class="form-group">
-                            <label>Semester<span class="required" style="color: #dd4b39;">*</span></label>
-                            <input class="form-control" type="text" name="name" placeholder="Masukan Kelas ..." type="text" name="name" required="required">
+                        <div class="form-group ">
+                          <label>Semester<span class="required" style="color: #dd4b39;">*</span></label>
+                              <select class="form-control" name="semester" name="group_id" required="required">
+                                  <option value="">- Pilih Semester -</option>
+                                  <option value="1" >Ganjil</option>
+                                  <option value="0" >Genap</option>
+                              </select>
                         </div>
-                            <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                            <a href="/tahun_akademik" class="btn btn-danger">Kembali</a>
-                        </form>
+                          <input class="btn btn-secondary" type="submit" value="Simpan Data">
+                          <a href="/tahun_akademik" class="btn btn-danger">Kembali</a>
                   </form>
                 </div>
               </div>
             </div>
-           
           </div>
         </div>
   

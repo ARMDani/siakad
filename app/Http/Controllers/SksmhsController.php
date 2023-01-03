@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class SksmhsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $generations = Generations::get();
