@@ -15,23 +15,15 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-3">
-                  <div class="card bg-dark ">
+                  <div class="card ">
                     <div class="card-body">
-                        <select class="form-control" name="study_program" required="required">
-                            <option value="">- Pilih Program Studi -</option>
-                            @foreach ($study_program as $data)
-                            <option value="{{$data->id}}">
-                            {{$data->name}}
-                            </option>
-                            @endforeach 
-                        </select>
-                        <br>
                         <select class="form-control" name="academic_year" required="required">
-                            <option value="">- Pilih Tahun Akademik -</option>
                             @foreach ($academic_year as $data)
-                            <option value="{{$data->id}}">
-                            {{$data->name}}
-                            </option>
+                            @if ($data->id==Request::segment(3)) 
+                            <option selected value="{{$data->id}}">
+                              {{$data->name}}
+                              </option> 
+                            @endif
                             @endforeach 
                         </select>
                     </div>
@@ -82,7 +74,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Selesai Kuliahk<span class="required" style="color: #dd4b39;">*</span></label>
+                            <label>Selesai Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
                             <input class="form-control" type="time" name="hour_over"placeholder="Masukkan Alamat ..." required="required">
                         </div>
                         

@@ -17,6 +17,6 @@ class Subject_Course extends Model
     }
     public function lecture_scheduling()
     {
-        return $this->hasOne('App\Models\LectureScheduling');
+        return $this->hasMany('App\Models\LectureScheduling');
     }
 }

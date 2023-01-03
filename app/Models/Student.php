@@ -27,4 +27,8 @@ class Student extends Model
     {
         return $this->belongsTo('App\Models\Generations');
     }
+    public function sksmhs()
+    {
+        return $this->hasMany('App\Models\Sksmhs');
+    }
 }

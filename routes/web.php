@@ -113,7 +113,8 @@ Route::get('/matakuliah/cari', [App\Http\Controllers\SksmhsController::class, 's
 
 // ---------------------------------------penjadwalan kuliah-------------------------------------------------------
 Route::get('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
-Route::get('/penjadwalan/create', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
+Route::post('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
+Route::get('/penjadwalan/create/{tahun_akademik}', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
 Route::post('/penjadwalan/store', [App\Http\Controllers\LectureSchedulingController::class, 'store']);
 Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
 Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
@@ -129,6 +130,8 @@ Route::post('/ta/update', [App\Http\Controllers\AcademicYearController::class, '
 Route::get('/takuliah/hapus/{id}', [App\Http\Controllers\AcademicYearController::class, 'destroy']);
 Route::get('/ta/cari', [App\Http\Controllers\AcademicYearController::class, 'search']);
 Route::get('/ta/activeta', [App\Http\Controllers\AcademicYearController::class, 'activeta']);
+Route::post('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
+Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);                                                                                            
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

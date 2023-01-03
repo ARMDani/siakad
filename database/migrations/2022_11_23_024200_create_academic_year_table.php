@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('value_input_time_id')->references('id')->on('value_input_time');
 
             $table->unsignedBigInteger('bidding_time_id');
-            $table->foreign('bidding_time_id')->references('id')->on('value_input_time');
+            $table->foreign('bidding_time_id')->references('id')->on('bidding_time');
 
             $table->enum('active', ['Y', 'N']);
 

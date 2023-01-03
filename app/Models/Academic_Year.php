@@ -15,4 +15,8 @@ class Academic_Year extends Model
     {
         return $this->hasOne('App\Models\LectureScheduling');
     }
+    public function sksmhs()
+    {
+        return $this->hasMany('App\Models\Sksmhs');
+    }
 }

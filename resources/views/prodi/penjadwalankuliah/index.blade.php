@@ -15,39 +15,58 @@
           </div>
         </div>
       </div>
+      
       <div class="col-sm-9">
         <div class="card">
           <div class="card-body">
+            <form action="/penjadwalan" method="post">
+              {{ csrf_field() }}
             <ul class="list-group list-group-flush">
               <li class="list-group-item">: {{ Auth::user()->name }}</a></li>
               <li class="list-group-item">
-                  <select class="form-control" name="religion" required="required">
-                    <option value="">- Pilih Tahun Akademik -</option>
-                    <option value="1" >2022</option>
-                    <option value="0" >2021</option>
-                    <option value="1" >2020</option>
-                    <option value="1" >2019</option>
-                    <option value="1" >2018</option>
-                </select>
+                <select class="form-control" name="tahun_akademik_id" required="required">
+                  <option value="">- Pilih Tahun Akademik -</option>
+                  @foreach ($academic_year as $data)
+                  @if ($data->id==$tahun_akademik)
+                  <option selected value="{{$data->id}}">
+                    {{$data->name}}
+                    </option> 
+                  @else
+                  <option value="{{$data->id}}">
+                    {{$data->name}}
+                    </option> 
+                  @endif
+                 
+                  @endforeach 
+              </select>
               </li>
             </ul>
             <br>
-            <a href="#" class="btn btn-primary">Refresh</a>
-            <a href="#" class="btn btn-warning ml-4">Cetak</a>
-            <a href="/penjadwalan/create" class="btn btn-success ml-4">Tambah Jadwal</a>
+            <button type="submit" class="btn btn-primary" >Refresh</button>
+            {{-- <a href="#" class="btn btn-warning ml-4">Cetak</a>
+            <a href="/penjadwalan" class="btn btn-success ml-4">Tambah Jadwal</a> --}}
           </div>
+
+          <form action="/penjadwalan/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            {{ csrf_field() }}
+            <input type="hidden" name="tahun_akdemik" value="{{ $tahun_akademik}}">
         </div>
       </div>
-      <div class="card-body">
-        <form class="input-group-append" action="/matakuliah/cari"  method="GET">
-            <input class="form-control" type="text"  name="cari" placeholder="Cari Mata Kuliah .." value="{{ old('cari') }} ">
-            <input type="submit" value="CARI">
-        </form>
-      </div>
-    </div>
-        
+    </div>        
       {{-- -------------------------------------tabel jadwal----------------------------------------------------------------------- --}}
-     <div class="card-body">
+     <div class="card">
+     
+        <div class="card-body">
+          <form class="input-group-append" action="/matakuliah/cari"  method="GET">
+              <input class="form-control" type="text"  name="cari" placeholder="Cari Mata Kuliah .." value="{{ old('cari') }} ">
+              <input type="submit" value="CARI">
+          </form>
+          
+      </div>
+      <ul>
+      <a href="#" class="btn btn-warning ml-">Cetak</a>
+      <a href="/penjadwalan/create/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah Jadwal</a>
+    </ul>
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
               <th>No</th>
@@ -60,27 +79,27 @@
               <th>Ruangan</th>
               <th>Opsi</th>
             </tr>
-            <?php $no = $penjadwalankuliah->currentPage() * $penjadwalankuliah->perPage() -9 ; ?>
-            @foreach ($penjadwalankuliah as $penjadwalankuliahs)
+            <?php $no = 1  ?>
+            @foreach ($matakuliah as $matakuliahs)
             <tr class="text-center">
                 <td>{{ $no }}</td>
-                <td>{{ $penjadwalankuliahs->subject_course->name }}</td>
-                <td>{{ $penjadwalankuliahs->class->name }}</td>
-                <td>{{ $penjadwalankuliahs->academic_day->name }}</td>
-                <td>{{ $penjadwalankuliahs->start_time }}</td>
-                <td>{{ $penjadwalankuliahs->hour_over }}</td>
-                <td>{{ $penjadwalankuliahs->lecturer->name }}</td>
-                <td>{{ $penjadwalankuliahs->academic_room->name }}</td>
+                <td>{{ $matakuliahs->subject_course->name }}</td>
+                <td>{{ $matakuliahs->class->name }}</td>
+                <td>{{ $matakuliahs->academic_day->name }}</td>
+                <td>{{ $matakuliahs->start_time }}</td>
+                <td>{{ $matakuliahs->hour_over }}</td>
+                <td>{{ $matakuliahs->lecturer->name }}</td>
+                <td>{{ $matakuliahs->academic_room->name }}</td>
                 <td >
-                    <a href="/penjadwalankuliah/edit/{{ $penjadwalankuliahs->id }}" class="btn btn-secondary"> <i class="nav-icon fas fa-edit"></i></a>
-                    <a href="/penjadwalankuliah/hapus/{{ $penjadwalankuliahs->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
+                    <a href="/penjadwalankuliah/edit/{{ $matakuliahs->id }}" class="btn btn-secondary"> <i class="nav-icon fas fa-edit"></i></a>
+                    <a href="/penjadwalankuliah/hapus/{{ $matakuliahs->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
                 </td>
             </tr>
             <?php $no++ ?>
             @endforeach
         </table>
+      </form>
       </div>
-
     </div>
   </div>
         <!-- /.card-body -->

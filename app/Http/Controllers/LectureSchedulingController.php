@@ -2,43 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Academic_Day;
-use App\Models\Academic_Room;
 use App\Models\Lecturer;
 use App\Models\ClassModel;
+use App\Models\Academic_Day;
 use Illuminate\Http\Request;
+use App\Models\Academic_Room;
 use App\Models\Academic_Year;
-use App\Models\Study_Program;
 use App\Models\Subject_Course;
 use App\Models\LectureScheduling;
+use Illuminate\Support\Facades\DB;
 
 class LectureSchedulingController extends Controller
 {
-      public function index()
+      public function index(Request $request)
     {
-        $tahunakademik = Academic_Year::where('active', 1)->first();
-        $prodis = Study_Program::all();
-        $penjadwalankuliah = LectureScheduling::paginate(10)->fragment('penjadwalankuliah');;
+       $academic_year = Academic_Year::get();
+        // $params = ['tahun_akademik' =>  null];
+
+        $tahun_akademik = $request->tahun_akademik_id ?? null;
+            $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
+                ->get();
+        
+        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
+        // $params = ['tahun_akademik' => $tahun_akademik];
+            
         return view('prodi.penjadwalankuliah.index')->with([
-            'prodis' => $prodis,
-            'tahunakademik' => $tahunakademik,
-            'penjadwalankuliah' => $penjadwalankuliah
-        ]);
+            'academic_year' => $academic_year, 
+            'matakuliah' => $matakuliah,
+            'tahun_akademik' => $tahun_akademik
+            
+            ]);
     }
     public function create()
     {
-        $study_program = Study_Program::get();
         $academic_year = Academic_Year::get();
         $subject_course = Subject_Course::get();
         $lecturer = Lecturer::get();
-        $class = ClassModel::get();
         $class = ClassModel::get();
         $academic_day = Academic_Day::get();
         $academic_room = Academic_Room::get();
         //memanggil view create
         return view('prodi.penjadwalankuliah.create', [
             'academic_year' => $academic_year,
-            'study_program' => $study_program,
             'subject_course' => $subject_course,
             'lecturer' => $lecturer,
             'class' => $class,
@@ -50,7 +55,7 @@ class LectureSchedulingController extends Controller
     public function store(Request $request)
     {
         LectureScheduling::insert([
-            'study_program_id' => $request->study_program,
+           
             'academic_year_id' => $request->academic_year,
             'subject_course_id' => $request->subject_course,
             'lecturer_id' => $request->lecturer,

@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('bidding_time', function (Blueprint $table) {
             $table->id();
-
-
-            $table->date('start bidding');
-            $table->date('end of bidding');
+            $table->dateTime('start time');
+            $table->dateTime('end of time');
 
 
             $table->bigInteger('created_by');

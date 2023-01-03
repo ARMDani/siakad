@@ -16,9 +16,6 @@ return new class extends Migration
         Schema::create('lecture_schedulings', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('study_program_id');
-            $table->foreign('study_program_id')->references('id')->on('study_program');
-
             $table->unsignedBigInteger('academic_year_id');
             $table->foreign('academic_year_id')->references('id')->on('academic_year');
 

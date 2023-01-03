@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('value_input_time', function (Blueprint $table) {
             $table->id();
-
-
-            $table->date('start bidding value')->nullable();
-            $table->date('end of bidding value')->nullable();
+            $table->dateTime('start time');
+            $table->dateTime('end of time');
 
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');
