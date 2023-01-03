@@ -128,13 +128,15 @@ Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedul
 Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
 
 
-Route::get('/krs', [App\Http\Controllers\SksmhsController::class, 'index']);
-Route::get('/krs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
-Route::post('/krs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
-Route::get('/krs/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
-Route::post('/krs/update', [App\Http\Controllers\SksmhsController::class, 'update']);
-Route::get('/krs/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
-Route::get('/krs/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
+Route::get('/krs', [App\Http\Controllers\KRSController::class, 'index']);
+Route::get('/krs/create', [App\Http\Controllers\KRSController::class, 'create']);
+Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
+Route::get('/krs/edit/{id}', [App\Http\Controllers\KRSController::class, 'edit']);
+Route::post('/krs/update', [App\Http\Controllers\KRSController::class, 'update']);
+Route::get('/krs/hapus/{id}', [App\Http\Controllers\KRSController::class, 'destroy']);
+Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
+
+// ---------------------------------------tahun akademik-------------------------------------------------------
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

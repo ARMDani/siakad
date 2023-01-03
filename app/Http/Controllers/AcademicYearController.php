@@ -14,6 +14,7 @@ class AcademicYearController extends Controller
     public function index()
     {
 
+
         $ta = Academic_Year::paginate(10);
         return view('admin.Academic_Year.index', ['ta' => $ta]);
     }
