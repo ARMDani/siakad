@@ -29,7 +29,7 @@
                   @foreach ($academic_year as $data)
                   @if ($data->id==$tahun_akademik)
                   <option selected value="{{$data->id}}">
-                    {{$data->name}}
+                    {{$data->academic_year}}
                     </option> 
                   @else
                   <option value="{{$data->id}}">
