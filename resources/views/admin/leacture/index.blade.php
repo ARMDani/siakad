@@ -57,6 +57,7 @@
                                   <th>Agama</th>
                                   <th>Alamat</th>
                                   <th>Foto</th>
+                                  <th>Aksi</th>
                                 </tr>
                                 <?php $no = $leacture->currentPage() * $leacture->perPage() -9 ; ?>
                                 @foreach ($leacture as $leactures)

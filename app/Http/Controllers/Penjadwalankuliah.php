@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Generations;
 
 class Penjadwalankuliah extends Controller
 {
@@ -12,8 +13,9 @@ class Penjadwalankuliah extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {     
+            return view('prodi.penjadwalankuliah.index');
+        
     }
 
     /**
@@ -23,7 +25,7 @@ class Penjadwalankuliah extends Controller
      */
     public function create()
     {
-        //
+        $generations = Generations::get();
     }
 
     /**

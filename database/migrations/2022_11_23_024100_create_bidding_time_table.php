@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('bidding_time', function (Blueprint $table) {
             $table->id();
-
-
             $table->dateTime('start time');
             $table->dateTime('end of time');
 

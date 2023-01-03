@@ -43,7 +43,7 @@
                               <option value="">- Pilih Tahun Akademik -</option>
                               @foreach ($academikyear as $data)
                               <option value="{{$data->id}}">
-                                  {{$data->academic_year}}
+                                  {{$data->name}}
                               </option>
                               @endforeach 
                           </select>

@@ -129,45 +129,37 @@
         <i class="fas fa-th-large"></i>
       </a>
     </li>
-    <li class="dropdown user user-menu">
+    <li class="nav-item">
+    <li class="nav-link dropdown user user-menu card-bg">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="{{ asset('dist/img/user2-160x160.png') }}" class="user-image" alt="User Image">
-        <span class="hidden-xs">{{ Auth::user()->name }}</span>
+        <span class="hidden-xs"><img src="{{ asset('dist/img/user2-160x160.png') }}" class="user-image" alt="User Image"></i></span>
       </a>
       <ul class="dropdown-menu">
-        <!-- User image -->
         <li class="user-header">
           <img src="{{ asset('dist/img/user2-160x160.png') }}" class="img-circle elevation-2" alt="User Image">
-
-          <p>
-            {{ Auth::user()->name }}
-            <small>Member since Nov. 2022</small>
-          </p>
-        </li>
-        <!-- Menu Body -->
-        <li class="user-body">
+          <h6>
+            {{ Auth::user()->name }} <br>
+            <small>User since Nov. 2022</small>
+          </h6>
           <div class="row">
-            <div class="col-xs-4 text-center">
-              <a href="#">Followers</a>
+            <div class="ml-4">
+              <a href="#">Profil</a>
             </div>
-            <div class="col-xs-4 text-center">
-              <a href="#">Sales</a>
+            <div class="ml-4">
+              <a href="#">Bantuan</a>
             </div>
-            <div class="col-xs-4 text-center">
-              <a href="#">Friends</a>
+            <div class="ml-4">
+              <a href="#">Pengaturan</a>
             </div>
           </div>
-          <!-- /.row -->
         </li>
-        <!-- Menu Footer-->
         <li class="user-footer">
-          <div class="pull-left">
-          </div>
-          <div class="pull-right">
-            <a class="btn btn-danger" href="{{url('logout')}}">Logout</a>
+          <div class="pull-righ">
+            <a class="btn btn-danger" href="{{url('logout')}}">Logout <i class="nav-icon fas fa-user"></i></a>
           </div>
         </li>
       </ul>
+    </li>
     </li>
   </ul>
   

@@ -128,7 +128,7 @@
             </p>
           </a>
         </li>
-        {{-- -----------------------batas admin---------------------- --}}
+        {{-- -----------------------batas admin------------------------}}
         @endif
 
         @if (Auth::user()->role->id == 2)
@@ -138,12 +138,11 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/leacture" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Dosen
@@ -152,7 +151,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/student" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mahasiswa
@@ -161,7 +160,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/matakuliah" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mata Kuliah
@@ -180,7 +179,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
+              <a href="/penjadwalan" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Penjadwalan Kuliah</p>
               </a>
@@ -192,25 +191,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kartu Rencana Studi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kartu Hasil Studi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Input Nilai</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Transkip Nilai<small>+ Custom Area</small></p>
               </a>

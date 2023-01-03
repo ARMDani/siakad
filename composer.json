@@ -10,8 +10,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "maatwebsite/excel": "*",
         "laravel/ui": "^4.1",
+        "maatwebsite/excel": "*",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

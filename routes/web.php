@@ -41,7 +41,7 @@ Route::middleware(['auth', 'cekLogin:user'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
 
-Route::get('/fakultas', [App\Http\Controllers\FacultyController::class, 'index']);
+Route::get('/fakultas', [App\Http\Controllers\FacultyController::class, 'index'])->middleware('auth');
 Route::get('/fakultas/create', [App\Http\Controllers\FacultyController::class, 'create']);
 Route::post('/fakultas/store', [App\Http\Controllers\FacultyController::class, 'store']);
 Route::get('/fakultas/edit/{id}', [App\Http\Controllers\FacultyController::class, 'edit']);
@@ -60,7 +60,7 @@ Route::post('/student/update', [App\Http\Controllers\StudentController::class, '
 Route::get('/student/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
 Route::get('/student/cari', [App\Http\Controllers\StudentController::class, 'search']);
 
-Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index']);
+Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
 Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
 Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
@@ -68,7 +68,7 @@ Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class,
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
 
-Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index']);
+Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index'])->middleware('auth');
 Route::get('/prodi/create', [App\Http\Controllers\StudiprogramController::class, 'create']);
 Route::post('/prodi/store', [App\Http\Controllers\StudiprogramController::class, 'store']);
 Route::get('/prodi/edit/{id}', [App\Http\Controllers\StudiprogramController::class, 'edit']);
@@ -110,7 +110,35 @@ Route::get('/tahun_akademik/cari', [App\Http\Controllers\AcademicYearController:
 
 
 Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
-Route::post('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
-Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);                                                                                            
+Route::get('/sksmhs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
+Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
+Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
+Route::post('/matakuliah/update', [App\Http\Controllers\SksmhsController::class, 'update']);
+Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
+Route::get('/matakuliah/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
+
+// ---------------------------------------penjadwalan kuliah-------------------------------------------------------
+Route::get('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
+Route::post('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
+Route::get('/penjadwalan/create/{tahun_akademik}', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
+Route::post('/penjadwalan/store', [App\Http\Controllers\LectureSchedulingController::class, 'store']);
+Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
+Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
+Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'destroy']);
+Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
+
+
+Route::get('/krs', [App\Http\Controllers\SksmhsController::class, 'index']);
+Route::get('/krs/create', [App\Http\Controllers\SksmhsController::class, 'create']);
+Route::post('/krs/store', [App\Http\Controllers\SksmhsController::class, 'store']);
+Route::get('/krs/edit/{id}', [App\Http\Controllers\SksmhsController::class, 'edit']);
+Route::post('/krs/update', [App\Http\Controllers\SksmhsController::class, 'update']);
+Route::get('/krs/hapus/{id}', [App\Http\Controllers\SksmhsController::class, 'destroy']);
+Route::get('/krs/cari', [App\Http\Controllers\SksmhsController::class, 'search']);
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
