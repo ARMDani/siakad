@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Academic_Year;
 use App\Models\Bidding_Time;
+use App\Models\Study_Faculty;
 use App\Models\Value_Input_Time;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class AcademicYearController extends Controller
     {
         $tahunakademik = Academic_Year::paginate(10)->fragment('prodi');;
         return view('admin.tahunakademik.index', ['tahunakademik' => $tahunakademik]);
+        $ta = Academic_Year::paginate(10);
+        return view('admin.Academic_Year.index', ['ta' => $ta]);
     }
 
 
@@ -26,6 +29,7 @@ class AcademicYearController extends Controller
             'value_input_time_id' => $value_input_time_id,
             'bidding_time_id' => $bidding_time_id,
         ]);
+        return view('admin.Academic_Year.create');
     }
 
     public function store(Request $request)

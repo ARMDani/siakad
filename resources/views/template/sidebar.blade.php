@@ -102,7 +102,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/tahun_akademik" class="nav-link">
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
               Tahun Akademik

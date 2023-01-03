@@ -9,8 +9,6 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\FacultyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,6 +99,14 @@ Route::get('/ruangan/edit/{id}', [App\Http\Controllers\RoomController::class, 'e
 Route::post('/ruangan/update', [App\Http\Controllers\RoomController::class, 'update']);
 Route::get('/ruangan/hapus/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
 Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search']);
+
+Route::get('/tahun_akademik', [App\Http\Controllers\AcademicYearController::class, 'index']);
+Route::get('/tahun_akademik/create', [App\Http\Controllers\AcademicYearController::class, 'create']);
+Route::post('/tahun_akademik/store', [App\Http\Controllers\AcademicYearController::class, 'store']);
+Route::get('/tahun_akademik/edit/{id}', [App\Http\Controllers\AcademicYearController::class, 'edit']);
+Route::post('/tahun_akademik/update', [App\Http\Controllers\AcademicYearController::class, 'update']);
+Route::get('/tahun_akademik/hapus/{id}', [App\Http\Controllers\AcademicYearController::class, 'destroy']);
+Route::get('/tahun_akademik/cari', [App\Http\Controllers\AcademicYearController::class, 'search']);
 
 
 Route::get('/sksmhs', [App\Http\Controllers\SksmhsController::class, 'index']);
