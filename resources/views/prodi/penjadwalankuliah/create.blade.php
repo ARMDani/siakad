@@ -21,7 +21,7 @@
                             @foreach ($academic_year as $data)
                             @if ($data->id==Request::segment(3)) 
                             <option selected value="{{$data->id}}">
-                              {{$data->name}}
+                              {{$data->academic_year}}
                               </option> 
                             @endif
                             @endforeach 

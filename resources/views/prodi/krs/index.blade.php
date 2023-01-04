@@ -1,17 +1,13 @@
 @extends('template.home')
-
 @section('content')
-
 <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">
         <h3>Kartu Rencana Studi</h3>
       </div>
     </div>
-
     {{-- BEGIN CONTENT --}}
     <div class="content">
-
       {{-- BEGIN CONTAINER --}}
       <div class="container-fluid">
 
@@ -28,7 +24,7 @@
                     <div class="col-12">
 
                       {{-- BEGIN FORM  --}}
-                      <form action="/sksmhs" method="post">
+                      <form action="/krs" method="post">
                         {{ csrf_field() }} 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
@@ -44,14 +40,13 @@
                               @foreach ($academic_year as $data)
                               @if ($data->id==$tahun_akademik)
                               <option selected value="{{$data->id}}">
-                                {{$data->academic_year}}
+                                {{$data->name}}
                                 </option> 
                               @else
                               <option value="{{$data->id}}">
-                                {{$data->academic_year}}
+                                {{$data->name}}
                                 </option> 
                               @endif
-                             
                               @endforeach 
                           </select>
                           </div>
@@ -59,14 +54,20 @@
                         <div class="form-group row">
                           <label class="col-2 col-form-label">Angkatan<span class="required" style="color: #dd4b39;">*</span></label>
                           <div class="col-3">
-                            <select class="form-control" name="angkatan" required="required">
-                                <option value="">-  Pilih Angkatan -</option>
-                               
-                                <option value="">
-                                   
-                                </option>
-                              
-                            </select>
+                            <select class="form-control" name="angkatan_id" required="required">
+                              <option value="">- Pilih Angkatan -</option>
+                              @foreach ($generations as $data)
+                              @if ($data->id==$angkatan)
+                              <option selected value="{{$data->id}}">
+                                {{$data->name}}
+                                </option> 
+                              @else
+                              <option value="{{$data->id}}">
+                                {{$data->name}}
+                                </option> 
+                              @endif
+                              @endforeach 
+                          </select>
                          </div>
                          <div class="col">
                            <button type="submit" class="btn btn-success center-block align-bottom ">Refresh</button>
@@ -114,11 +115,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        
+                        <?php $no = 1 ?>
+                        @foreach ($students as $student)
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{{ $no }}</td>
+                          <td>{{ $student->nim }}</td>
+                          <td>{{ $student->name }}</td>
                           <td>
                             <div class="form-group">
                               <div class="">
@@ -127,6 +129,8 @@
                             </div>
                           </td> 
                         </tr>
+                        <?php $no++ ?>
+                        @endforeach
                       
 
                       </tbody>

@@ -13,65 +13,61 @@ class AcademicYearController extends Controller
 
     public function index()
     {
+        $academic_year = Academic_Year::paginate(10);
 
-
-        $ta = Academic_Year::paginate(10);
-        return view('admin.Academic_Year.index', ['ta' => $ta]);
+        return view('admin.Academic_Year.index', ['ta' => $academic_year]);
     }
-
 
     public function create()
     {
-        $value_input_time_id = Value_Input_Time::get();
-        $bidding_time_id = Bidding_Time::get();
         //memanggil view create
-        return view('admin.tahunakademik.create', [
-            'value_input_time_id' => $value_input_time_id,
-            'bidding_time_id' => $bidding_time_id,
-        ]);
         return view('admin.Academic_Year.create');
     }
 
     public function store(Request $request)
     {
         Academic_Year::insert([
-            'academic_year' => $request->tahun_akademik,
+            'name' => $request->name,
             'semester' => $request->semester,
-            'value_input_time_id' => $request->batas_penawaran,
-            'bidding_time_id' => $request->batas_input_nilai,
-            'active' => $request->aktif,
+            'start_time_value' => $request->start_time_value,
+            'end_of_time_value' => $request->end_of_time_value,
+            'start_time_bidding' => $request->start_time_bidding,
+            'end_of_time_bidding' => $request->end_of_time_bidding,
+
             'created_by' => 1,
             'updated_by' => 1
-
         ]);
         return redirect('/tahun_akademik');
     }
 
-    public function show($id)
+    public function active($id, $status)
     {
-        //
+        Academic_Year::where('id', $id)->update([
+            'active' => $status,
+        ]);
+        return redirect('/tahun_akademik');
     }
 
     public function edit($id)
     {
-        $prodi = Academic_Year::where('id', $id)->get();
-        $study_faculty_id = Study_Faculty::get();
-        return view('admin.tahunakademik.edit', [
-            'prodi' => $prodi,
-            'study_faculty_id' => $study_faculty_id,
-
-        ]);
+        $academic_year = Academic_Year::where('id', $id)->get();
+        return view('admin.Academic_Year.edit', ['academic_years' => $academic_year]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         Academic_Year::where('id', $request->id)->update([
-            'code_prodi' => $request->code_prodi,
             'name' => $request->name,
-            'study_faculty_id' => $request->study_faculty_id,
+            'semester' => $request->semester,
+            'start_time_value' => $request->start_time_value,
+            'end_of_time_value' => $request->end_of_time_value,
+            'start_time_bidding' => $request->start_time_bidding,
+            'end_of_time_bidding' => $request->end_of_time_bidding,
+
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        return redirect('/tahun_akademik');
     }
 
     public function destroy($id)

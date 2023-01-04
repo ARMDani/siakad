@@ -33,7 +33,7 @@
                     </option> 
                   @else
                   <option value="{{$data->id}}">
-                    {{$data->name}}
+                    {{$data->academic_year}}
                     </option> 
                   @endif
                  

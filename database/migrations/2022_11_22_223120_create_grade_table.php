@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('grade', function (Blueprint $table) {
             $table->id();
-
-
-            $table->bigInteger('created_by');
-            $table->bigInteger('updated_by');
+            $table->string('name');
+            $table->float('bobot');
+            $table->string('poin');
+            $table->enum('keterangan', ['LULUS', 'TIDAK LULUS']);
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 

@@ -31,4 +31,9 @@ class Student extends Model
     {
         return $this->hasMany('App\Models\Sksmhs');
     }
+    public function study_value()
+    {
+        return $this->hasMany('App\Models\Study_Value');
+    }
+    
 }
