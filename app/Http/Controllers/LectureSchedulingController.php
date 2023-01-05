@@ -16,15 +16,10 @@ class LectureSchedulingController extends Controller
 {
       public function index(Request $request)
     {
-       $academic_year = Academic_Year::get();
-        // $params = ['tahun_akademik' =>  null];
-
+        $academic_year = Academic_Year::get();
         $tahun_akademik = $request->tahun_akademik_id ?? null;
-            $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
+        $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
                 ->get();
-        
-        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
-        // $params = ['tahun_akademik' => $tahun_akademik];
             
         return view('prodi.penjadwalankuliah.index')->with([
             'academic_year' => $academic_year, 

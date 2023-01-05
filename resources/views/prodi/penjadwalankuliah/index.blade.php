@@ -71,6 +71,7 @@
             <tr class="text-center">
               <th>No</th>
               <th>Mata Kuliah</th>
+              <th>SKS</th>
               <th>Kelas</th>
               <th>Hari</th>
               <th>Jam Kuliah</th>
@@ -84,6 +85,7 @@
             <tr class="text-center">
                 <td>{{ $no }}</td>
                 <td>{{ $matakuliahs->subject_course->name }}</td>
+                <td>{{ $matakuliahs->subject_course->sk }}</td>
                 <td>{{ $matakuliahs->class->name }}</td>
                 <td>{{ $matakuliahs->academic_day->name }}</td>
                 <td>{{ $matakuliahs->start_time }}</td>
