@@ -111,11 +111,18 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="/nilai" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Grade
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="pages/widgets.html" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               User
-              
             </p>
           </a>
         </li>

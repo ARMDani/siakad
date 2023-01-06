@@ -16,15 +16,12 @@ return new class extends Migration
         Schema::create('academic_year', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('name')->unsigned();
-            $table->bigInteger('semester')->unsigned();
-
-            $table->unsignedBigInteger('value_input_time_id');
-            $table->foreign('value_input_time_id')->references('id')->on('value_input_time');
-
-            $table->unsignedBigInteger('bidding_time_id');
-            $table->foreign('bidding_time_id')->references('id')->on('bidding_time');
-
-            $table->enum('active', ['Y', 'N']);
+            $table->enum('semester', ['Ganjil', 'Genap']);
+            $table->dateTime('start_time_value');
+            $table->dateTime('end_of_time_value');
+            $table->dateTime('start_time_bidding');
+            $table->dateTime('end_of_time_bidding');
+            $table->enum('active', ['Y', 'N'])->nullable(true);
 
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');

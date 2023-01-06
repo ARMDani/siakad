@@ -11,38 +11,22 @@
             <form action="/krsmahasiswa" method="post">
               {{ csrf_field() }} 
               <div class="form-group row">
-                <label for="staticEmail" class="col-2 col-form-label">Tahun/Angkatan</label>
-                <div class="col-3">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" : Pendidikan teknologi Informasi">
+                <div class="card col-5" style="width: 18rem;">
+                 
+                  <ul class="list-group list-group-flush">
+                    @foreach ($data as $datas)
+                    <li class="list-group-item"><b>NIM : </b> {{ $datas->student->nim }}</li>
+                    <li class="list-group-item"><b>Nama : </b> {{ $datas->student->name }}</li>
+                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $datas->student->study_program->name }}</li>
+                    @break
+                    @endforeach
+                  </ul>
+                 
                 </div>
               </div>
               <div class="form-group row">
-                <label for="staticEmail" class="col-2 col-form-label">NIM</label>
-                <div class="col-3">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" : Pendidikan teknologi Informasi">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-2 col-form-label">Nama</label>
-                <div class="col-3">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" : Pendidikan teknologi Informasi">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-2 col-form-label">Jurusan/Program Studi</label>
-                <div class="col-3">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" : Pendidikan teknologi Informasi">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-2 col-form-label">Penasehat Akademik</label>
-                <div class="col-3">
-                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" : Pendidikan teknologi Informasi">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-2 col-form-label">Tahun Akademik<span class="required" style="color: #dd4b39;">*</span></label>
-                <li class="list-group col-3 ml-4"> 
+                <label class="col-form-label">Tahun Akademik<span class="required" style="color: #dd4b39;">*</span></label>
+                <li class="list-group ml-2"> 
                 <select class="form-control" name="tahun_akademik_id" required="required">
                   <option value="">- Pilih Tahun Akademik -</option>
                   @foreach ($academic_year as $data)
@@ -75,14 +59,21 @@
       <div class="col-12">  
       <div class="card">
         <div class="card-body">
-          <form class="input-group-append" action="/mahasiswa/cari"  method="GET">
-              <input class="form-control" type="text"  name="cari" placeholder="Cari Mata Kuliah .." value="{{ old('cari') }} ">
-              <input type="submit" value="CARI">
-          </form>
       <ul>
       <a href="#" class="btn btn-warning ml-">Cetak</a>
       <a href="/krsmahasiswa/createmahasiswa/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah KRS</a>
     </ul>
+    <form class="form-inline">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br>
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
                 <th>No</th>

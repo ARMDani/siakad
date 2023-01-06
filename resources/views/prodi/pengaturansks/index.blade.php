@@ -94,9 +94,9 @@
                   <form action="/sksmhs/store" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="tahun_akademik" value="{{ ($tahun_akademik != null) ? $tahun_akademik->id : null  }}">
-                    @if($angkatan != null)
+                    @if(count($mahasiswa))
                     <div class="row">
-                      <h5>Pengaturan SKS Mahasiswa Angkatan {{  $angkatan->name }} Tahun Akademik {{ $tahun_akademik->academic_year }}  - Semester {{ (($tahun_akademik->semester % 2 == 1)? "Ganjil" : "Genap") }}</h5>
+                      <h5>Pengaturan SKS Mahasiswa Angkatan {{  $angkatan->name }} Tahun Akademik {{ $tahun_akademik->academic_year }}  - Semester {{ ($tahun_akademik->semester ) }}</h5>
                     </div>
                     <div class="row">
                       <div class="col">

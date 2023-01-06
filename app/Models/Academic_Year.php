@@ -9,14 +9,15 @@ class Academic_Year extends Model
 {
     protected $table  = 'academic_year';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'academic_year', 'semester', 'value_input_time_id', 'bidding_time_id', 'active'];
+    protected $fillable = ['id', 'name', 'semester', 'start_time_value', 'end_of_time_value', 'start_time_bidding', 'end_of_time_bidding', 'active'];
 
     public function lecture_scheduling()
     {
-        return $this->hasOne('App\Models\LectureScheduling');
+        return $this->hasMany('App\Models\LectureScheduling');
     }
     public function sksmhs()
     {
         return $this->hasMany('App\Models\Sksmhs');
     }
+    
 }

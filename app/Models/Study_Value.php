@@ -11,10 +11,10 @@ class Study_Value extends Model
     protected $table  = 'study_value';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id', 
-        'student_id', 
-        'lecture_schedulings_id', 
-        'grade_id', 
+        'id',
+        'student_id',
+        'lecture_schedulings_id',
+        'grade_id',
     ];
     public function student()
     {
@@ -29,5 +29,8 @@ class Study_Value extends Model
     {
         return $this->belongsTo('App\Models\Grade');
     }
-   
+    public function academic_year()
+    {
+        return $this->belongsTo('App\Models\Academic_Year');
+    }
 }

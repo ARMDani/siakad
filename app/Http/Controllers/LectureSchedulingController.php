@@ -74,4 +74,4 @@ class LectureSchedulingController extends Controller
         LectureScheduling::where('id', $id)->delete();
         return redirect('/penjadwalan');
 }
-}
+    }
