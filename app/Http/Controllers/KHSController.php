@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Generations;
 use App\Models\Study_Value;
 use Illuminate\Http\Request;
@@ -12,26 +11,28 @@ use App\Models\LectureScheduling;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 
-class KRSController extends Controller
+
+class KHSController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $academic_year = Academic_Year::get();
         $generations = Generations::get();
-
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $angkatan = $request->angkatan_id ?? null;
-        $students = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+
+        $khs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
             ->where('study_value.lecture_schedulings_id', $tahun_akademik)
             ->where('student.generations_id', $angkatan)
             ->orderBy('student.nim', 'ASC')
             ->get();
 
-        return view('prodi.krs.index')->with([
+
+        return view('prodi.khs.index')->with ([
             'academic_year' => $academic_year,
-            'generations' => $generations,
+            'academic_year' => $academic_year,
             'angkatan' => $angkatan,
-            'students' => $students,
+            'khs' => $khs,
+            'generations' => $generations,
             'tahun_akademik' => $tahun_akademik
         ]);
     }
@@ -44,7 +45,7 @@ class KRSController extends Controller
         $academic_year = Academic_Year::get();
         // $params = ['tahun_akademik' =>  null];
         $tahun_akademik = $request->tahun_akademik_id ?? null;
-        $krsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        $khsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik )
         ->where('student_id', $mahasiswa->id)                
                 ->get();
@@ -52,9 +53,9 @@ class KRSController extends Controller
         // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
         // $params = ['tahun_akademik' => $tahun_akademik];
             
-        return view('mahasiswa.krs.indexmhs')->with([
+        return view('mahasiswa.khs.indexmhs')->with([
             'academic_year' => $academic_year, 
-            'krsmahasiswa' => $krsmahasiswa,
+            'khsmahasiswa' => $khsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
             'data' => $data
             
@@ -134,4 +135,5 @@ class KRSController extends Controller
     public function search(Request $request)
     {
     }
+
 }

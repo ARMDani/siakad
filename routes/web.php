@@ -152,33 +152,13 @@ Route::post('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
+// --------------------------------------------KHS Prodi--------------------------------------------------------------------------
+Route::get('/khs', [App\Http\Controllers\KHSController::class, 'index']);
+Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
+Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
+Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 
-
-
-
-
-
-//==================================================================================================================
-// ---------------------------------------END FITUR PRODI-------------------------------------------------
-//==================================================================================================================
-
-
-
-//==================================================================================================================
-// ---------------------------------------BEGIN FITUR DOSEN-------------------------------------------------
-//==================================================================================================================
-
-
-
-
-//==================================================================================================================
-// ---------------------------------------END FITUR DOSEN-------------------------------------------------
-//==================================================================================================================
-
-
-
-//==================================================================================================================
-// ---------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
+//--------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
 // ---------------------------------------KRS Mahasiswa-------------------------------------------------------
 Route::get('/krsmahasiswa', [App\Http\Controllers\KRSController::class, 'indexmahasiswa']);
@@ -190,6 +170,20 @@ Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\KRSController::class
 Route::post('/krsmahasiswa/update', [App\Http\Controllers\KRSController::class, 'update']);
 Route::get('/krsmahasiswa/hapus/{id}', [App\Http\Controllers\KRSController::class, 'destroymahasiswa']);
 Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']);
+
+
+// --------------------------------------------KHS Mahasiswa---------------------------------------------------------------
+Route::get('/khsmahasiswa', [App\Http\Controllers\KHSController::class, 'indexmahasiswa']);
+Route::post('/khsmahasiswa', [App\Http\Controllers\KHSController::class, 'indexmahasiswa']);
+Route::get('/khsmahasiswa/createmahasiswa/{tahun_akademik}', [App\Http\Controllers\KHSController::class, 'createmahasiswa']);
+Route::get('/khsmahasiswa/createmahasiswa/', [App\Http\Controllers\KHSController::class, 'createmahasiswa']);
+Route::post('/khsmahasiswa/storemahasiswa', [App\Http\Controllers\KHSController::class, 'storemahasiswa']);
+Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class, 'edit']);
+Route::post('/khsmahasiswa/update', [App\Http\Controllers\KHSController::class, 'update']);
+Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
+Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
+
+
 
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
