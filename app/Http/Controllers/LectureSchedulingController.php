@@ -14,20 +14,19 @@ use Illuminate\Support\Facades\DB;
 
 class LectureSchedulingController extends Controller
 {
-    public function index(Request $request)
+      public function index(Request $request)
     {
         $academic_year = Academic_Year::get();
-
         $tahun_akademik = $request->tahun_akademik_id ?? null;
-        $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)
-            ->get();
-
+        $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
+                ->get();
+            
         return view('prodi.penjadwalankuliah.index')->with([
-            'academic_year' => $academic_year,
+            'academic_year' => $academic_year, 
             'matakuliah' => $matakuliah,
             'tahun_akademik' => $tahun_akademik
-
-        ]);
+            
+            ]);
     }
     public function create()
     {
@@ -45,13 +44,13 @@ class LectureSchedulingController extends Controller
             'class' => $class,
             'academic_day' => $academic_day,
             'academic_room' => $academic_room,
-
+            
         ]);
     }
     public function store(Request $request)
     {
         LectureScheduling::insert([
-
+           
             'academic_year_id' => $request->academic_year,
             'subject_course_id' => $request->subject_course,
             'lecturer_id' => $request->lecturer,
@@ -64,14 +63,15 @@ class LectureSchedulingController extends Controller
             'updated_by' => 1
         ]);
         return redirect('/penjadwalan')->with('status', 'Data Berhasil Ditambahkan !');
+       
     }
     public function show($id)
     {
-        //
+    //
     }
     public function destroy($id)
     {
         LectureScheduling::where('id', $id)->delete();
         return redirect('/penjadwalan');
-    }
 }
+    }

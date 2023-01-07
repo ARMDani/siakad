@@ -29,11 +29,11 @@
                   @foreach ($academic_year as $data)
                   @if ($data->id==$tahun_akademik)
                   <option selected value="{{$data->id}}">
-                    {{$data->academic_year}}
+                    {{$data->name}}
                     </option> 
                   @else
                   <option value="{{$data->id}}">
-                    {{$data->academic_year}}
+                    {{$data->name}}
                     </option> 
                   @endif
                  
@@ -71,6 +71,7 @@
             <tr class="text-center">
               <th>No</th>
               <th>Mata Kuliah</th>
+              <th>SKS</th>
               <th>Kelas</th>
               <th>Hari</th>
               <th>Jam Kuliah</th>
@@ -84,6 +85,7 @@
             <tr class="text-center">
                 <td>{{ $no }}</td>
                 <td>{{ $matakuliahs->subject_course->name }}</td>
+                <td>{{ $matakuliahs->subject_course->sk }}</td>
                 <td>{{ $matakuliahs->class->name }}</td>
                 <td>{{ $matakuliahs->academic_day->name }}</td>
                 <td>{{ $matakuliahs->start_time }}</td>

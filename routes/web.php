@@ -139,6 +139,7 @@ Route::post('/sksmhs/store', [App\Http\Controllers\SksmhsController::class, 'sto
 Route::get('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
 Route::post('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::class, 'index']);
 Route::get('/penjadwalan/create/{tahun_akademik}', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
+Route::get('/penjadwalan/create', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
 Route::post('/penjadwalan/store', [App\Http\Controllers\LectureSchedulingController::class, 'store']);
 Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
 Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
@@ -158,71 +159,40 @@ Route::get('/krs/pdf/', [App\Http\Controllers\KRSController::class, 'createPDF']
 // Route::post('/import',[App\Http\Controllers\KRSController::class,'import'])->name('import');
 // Route::get('/export-users',[App\Http\Controllers\KRSController::class,'exportUsers'])->name('export-users');
 
+// --------------------------------------------KHS Prodi--------------------------------------------------------------------------
+Route::get('/khs', [App\Http\Controllers\KHSController::class, 'index']);
+Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
+Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
+Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 
-
-
-
-
-
-//==================================================================================================================
-// ---------------------------------------END FITUR PRODI-------------------------------------------------
-//==================================================================================================================
-
-
-
-//==================================================================================================================
-// ---------------------------------------BEGIN FITUR DOSEN-------------------------------------------------
-//==================================================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//==================================================================================================================
-// ---------------------------------------END FITUR DOSEN-------------------------------------------------
-//==================================================================================================================
-
-
-
-//==================================================================================================================
-// ---------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
+//--------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
 // ---------------------------------------KRS Mahasiswa-------------------------------------------------------
 Route::get('/krsmahasiswa', [App\Http\Controllers\KRSController::class, 'indexmahasiswa']);
-Route::get('/krsmahasiswa/create', [App\Http\Controllers\krsmahasiswaController::class, 'create']);
-Route::post('/krsmahasiswa/store', [App\Http\Controllers\krsmahasiswaController::class, 'store']);
-Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\krsmahasiswaController::class, 'edit']);
-Route::post('/krsmahasiswa/update', [App\Http\Controllers\krsmahasiswaController::class, 'update']);
-Route::get('/krsmahasiswa/hapus/{id}', [App\Http\Controllers\krsmahasiswaController::class, 'destroy']);
+Route::post('/krsmahasiswa', [App\Http\Controllers\KRSController::class, 'indexmahasiswa']);
+Route::get('/krsmahasiswa/createmahasiswa/{tahun_akademik}', [App\Http\Controllers\KRSController::class, 'createmahasiswa']);
+Route::get('/krsmahasiswa/createmahasiswa/', [App\Http\Controllers\KRSController::class, 'createmahasiswa']);
+Route::post('/krsmahasiswa/storemahasiswa', [App\Http\Controllers\KRSController::class, 'storemahasiswa']);
+Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\KRSController::class, 'edit']);
+Route::post('/krsmahasiswa/update', [App\Http\Controllers\KRSController::class, 'update']);
+Route::get('/krsmahasiswa/hapus/{id}', [App\Http\Controllers\KRSController::class, 'destroymahasiswa']);
 Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
 
+// --------------------------------------------KHS Mahasiswa---------------------------------------------------------------
+Route::get('/khsmahasiswa', [App\Http\Controllers\KHSController::class, 'indexmahasiswa']);
+Route::post('/khsmahasiswa', [App\Http\Controllers\KHSController::class, 'indexmahasiswa']);
+Route::get('/khsmahasiswa/createmahasiswa/{tahun_akademik}', [App\Http\Controllers\KHSController::class, 'createmahasiswa']);
+Route::get('/khsmahasiswa/createmahasiswa/', [App\Http\Controllers\KHSController::class, 'createmahasiswa']);
+Route::post('/khsmahasiswa/storemahasiswa', [App\Http\Controllers\KHSController::class, 'storemahasiswa']);
+Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class, 'edit']);
+Route::post('/khsmahasiswa/update', [App\Http\Controllers\KHSController::class, 'update']);
+Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
+Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
 
 
 
 
-
-
-
-
-
-
-
-
-
-//==================================================================================================================
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Generations;
 use App\Models\Study_Value;
-use PDF;
 use Illuminate\Http\Request;
 use App\Models\Academic_Year;
 use App\Models\Grade;
@@ -12,26 +11,28 @@ use App\Models\LectureScheduling;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 
-class KRSController extends Controller
+
+class KHSController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $academic_year = Academic_Year::get();
         $generations = Generations::get();
-
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $angkatan = $request->angkatan_id ?? null;
-        $students = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+
+        $khs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
             ->where('study_value.lecture_schedulings_id', $tahun_akademik)
             ->where('student.generations_id', $angkatan)
             ->orderBy('student.nim', 'ASC')
             ->get();
 
-        return view('prodi.krs.index')->with([
+
+        return view('prodi.khs.index')->with ([
             'academic_year' => $academic_year,
-            'generations' => $generations,
+            'academic_year' => $academic_year,
             'angkatan' => $angkatan,
-            'students' => $students,
+            'khs' => $khs,
+            'generations' => $generations,
             'tahun_akademik' => $tahun_akademik
         ]);
     }
@@ -44,7 +45,7 @@ class KRSController extends Controller
         $academic_year = Academic_Year::get();
         // $params = ['tahun_akademik' =>  null];
         $tahun_akademik = $request->tahun_akademik_id ?? null;
-        $krsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        $khsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik )
         ->where('student_id', $mahasiswa->id)                
                 ->get();
@@ -52,57 +53,14 @@ class KRSController extends Controller
         // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
         // $params = ['tahun_akademik' => $tahun_akademik];
             
-        return view('mahasiswa.krs.indexmhs')->with([
+        return view('mahasiswa.khs.indexmhs')->with([
             'academic_year' => $academic_year, 
-            'krsmahasiswa' => $krsmahasiswa,
+            'khsmahasiswa' => $khsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
             'data' => $data
-            
             ]);
     }
-    public function createmahasiswa(Request $request)
     
-        {   
-                        
-            $tahun_akademik = $request->segment(3);
-            $academic_year = Academic_Year::get();
-            $mahasiswa = LectureScheduling::where('academic_year_id', $tahun_akademik)->get();
-            
-          
-                
-            return view('mahasiswa.krs.create')->with([
-                'academic_year' => $academic_year, 
-                'mahasiswa' => $mahasiswa,
-                'tahun_akademik' => $tahun_akademik
-            ]);
-           
-        $mahasiswa = Study_Value::where('study_value.student_id', $tahun_akademik)
-            ->get();
-
-        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
-        // $params = ['tahun_akademik' => $tahun_akademik];
-
-        return view('mahasiswa.krs.index')->with([
-            'academic_year' => $academic_year,
-            'mahasiswa' => $mahasiswa,
-            'tahun_akademik' => $tahun_akademik
-
-        ]);
-    }
-
-    // Generate PDF
-    public function createPDF() {
-        // retreive all records from db
-        $data = Study_Value::all();
-        // share data to view
-        view()->share('students',$data);
-        $pdf = PDF::loadView('prodi.krs.pdf', compact('data'));
-        // PDF::loadView('my-actual-view',compact('data'))->output();
-
-        // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
-      }
-
     public function storemahasiswa(Request $request)
     {
         $username = Auth::user()->username;
@@ -129,7 +87,6 @@ class KRSController extends Controller
        
         $cari = $request->cari;
     }
- 
     public function show()
     {
         //
@@ -141,12 +98,8 @@ class KRSController extends Controller
     public function update(Request $request)
     {
     }
-    public function destroymahasiswa($id)
-    {
-        Study_Value::where('id', $id)->delete();
-        return redirect('/krsmahasiswa');
-}
     public function search(Request $request)
     {
     }
+
 }
