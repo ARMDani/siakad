@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\FacultyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,9 +53,8 @@ Route::get('/fakultas/edit/{id}', [App\Http\Controllers\FacultyController::class
 Route::post('/fakultas/update', [App\Http\Controllers\FacultyController::class, 'update']);
 Route::get('/fakultas/hapus/{id}', [App\Http\Controllers\FacultyController::class, 'destroy']);
 Route::get('/fakultas/cari', [App\Http\Controllers\FacultyController::class, 'search']);
-// Route::get('/faculty/cari', [App\Http\Controllers\FacultyController::class, 'cari']);
-// Route::post('/siswa/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
-// Route::get('/faculty/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
+Route::get('/fakultas/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
+Route::post('/fakultas/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
 
 Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->middleware('auth');
 Route::get('/student/create', [App\Http\Controllers\StudentController::class, 'create']);
@@ -150,6 +150,13 @@ Route::get('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
+Route::get('/krs/pdf/', [App\Http\Controllers\KRSController::class, 'createPDF']);
+
+
+
+// Route::get('/file-import',[App\Http\Controllers\KRSController::class,'importView'])->name('import-view');
+// Route::post('/import',[App\Http\Controllers\KRSController::class,'import'])->name('import');
+// Route::get('/export-users',[App\Http\Controllers\KRSController::class,'exportUsers'])->name('export-users');
 
 
 

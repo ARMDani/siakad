@@ -124,7 +124,7 @@
                           <td>
                             <div class="form-group">
                               <div class="">
-                                <button type="button" class="btn btn-secondary">Lihat KRS</button>
+                                <a class="btn btn-primary" href="{{ URL::to('/krs/pdf') }}">Lihat KRS</a>
                               </div>
                             </div>
                           </td> 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Academic_Year;
 use App\Models\Generations;
 use App\Models\Study_Value;
+use PDF;
 use Illuminate\Http\Request;
 
 class KRSController extends Controller
@@ -49,24 +50,25 @@ class KRSController extends Controller
 
         ]);
     }
+
+    // Generate PDF
+    public function createPDF() {
+        // retreive all records from db
+        $data = Study_Value::all();
+        // share data to view
+        view()->share('students',$data);
+        $pdf = PDF::loadView('prodi.krs.pdf', compact('data'));
+        // PDF::loadView('my-actual-view',compact('data'))->output();
+
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+      }
+
     public function store(Request $request)
     {
         $cari = $request->cari;
     }
-    public function show()
-    {
-        //
-    }
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request)
-    {
-    }
-    public function destroy($id)
-    {
-    }
+ 
     public function search(Request $request)
     {
     }
