@@ -28,7 +28,7 @@
                     <div class="col-12">
 
                       {{-- BEGIN FORM  --}}
-                      <form action="/sksmhs" method="post">
+                      <form action="/nilai" method="post">
                         {{ csrf_field() }} 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
@@ -90,7 +90,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form">
-                  <form action="/sksmhs/store" method="post">
+                  <form action="/nilai/store" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="tahun_akademik" value="{{ ($tahun_akademik != null) ? $tahun_akademik->id : null  }}">
                     @if(count($mahasiswa))
@@ -151,21 +151,3 @@
    
 </div>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  

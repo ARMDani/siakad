@@ -37,17 +37,30 @@ class KRSController extends Controller
     }
     public function indexmahasiswa(Request $request)
     {
-        $data = Study_Value::get();
         $academic_year = Academic_Year::get();
         $username = Auth::user()->username;
-        $mahasiswa = Student::where('nim', $username)->first();
-        $academic_year = Academic_Year::get();
+        $mahasiswa = Student::where('nim', $username)->get();
+        $mahasiswas = Student::where('nim', $username)->first();
+        $tahun_akademik= Academic_Year::get();
+        
         // $params = ['tahun_akademik' =>  null];
         $tahun_akademik = $request->tahun_akademik_id ?? null;
-        $krsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        $krsmahasiswa = Study_Value::join('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik )
-        ->where('student_id', $mahasiswa->id)                
+        ->where('student_id', $mahasiswas->id)                
                 ->get();
+
+        // $data = Study_Value::get();
+        // $academic_year = Academic_Year::get();
+        // $username = Auth::user()->username;
+        // $mahasiswa = Student::where('nim', $username)->first();
+        // $academic_year = Academic_Year::get();
+        // // $params = ['tahun_akademik' =>  null];
+        // $tahun_akademik = $request->tahun_akademik_id ?? null;
+        // $krsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        // ->where('lecture_schedulings.academic_year_id', $tahun_akademik )
+        // ->where('student_id', $mahasiswa->id)                
+        //         ->get();
         
         // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
         // $params = ['tahun_akademik' => $tahun_akademik];
@@ -56,7 +69,7 @@ class KRSController extends Controller
             'academic_year' => $academic_year, 
             'krsmahasiswa' => $krsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
-            'data' => $data
+            'mahasiswa' => $mahasiswa
             
             ]);
     }

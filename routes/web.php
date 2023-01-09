@@ -157,8 +157,13 @@ Route::get('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
 Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
+// -------------------------------------------------Nilai Prodi-----------------------------------------------------------------------
+Route::get('/nilai', [App\Http\Controllers\KRSController::class, 'index']);
+Route::post('/nilai', [App\Http\Controllers\KRSController::class, 'index']);
+Route::post('/nilai/store', [App\Http\Controllers\KRSController::class, 'store']);
+Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
-//--------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
+//--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
 // ---------------------------------------KRS Mahasiswa-------------------------------------------------------
 Route::get('/krsmahasiswa', [App\Http\Controllers\KRSController::class, 'indexmahasiswa']);
@@ -168,7 +173,7 @@ Route::get('/krsmahasiswa/createmahasiswa/', [App\Http\Controllers\KRSController
 Route::post('/krsmahasiswa/storemahasiswa', [App\Http\Controllers\KRSController::class, 'storemahasiswa']);
 Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\KRSController::class, 'edit']);
 Route::post('/krsmahasiswa/update', [App\Http\Controllers\KRSController::class, 'update']);
-Route::get('/krsmahasiswa/hapus/{id}', [App\Http\Controllers\KRSController::class, 'destroymahasiswa']);
+Route::get('/krsmahasiswa/destroymahasiswa/{id}', [App\Http\Controllers\KRSController::class, 'destroymahasiswa']);
 Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']);
 
 
@@ -182,9 +187,6 @@ Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class
 Route::post('/khsmahasiswa/update', [App\Http\Controllers\KHSController::class, 'update']);
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
-
-
-
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================

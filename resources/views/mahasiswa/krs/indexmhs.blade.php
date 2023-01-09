@@ -13,13 +13,16 @@
               <div class="form-group row">
                 <div class="card col-5" style="width: 18rem;">
                  
-                  <ul class="list-group list-group-flush">
-                    @foreach ($data as $datas)
-                    <li class="list-group-item"><b>NIM : </b> {{ $datas->student->nim }}</li>
-                    <li class="list-group-item"><b>Nama : </b> {{ $datas->student->name }}</li>
-                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $datas->student->study_program->name }}</li>
-                    @break
+                  @foreach ($mahasiswa as $data)
+                  <ul class="list-group list-group-flush" value="{{ $data->id }}">
+                  
+                 
+                    <li class="list-group-item"><b>NIM : </b> {{ $data->nim}} </li>
+                    <li class="list-group-item"><b>Nama : </b> {{ $data->name }} </li>
+                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $data->study_program->name }}</li>
+                    
                     @endforeach
+                    
                   </ul>
                  
                 </div>
@@ -88,7 +91,7 @@
             </tr>
             <?php $no = 1  ?>
             @foreach ($krsmahasiswa as $krsmahasiswas)
-            <tr>
+            <tr value="{{ $krsmahasiswas->id }}">
               <td>{{ $no }}</td>
               <td>{{ $krsmahasiswas->lecture_schedulings->subject_course->name }}</td>
               <td>{{ $krsmahasiswas->lecture_schedulings->subject_course->sk }}</td>
@@ -99,7 +102,7 @@
               <td>{{ $krsmahasiswas->lecture_schedulings->lecturer->name }}</td>
             
               <td >
-                <a href="/krsmahasiswa/hapus/{{ $krsmahasiswas->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
+                <a href="/krsmahasiswa/destroymahasiswa/{{ $krsmahasiswa->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
             </td>
           </tr>
             <?php $no++ ?>
