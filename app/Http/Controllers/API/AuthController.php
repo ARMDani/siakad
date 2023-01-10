@@ -21,12 +21,16 @@ class AuthController extends Controller
                 'message'=> 'Unauthorized'
                 ], 401);
             }
-                $user = User::where('username', $request->username)->firstOrFail();
-                $token = $user->createToken('auth_token')->plainTextToken;
+
+            $user = User::leftJoin('student', 'users.username', '=', 'student.nim') 
+                    ->where('users.username', $request->username)
+                    ->get();
+                // $user = User::where('username', $request->username)->firstOrFail();
+                // $token = $user->createToken('auth_token')->plainTextToken;
                 return response()->json([
                 'message' => 'Login success',
-                'access_token' => $token,
-                'token_type' => $user->name
+                // 'access_token' => $token,
+                'data' => $user
                 ]);
     }
 }

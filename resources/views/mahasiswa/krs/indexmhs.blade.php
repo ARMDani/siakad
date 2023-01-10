@@ -77,6 +77,7 @@
       </div>
     </form>
     <br>
+ 
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
                 <th>No</th>
@@ -91,7 +92,7 @@
             </tr>
             <?php $no = 1  ?>
             @foreach ($krsmahasiswa as $krsmahasiswas)
-            <tr value="{{ $krsmahasiswas->id }}">
+            <tr>
               <td>{{ $no }}</td>
               <td>{{ $krsmahasiswas->lecture_schedulings->subject_course->name }}</td>
               <td>{{ $krsmahasiswas->lecture_schedulings->subject_course->sk }}</td>
@@ -102,7 +103,7 @@
               <td>{{ $krsmahasiswas->lecture_schedulings->lecturer->name }}</td>
             
               <td >
-                <a href="/krsmahasiswa/destroymahasiswa/{{ $krsmahasiswa->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
+                <a href="/krsmahasiswa/destroymahasiswa/{{ $krsmahasiswas->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
             </td>
           </tr>
             <?php $no++ ?>

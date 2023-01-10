@@ -158,10 +158,20 @@ Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
 Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 // -------------------------------------------------Nilai Prodi-----------------------------------------------------------------------
-Route::get('/nilai', [App\Http\Controllers\KRSController::class, 'index']);
-Route::post('/nilai', [App\Http\Controllers\KRSController::class, 'index']);
-Route::post('/nilai/store', [App\Http\Controllers\KRSController::class, 'store']);
-Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
+
+Route::get('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
+Route::get('/nilai/input_nilai', [App\Http\Controllers\NilaiController::class, 'indexnilai']);
+Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
+Route::post('/nilai/store', [App\Http\Controllers\NilaiController::class, 'store']);
+Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
+
+
+
+
+
+
+
+
 
 //--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
@@ -184,7 +194,7 @@ Route::get('/khsmahasiswa/createmahasiswa/{tahun_akademik}', [App\Http\Controlle
 Route::get('/khsmahasiswa/createmahasiswa/', [App\Http\Controllers\KHSController::class, 'createmahasiswa']);
 Route::post('/khsmahasiswa/storemahasiswa', [App\Http\Controllers\KHSController::class, 'storemahasiswa']);
 Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class, 'edit']);
-Route::post('/khsmahasiswa/update', [App\Http\Controllers\KHSController::class, 'update']);
+Route::post('/khsmahasiswa/input_nilai', [App\Http\Controllers\KHSController::class, 'update']);
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
 

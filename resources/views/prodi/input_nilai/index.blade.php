@@ -5,7 +5,7 @@
 <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">
-        <h3>Pengaturan SKS Mahasiswa</h3>
+        <h3>Penginputan Nilai Mahasiswa</h3>
       </div>
     </div>
 
@@ -40,27 +40,22 @@
                           <label class="col-2 col-form-label">Tahun Akademik<span class="required" style="color: #dd4b39;">*</span></label>
                           <div class="col-3">
                             <select class="form-control" name="tahun_akademik_id" required="required">
-                              <option value="">- Pilih Tahun Akademik -</option>
-                              @foreach ($academikyear as $data)
-                              <option value="{{$data->id}}">
+                                <option value="">- Pilih Tahun Akademik -</option>
+                                @foreach ($academic_year as $data)
+                                @if ($data->id==$tahun_akademik)
+                                <option selected value="{{$data->id}}">
                                   {{$data->name}}
-                              </option>
-                              @endforeach 
-                          </select>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-2 col-form-label">Angkatan<span class="required" style="color: #dd4b39;">*</span></label>
-                          <div class="col-3">
-                            <select class="form-control" name="angkatan" required="required">
-                                <option value="">-  Pilih Angkatan -</option>
-                                @foreach ($generation as $data)
+                                  </option> 
+                                @else
                                 <option value="{{$data->id}}">
-                                    {{$data->name}}
-                                </option>
+                                  {{$data->name}}
+                                  </option> 
+                                @endif
                                 @endforeach 
                             </select>
-                         </div>
+                          </div>
+                        </div>
+                       
                          <div class="col">
                            <button type="submit" class="btn btn-success center-block align-bottom ">Refresh</button>
                          </div>
@@ -80,10 +75,7 @@
 
         </div>
 
-        <?php 
-        $tahun_akademik = $params['tahun_akademik'];
-        $angkatan = $params['angkatan'];
-        ?>
+      
         {{-- BEGIN ROW 2 --}}
         <div class="row">
           <div class="col">
@@ -92,47 +84,67 @@
                 <div class="form">
                   <form action="/nilai/store" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="tahun_akademik" value="{{ ($tahun_akademik != null) ? $tahun_akademik->id : null  }}">
-                    @if(count($mahasiswa))
+                  @if(count($mahasiswa))
                     <div class="row">
-                      <h5>Pengaturan SKS Mahasiswa Angkatan {{  $angkatan->name }} Tahun Akademik {{ $tahun_akademik->academic_year }}  - Semester {{ ($tahun_akademik->semester ) }}</h5>
-                    </div>
+                        @foreach ($academic_year as $data)
+                        @if ($data->id==Request::segment(3)) 
+                        <h1 selected value="{{$data->id}}">
+                          {{$data->name}}
+                          </h1> 
+                        @endif
+                        @endforeach
+                      </div>
                     <div class="row">
                       <div class="col">
-                        <input class="btn btn-primary mb-3" type="submit" value="Simpan">
-                      </div>
-                    </div>
+                      
                       @endif
                     <table class="table table-bordered table-hover table-wrapper">
 
-                      <thead>
+                      <thead class="text-center">
                         <tr>
+                          <th>Opsi</th>
                           <th>No</th>
-                          <th>NIM</th>
-                          <th>Nama Mahasiswa</th>
+                          <th>Kode MK</th>
+                          <th>Mata Kuliah</th>
+                          <th>JML Mahasiswa</th>
                           <th>SKS</th>
+                          <th>Ruangan</th>
+                          <th>Semester</th>
+                          <th>Jam Kuliah</th>
+                          <th>Dosen Pengajar</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody class="text-center">
                         <?php $no = 1  ?>
                         @foreach ($mahasiswa as $mhs)
                         <tr>
-                          <td>{{ $no }}</td>
-                          <td>{{ $mhs->nim }}</td>
-                          <td>{{ $mhs->name }}</td>
-                          <td>
-                            <div class="form-group">
-                              <input class="form-control" type="number" value="{{ $mhs->sks }}" name="sks[{{ $mhs->id }}][jumlah_sks]" placeholder="Masukkan SKS ..." required="required">
-                              <input type="hidden" name="sks[{{ $mhs->id }}][id_sksmhs]" value="{{ $mhs->id_sksmhs  }}">
-                            </div>
+                          <td> 
+                              <div class="col">
+                                <a href="/nilai/input_nilai" type="submit" class="btn btn-success center-block align-bottom " value="Input Nilai">Input Nilai</a>
+                              </div>
                           </td> 
+                          <td>{{ $no }}</td>
+                          <td>{{ $mhs->subject_course->course_code }}</td>
+                          <td>{{ $mhs->subject_course->name }}</td>
+                          <td>
+                            <div class="col">
+                              <button type="submit" class="btn btn-success center-block align-bottom ">Jumlah Mahasiswa</button>
+                            </div>
+                          </td>
+                          <td>{{ $mhs->subject_course->sk }}</td>
+                          <td>{{ $mhs->academic_room->name }}</td>
+                          <td>{{ $mhs->subject_course->sk }}</td>
+                          <td>{{ $mhs->academic_room->name }}</td>  
+                          <td>{{ $mhs->lecturer->name }}</td>                           
+                         
+                         
                         </tr>
                         <?php $no++ ?>
                         @endforeach
 
-                      </tbody>
 
                     </table>
+                      </tbody>
                   </form>
                 </div>
               </div>
