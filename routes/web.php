@@ -34,13 +34,13 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::middleware(['auth', 'cekLogin:user'])->group(function () {
+// Route::middleware(['auth', 'cekLogin:user'])->group(function () {
 
-    Route::get('/home', [LoginController::class, 'index'])->name('home');
-});
+//     Route::get('/home', [LoginController::class, 'index'])->name('home');
+// });
 
 
-Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
+// Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
 
 
 //==================================================================================================================
@@ -127,7 +127,6 @@ Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index
 //==================================================================================================================
 
 
-
 //==================================================================================================================
 // ---------------------------------------BEGIN FITUR PRODI-------------------------------------------------
 //==================================================================================================================
@@ -152,9 +151,6 @@ Route::post('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
 Route::get('/krs/pdf/', [App\Http\Controllers\KRSController::class, 'createPDF']);
-
-
-
 // Route::get('/file-import',[App\Http\Controllers\KRSController::class,'importView'])->name('import-view');
 // Route::post('/import',[App\Http\Controllers\KRSController::class,'import'])->name('import');
 // Route::get('/export-users',[App\Http\Controllers\KRSController::class,'exportUsers'])->name('export-users');
@@ -190,7 +186,8 @@ Route::post('/khsmahasiswa/update', [App\Http\Controllers\KHSController::class, 
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
 
-
+Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
+Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, 'edit']);
 
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------

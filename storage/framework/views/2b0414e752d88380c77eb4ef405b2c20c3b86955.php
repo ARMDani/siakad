@@ -2,7 +2,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="/" class="brand-link">
-    <img src="{{ asset('dist/img/02.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="<?php echo e(asset('dist/img/02.png')); ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light"> <b>SIASTEK 'AISYIYAH</b> </span>
   </a>
   <!-- Sidebar -->
@@ -10,10 +10,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ asset('dist/img/user2-160x160.png') }}" class="img-circle elevation-2" alt="User Image">
+        <img src="<?php echo e(asset('dist/img/user2-160x160.png')); ?>" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <a href="#" class="d-block"><?php echo e(Auth::user()->name); ?></a>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -34,8 +34,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-    @if (Auth::user()->role->id == 1)    
-    {{-- ---------------------mulai admin--------------------------- --}}
+    <?php if(Auth::user()->role->id == 1): ?>    
+    
     <li class="nav-header">ADMIN</li>
     <li class="nav-item menu-open">
       <a href="/home" class="nav-link active">
@@ -158,10 +158,10 @@
             </p>
           </a>
         </li>
-        {{-- -----------------------batas admin------------------------}}
-        @endif
+        
+        <?php endif; ?>
 
-        @if (Auth::user()->role->id == 2)
+        <?php if(Auth::user()->role->id == 2): ?>
         <li class="nav-header">PRODI</li>
         <li class="nav-item menu-open">
           <a href="/home" class="nav-link active">
@@ -245,11 +245,11 @@
               </a>
           </ul>
         </li>
-        {{-- --------------------------batas prodi----------------------------------}}
-        @endif
+        
+        <?php endif; ?>
 
-        @if (Auth::user()->role->id == 3)
-        {{-- ---------------------------------mulai dosen------------------------------ --}}
+        <?php if(Auth::user()->role->id == 3): ?>
+        
         <li class="nav-header">DOSEN</li>
         <li class="nav-item menu-open">
           <a href="/home" class="nav-link active">
@@ -276,12 +276,12 @@
             </p>
           </a>
         </li>
-  {{-- // ----------------------------batas dosen-------------------------------  --}}
+  
 
-  @endif
+  <?php endif; ?>
 
-  @if (Auth::user()->role->id == 4)
-  {{-- ---------------------------------mulai mahasiswa--------------------------- --}}
+  <?php if(Auth::user()->role->id == 4): ?>
+  
   <li class="nav-header">MAHASISWA</li>
   <li class="nav-item menu-open">
     <a href="/home" class="nav-link active">
@@ -311,7 +311,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="pages/widgets.html" class="nav-link">
       <i class="nav-icon fas fa-th"></i>
       <p>
         Transkip Nilai
@@ -320,7 +320,7 @@
     </a>
   </li>
 
-  @endif
+  <?php endif; ?>
        
 </li>
       </ul>
@@ -329,3 +329,4 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+<?php /**PATH C:\laragon\www\kampus\resources\views/template/sidebar.blade.php ENDPATH**/ ?>

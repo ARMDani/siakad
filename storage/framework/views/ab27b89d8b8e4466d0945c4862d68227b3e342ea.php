@@ -41,7 +41,7 @@
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
-            <img src="{{ asset('dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <img src="<?php echo e(asset('dist/img/user1-128x128.jpg')); ?>" alt="User Avatar" class="img-size-50 mr-3 img-circle">
             <div class="media-body">
               <h3 class="dropdown-item-title">
                 Brad Diesel
@@ -57,7 +57,7 @@
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
-            <img src="{{ asset('dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+            <img src="<?php echo e(asset('dist/img/user8-128x128.jpg')); ?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
             <div class="media-body">
               <h3 class="dropdown-item-title">
                 John Pierce
@@ -73,7 +73,7 @@
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
-            <img src="{{ asset('dist/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+            <img src="<?php echo e(asset('dist/img/user3-128x128.jpg')); ?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
             <div class="media-body">
               <h3 class="dropdown-item-title">
                 Nora Silvester
@@ -117,7 +117,7 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
-    {{-- -----------------Sign Out------------------- --}}
+    
    
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -132,13 +132,13 @@
     <li class="nav-item">
     <li class="nav-link dropdown user user-menu card-bg">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <span class="hidden-xs"><img src="{{ asset('dist/img/user2-160x160.png') }}" class="user-image" alt="User Image"></i></span>
+        <span class="hidden-xs"><img src="<?php echo e(asset('dist/img/user2-160x160.png')); ?>" class="user-image" alt="User Image"></i></span>
       </a>
       <ul class="dropdown-menu">
         <li class="user-header">
-          <img src="{{ asset('dist/img/user2-160x160.png') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo e(asset('dist/img/user2-160x160.png')); ?>" class="img-circle elevation-2" alt="User Image">
           <h6>
-            {{ Auth::user()->name }} <br>
+            <?php echo e(Auth::user()->name); ?> <br>
             <small>User since Nov. 2022</small>
           </h6>
           <div class="row">
@@ -155,7 +155,7 @@
         </li>
         <li class="user-footer">
           <div class="pull-righ">
-            <a class="btn btn-danger" href="{{url('logout')}}">Logout <i class="nav-icon fas fa-user"></i></a>
+            <a class="btn btn-danger" href="<?php echo e(url('logout')); ?>">Logout <i class="nav-icon fas fa-user"></i></a>
           </div>
         </li>
       </ul>
@@ -164,4 +164,4 @@
   </ul>
   
 </nav>
-<!-- /.navbar -->
+<!-- /.navbar --><?php /**PATH C:\laragon\www\kampus\resources\views/template/header.blade.php ENDPATH**/ ?>

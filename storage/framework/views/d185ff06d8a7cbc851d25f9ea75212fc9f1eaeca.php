@@ -1,5 +1,5 @@
-@extends('template.home')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <div class="content-wrapper">
   <div class="content-header">
@@ -7,12 +7,12 @@
       <h3>Data Fakultas</h3>
     </div>
   </div>
-  {{-- BEGIN CONTENT --}}
+  
   <div class="content">
-    {{-- BEGIN CONTAINER --}}
+    
     <div class="container-fluid">
    
-      {{-- BEGIN ROW 2 --}}
+      
       <div class="row">
         <div class="col">
           <div class="card">
@@ -20,20 +20,20 @@
               <div class="form">
                   <div class="row">
                     <div class="col">
-                      {{-- Begin Import data --}}
-                      {{-- notifikasi form validasi --}}
-                      @if ($errors->has('file'))
+                      
+                      
+                      <?php if($errors->has('file')): ?>
                       <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('file') }}</strong>
+                        <strong><?php echo e($errors->first('file')); ?></strong>
                       </span>
-                      @endif
-                      {{-- notifikasi sukses --}}
-                      @if ($sukses = Session::get('sukses'))
+                      <?php endif; ?>
+                      
+                      <?php if($sukses = Session::get('sukses')): ?>
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $sukses }}</strong>
+                        <strong><?php echo e($sukses); ?></strong>
                       </div>
-                      @endif
+                      <?php endif; ?>
                       <!-- Import Excel -->
                       <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -43,7 +43,8 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                               </div>
                               <div class="modal-body">
-                                {{ csrf_field() }}
+                                <?php echo e(csrf_field()); ?>
+
                                 <label>Pilih file excel</label>
                                 <div class="form-group">
                                   <input type="file" name="file" required="required">
@@ -57,11 +58,12 @@
                           </form>
                         </div>
                       </div>
-                      {{-- End Import data --}}
+                      
                     </div>
                   </div>
                 <form action="/fakultas/create" method="get">
-                  {{ csrf_field() }}
+                  <?php echo e(csrf_field()); ?>
+
 
                   <div class="row">
                     <div class="col">
@@ -92,24 +94,25 @@
                     <th>Opsi</th>
                   </tr>
                   <?php $no = $faculty->currentPage() * $faculty->perPage() -9 ; ?>
-                  @foreach ($faculty as $facultys)
+                  <?php $__currentLoopData = $faculty; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $facultys): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
-                      <td>{{ $no }}</td>
-                      <td>{{ $facultys->code_faculty }}</td>
-                      <td>{{ $facultys->name }}</td>
+                      <td><?php echo e($no); ?></td>
+                      <td><?php echo e($facultys->code_faculty); ?></td>
+                      <td><?php echo e($facultys->name); ?></td>
                       <td>
-                          <a href="/fakultas/edit/{{ $facultys->id }}" class="btn btn-secondary"> Edit </a>
-                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-danger"> Hapus </a>
+                          <a href="/fakultas/edit/<?php echo e($facultys->id); ?>" class="btn btn-secondary"> Edit </a>
+                          <a href="/fakultas/hapus/<?php echo e($facultys->id); ?>"class="btn btn-danger"> Hapus </a>
                       </td>
                   </tr>
                   <?php $no++ ?>
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </table>
               <br/>
-                Halaman : {{ $faculty->currentPage() }} <br/>
-                Jumlah Data : {{ $faculty->total() }} <br/>
-                Data Per Halaman : {{ $faculty->perPage() }} <br/>
-                {{ $faculty->links() }}
+                Halaman : <?php echo e($faculty->currentPage()); ?> <br/>
+                Jumlah Data : <?php echo e($faculty->total()); ?> <br/>
+                Data Per Halaman : <?php echo e($faculty->perPage()); ?> <br/>
+                <?php echo e($faculty->links()); ?>
+
             </form>
               </div>
             </div>
@@ -118,17 +121,17 @@
         </div>
       </div>
 
-      {{-- END ROW 2 --}}
+      
 
     </div>
-    {{-- END CONTAINER --}}
+    
 
   </div>
-  {{-- END CONTENT --}}
+  
  
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -155,3 +158,4 @@
 
 
   
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\kampus\resources\views/admin/faculty/index.blade.php ENDPATH**/ ?>
