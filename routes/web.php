@@ -160,7 +160,7 @@ Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 // -------------------------------------------------Nilai Prodi-----------------------------------------------------------------------
 
 Route::get('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
-Route::get('/nilai/input_nilai', [App\Http\Controllers\NilaiController::class, 'indexnilai']);
+Route::get('/nilai/input_nilai/{matakuliah}', [App\Http\Controllers\NilaiController::class, 'indexnilai']);
 Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::post('/nilai/store', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);

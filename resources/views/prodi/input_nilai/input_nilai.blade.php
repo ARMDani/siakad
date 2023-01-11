@@ -53,7 +53,7 @@
                         @foreach ($mahasiswas as $mhs)
                         <tr>
                           <td>{{ $no }}</td>
-                          <td>{{ $mhs->study_value->student->nim }}</td>
+                          <td>{{ $mhs->student->nim }}</td>
                           <td>{{ $mhs->student->name }}</td>
                           <td>
                             <input class="form-control" type="number">

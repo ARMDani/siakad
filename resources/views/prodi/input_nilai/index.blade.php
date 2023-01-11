@@ -120,7 +120,7 @@
                         <tr>
                           <td> 
                               <div class="col">
-                                <a href="/nilai/input_nilai" type="submit" class="btn btn-success center-block align-bottom " value="Input Nilai">Input Nilai</a>
+                                <a href="/nilai/input_nilai/{{ $mhs->subject_course->id }}" type="submit" class="btn btn-success center-block align-bottom " value="Input Nilai">Input Nilai</a>
                               </div>
                           </td> 
                           <td>{{ $no }}</td>
@@ -128,7 +128,7 @@
                           <td>{{ $mhs->subject_course->name }}</td>
                           <td>
                             <div class="col">
-                              <button type="submit" class="btn btn-success center-block align-bottom ">Jumlah Mahasiswa</button>
+                              <button type="submit" class="btn btn-success center-block align-bottom ">{{$mhs->jumlah}}</button>
                             </div>
                           </td>
                           <td>{{ $mhs->subject_course->sk }}</td>
