@@ -21,7 +21,6 @@ class SettingController extends Controller
         //
     }
 
-   
     public function show($id)
     {
         //

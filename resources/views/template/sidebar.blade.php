@@ -176,7 +176,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Dosen
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -185,7 +184,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mahasiswa
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -194,7 +192,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mata Kuliah
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -297,7 +294,6 @@
       <i class="nav-icon fas fa-th"></i>
       <p>
         Kartu Rencana Studi
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>
@@ -306,7 +302,6 @@
       <i class="nav-icon fas fa-th"></i>
       <p>
         Kartu Hasil Studi
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>
@@ -315,7 +310,6 @@
       <i class="nav-icon fas fa-th"></i>
       <p>
         Transkip Nilai
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>

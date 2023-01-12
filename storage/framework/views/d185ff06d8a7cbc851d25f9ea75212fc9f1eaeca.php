@@ -74,16 +74,13 @@
                       <a href="/fakultas/export_excel" class="btn btn-success mr-3 float-right" target="_blank">Export Data</a>
                     </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <form class="form-inline">
-                      <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                          <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                          </button>
-                        </div>
-                      </div>
+                </form>
+                  <div class="input-group mb-3 col-12" >
+                    <form action="/fakultas/cari" method="GET">
+                      <span class="input-group-append">
+                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="<?php echo e(old('cari')); ?>">
+                        <input type="submit" value="CARI">
+                      </span>
                     </form>
                   </div>
                 <table class="table table-bordered table-hover table-wrapper">
@@ -113,7 +110,7 @@
                 Data Per Halaman : <?php echo e($faculty->perPage()); ?> <br/>
                 <?php echo e($faculty->links()); ?>
 
-            </form>
+           
               </div>
             </div>
           </div>
