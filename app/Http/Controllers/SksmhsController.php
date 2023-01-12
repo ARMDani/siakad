@@ -48,9 +48,8 @@ class SksmhsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+
         $data_sks = $request->sks;
-        // dd($data_sks);
         $tahun_akademik_id = $request->tahun_akademik;
 
         foreach ($data_sks as $student_id => $data_sksmhs) {

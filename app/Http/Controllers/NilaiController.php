@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\nilaimhs;
 use App\Models\Student;
-use App\Models\Study_Value;
 use App\Models\Generations;
+use App\Models\Study_Value;
 use Illuminate\Http\Request;
 use App\Models\Academic_Year;
-use App\Models\LectureScheduling;
+use App\Models\Grade;
 use App\Models\Subject_Course;
+use App\Models\LectureScheduling;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,6 +49,7 @@ class NilaiController extends Controller
     {
         $matakuliah = $request->segment(3);
         $student = Student::get();
+        $grade = Grade::get();
               
         $lecture_scheduling = LectureScheduling::get();
         $mahasiswas = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')  
@@ -55,6 +58,7 @@ class NilaiController extends Controller
          
 
         return view('prodi.input_nilai.input_nilai')->with([ 
+            'grade' =>$grade,
             'lecture_scheduling' => $lecture_scheduling,
             'mahasiswas' => $mahasiswas, 
             'student' => $student,
@@ -86,8 +90,40 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-    //  ksmhs');
+        $student_id = $request->student;
+        $data_nilai = $request->nilai;
+        $jadwal_id = $request->jadwal;
+
+        foreach ($data_nilai as $student_id => $data_nilaimhs) {
+
+            $grade_id = $data_nilaimhs['grade_id'];
+            $assignment_value = $data_nilaimhs['assignment_value'];
+            $uts_value = $data_nilaimhs['uts_value'];
+            $uas_value = $data_nilaimhs['uas_value'];
+            $id_nilaimhs = $data_nilaimhs['id_nilaimhs'];
+
+            if ($id_nilaimhs == null) {
+                $nilaimhs = Study_Value::insert([
+                    'student_id' => $student_id,
+                    'lecture_schedulings_id' => $jadwal_id,
+                    'grade_id' => $grade_id,
+                    'assignment_value' => $assignment_value,
+                    'uts_value' => $uts_value,
+                    'uas_value' => $uas_value,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id
+                ]);
+            } else {
+                $nilaimhs = Study_Value::where('id', $id_nilaimhs)->update([
+                    'grade_id' => $grade_id,
+                    'assignment_value' => $assignment_value,
+                    'uts_value' => $uts_value,
+                    'uas_value' => $uas_value,
+                    'updated_by' => Auth::user()->id
+                ]);
+            }
+        }
+        return redirect('/nilaimhs');
     }
 
 

@@ -105,7 +105,7 @@ class KRSController extends Controller
             }
         }
         
-        return redirect('/krsmahasiswa')->with('status', 'Data Berhasil Ditambahkan !');
+        return redirect('/krsmahasiswa')->with('status', 'Berhasil Menawar Mata Kuliah !!');
        
         $cari = $request->cari;
     }
@@ -123,7 +123,7 @@ class KRSController extends Controller
     public function destroymahasiswa($id)
     {
         Study_Value::where('id', $id)->delete();
-        return redirect('/krsmahasiswa');
+        return redirect('/krsmahasiswa')->with('status', 'Berhasil Dihapus !!');;
 }
     public function search(Request $request)
     {

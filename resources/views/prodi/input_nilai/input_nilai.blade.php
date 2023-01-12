@@ -32,7 +32,7 @@
                      </div>
                     <div class="row">
                       <div class="col">
-                        <input class="btn btn-primary mb-3" type="submit" value="Simpan">
+                        <a href="/nilai" class="btn btn-danger mb-3" type="submit">Kembali</a>
                       </div>
                     </div>
                       {{-- @endif --}}
@@ -46,6 +46,8 @@
                           <th>Nilai Tugas</th>
                           <th>UTS</th>
                           <th>UAS</th>
+                          <th>Grade</th>
+                          <th>#Opsi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -55,21 +57,32 @@
                           <td>{{ $no }}</td>
                           <td>{{ $mhs->student->nim }}</td>
                           <td>{{ $mhs->student->name }}</td>
-                          <td>
-                            <input class="form-control" type="number">
-                          </td>
-                          <td>
-                            <input class="form-control" type="number">
-                          </td>
-                          <td>
-                            <input class="form-control" type="number">
-                          </td>
-                          
-                        </tr>
-                        <?php $no++ ?>
-                        @endforeach
-
-                      </tbody>
+                        </td>
+                        <td>  
+                          <input class="form-control" type="number" value="{{ $mhs->assignment_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
+                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
+                        </td>
+                        <td>
+                          <input class="form-control"  type="number" value="{{ $mhs->uts_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
+                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
+                       
+                        </td>
+                        <td>
+                          <input class="form-control" type="number" value="{{ $mhs->uas_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
+                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
+                        </td>
+                      <td>
+                        <button class="btn btn-success center-block align-bottom " placeholder="..."></button>
+                      </td>
+                      <td>
+                        <input type="submit" class="btn btn-primary" value="Simpan">
+                           
+                      </td>
+                      </tr>
+                      <?php $no++ ?>
+                      @endforeach
+                      
+                    </tbody>
 
                     </table>
                   </form>

@@ -48,9 +48,17 @@
             </ul>
             <br>
             <button type="submit" class="btn btn-primary" >Refresh</button>
-            {{-- <a href="#" class="btn btn-warning ml-4">Cetak</a>
-            <a href="/penjadwalan" class="btn btn-success ml-4">Tambah Jadwal</a> --}}
+         
           </div>
+          @if (session('status'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+               <button type="button" class="close close-light" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+      
 
           <form action="/krsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}
