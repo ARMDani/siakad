@@ -5,7 +5,6 @@
     <img src="{{ asset('dist/img/02.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light"> <b>SIASTEK 'AISYIYAH</b> </span>
   </a>
-
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
@@ -18,7 +17,6 @@
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
-
     <!-- SidebarSearch Form -->
     <div class="form-inline">
       <div class="input-group" data-widget="sidebar-search">
@@ -97,21 +95,20 @@
             <li class="nav-item">
               <a href="/student" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p> Data Mahasiswa <p>
+                <p>Data Mahasiswa<p>
               </a>
+            </li>
           </ul>
-        </li>
         <li class="nav-item">
           <a href="/tahun_akademik" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
+            <i class="nav-icon fas fa-th"></i>
             <p>
               Tahun Akademik
-              
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/nilai" class="nav-link">
+          <a href="/nilai_grade" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Grade
@@ -119,19 +116,45 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
             <p>
-              User
+              Users
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">4</span>
             </p>
           </a>
-        </li>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Administrator</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Prodi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mahasiswa</p>
+              </a>
+            </li>
+          </ul>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/pengaturan" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Pengaturan
-            
             </p>
           </a>
         </li>
@@ -153,7 +176,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Dosen
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -162,7 +184,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mahasiswa
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -171,7 +192,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mata Kuliah
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -210,7 +230,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="nilai" class="nav-link">
+              <a href="/nilai" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Input Nilai</p>
               </a>
@@ -242,7 +262,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mahasiswa Perwalian
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -251,7 +270,6 @@
             <i class="nav-icon fas fa-th"></i>
             <p>
               Jadwal Mengajar
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -276,7 +294,6 @@
       <i class="nav-icon fas fa-th"></i>
       <p>
         Kartu Rencana Studi
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>
@@ -285,16 +302,14 @@
       <i class="nav-icon fas fa-th"></i>
       <p>
         Kartu Hasil Studi
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>
   <li class="nav-item">
-    <a href="pages/widgets.html" class="nav-link">
+    <a href="#" class="nav-link">
       <i class="nav-icon fas fa-th"></i>
       <p>
         Transkip Nilai
-        <span class="right badge badge-danger">New</span>
       </p>
     </a>
   </li>

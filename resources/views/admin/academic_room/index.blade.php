@@ -1,103 +1,150 @@
 @extends('template.home')
-
 @section('content')
-<style type="text/css">
-  .pagination li{
-    float: left;
-    list-style-type: none;
-    margin:5px;
-  }
-</style>
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item active">Data Mahasiswa</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <h3>Data Ruangan</h3>
     </div>
-    <!-- /.content-header -->
-    <div class="container">
-        <div class="card-body">
-                  <div class="card-body">
-                      <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                                <div class="dt-buttons btn-group flex-wrap mt-5">
-                                  <h3>Data Mahasiswa</h3>
-                                  <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <a href="/student/create"><button href="" type="button" class="btn btn-success">Tambah Data</button></a>
-                                    <button type="button" class="btn btn-outline-warning">Export</button>
-                                    <button type="button" class="btn btn-outline-warning btn-flat">Inport</button>
-                                  </div>
+  </div>
+  {{-- BEGIN CONTENT --}}
+  <div class="content">
+    {{-- BEGIN CONTAINER --}}
+    <div class="container-fluid">
+   
+      {{-- BEGIN ROW 2 --}}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="form">
+                  <div class="row">
+                    <div class="col">
+                      {{-- Begin Import data --}}
+                      {{-- notifikasi form validasi --}}
+                      @if ($errors->has('file'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('file') }}</strong>
+                      </span>
+                      @endif
+                      {{-- notifikasi sukses --}}
+                      @if ($sukses = Session::get('sukses'))
+                      <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong>{{ $sukses }}</strong>
+                      </div>
+                      @endif
+                      <!-- Import Excel -->
+                      <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <form method="post" action="/ruangan/import_excel" enctype="multipart/form-data">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                              </div>
+                              <div class="modal-body">
+                                {{ csrf_field() }}
+                                <label>Pilih file excel</label>
+                                <div class="form-group">
+                                  <input type="file" name="file" required="required">
                                 </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Import</button>
+                              </div>
                             </div>
+                          </form>
                         </div>
                       </div>
+                      {{-- End Import data --}}
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <form action="/student/cari" method="GET">
-                      <input type="text" class="form-control rounded-0">
+                  {{-- Begin Sesion --}}
+                  @if ($tambah = Session::get('tambah'))
+                      <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong>{{ $tambah }}</strong>
+                      </div>
+                  @endif
+                  @if ($edit = Session::get('edit'))
+                      <div class="alert alert-primary alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong>{{ $edit }}</strong>
+                      </div>
+                  @endif
+                  @if ($hapus = Session::get('hapus'))
+                      <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong>{{ $hapus }}</strong>
+                      </div>
+                  @endif
+                  {{-- end Sesion --}}
+                <form action="/ruangan/create" method="get">
+                  {{ csrf_field() }}
+
+                  <div class="row">
+                    <div class="col">
+                      <input class="btn btn-primary mb-3" type="submit" value="Tambah Data">
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel">Import Data</button>
+                      <a href="/ruangan/export_excel" class="btn btn-success mr-3 float-right" target="_blank">Export Data</a>
+                    </div>
+                  </div>
+                </form>
+                  <div class="input-group mb-3 col-12" >
+                    <form action="/ruangan/cari" method="GET">
                       <span class="input-group-append">
-                        <input type="text" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
+                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="{{ old('cari') }}">
                         <input type="submit" value="CARI">
                       </span>
                     </form>
                   </div>
-                  <div class="container-fuild">
-                    <table class="table table-bordered table-hover table-wrapper">
-                        <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>NIM</th>
-                          <th>Jenis Kelamin</th>
-                          <th>Agama</th>
-                          <th>Program Studi</th>
-                          <th>Asal Daerah</th>
-                          <th>Kelas</th>
-                          <th>Angkatan</th>
-                          <th>Photo</th>
-                          <th>Opsi</th>
-                        </tr>
-                        <?php $no = $students->currentPage() * $students->perPage() -9 ; ?>
-                        @foreach ($students as $student)
-                        <tr>
-                            <td>{{ $no }}</td>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->nim }}</td>
-                            <td>{{ $student->gender }}</td>
-                            <td>{{ $student->religion }}</td>
-                            <td>{{ $student->study_program->name }}</td>
-                            <td>{{ $student->districts->name }}</td>
-                            <td>{{ $student->class->name }}</td>
-                            <td>{{ $student->generations->name }}</td>
-                            <td>{{ $student->photo }}</td>
-                            <td >
-                                <a href="/student/edit/{{ $student->id }}" class="btn btn-secondary"> Edit </a>
-                                <a href="/student/hapus/{{ $student->id }}"class="btn btn-danger"> Hapus </a>
-                            </td>
-                        </tr>
-                        <?php $no++ ?>
-                        @endforeach
-                    </table>
-                    <br/>
-                    Halaman : {{ $students->currentPage() }} <br/>
-                    Jumlah Data : {{ $students->total() }} <br/>
-                    Data Per Halaman : {{ $students->perPage() }} <br/>
-                    {{ $students->links() }}
-                  </div>
+                <table class="table table-bordered table-hover table-wrapper">
+                  <tr>
+                    <th>No</th>
+                    <th>Code</th>
+                    <th>Ruangan</th>
+                    <th>Opsi</th>
+                  </tr>
+                  <?php $no = $room->currentPage() * $room->perPage() -9 ; ?>
+                  @foreach ($room as $rooms)
+                  <tr>
+                      <td>{{ $no }}</td>
+                      <td>{{ $rooms->code_room }}</td>
+                      <td>{{ $rooms->name }}</td>
+                      <td>
+                          <a href="/ruangan/edit/{{ $rooms->id }}" class="btn btn-secondary"> Edit </a>
+                          <a href="/ruangan/hapus/{{ $rooms->id }}"class="btn btn-danger"> Hapus </a>
+                      </td>
+                  </tr>
+                  <?php $no++ ?>
+                  @endforeach
+              </table>
+              <br/>
+                Halaman : {{ $room->currentPage() }} <br/>
+                Jumlah Data : {{ $room->total() }} <br/>
+                Data Per Halaman : {{ $room->perPage() }} <br/>
+                {{ $room->links() }}
+           
+              </div>
+            </div>
+          </div>
+         
         </div>
+      </div>
+
+      {{-- END ROW 2 --}}
+
     </div>
-</div>      
+    {{-- END CONTAINER --}}
+
+  </div>
+  {{-- END CONTENT --}}
+ 
+</div>
+
 @endsection
 
 

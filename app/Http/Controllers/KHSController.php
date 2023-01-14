@@ -58,38 +58,9 @@ class KHSController extends Controller
             'khsmahasiswa' => $khsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
             'data' => $data
-            
             ]);
     }
-    public function createmahasiswa(Request $request)
     
-        {   
-                        
-            $tahun_akademik = $request->segment(3);
-            $academic_year = Academic_Year::get();
-            $mahasiswa = LectureScheduling::where('academic_year_id', $tahun_akademik)->get();
-            
-          
-                
-            return view('mahasiswa.krs.create')->with([
-                'academic_year' => $academic_year, 
-                'mahasiswa' => $mahasiswa,
-                'tahun_akademik' => $tahun_akademik
-            ]);
-           
-        $mahasiswa = Study_Value::where('study_value.student_id', $tahun_akademik)
-            ->get();
-
-        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
-        // $params = ['tahun_akademik' => $tahun_akademik];
-
-        return view('mahasiswa.krs.index')->with([
-            'academic_year' => $academic_year,
-            'mahasiswa' => $mahasiswa,
-            'tahun_akademik' => $tahun_akademik
-
-        ]);
-    }
     public function storemahasiswa(Request $request)
     {
         $username = Auth::user()->username;
@@ -127,11 +98,6 @@ class KHSController extends Controller
     public function update(Request $request)
     {
     }
-    public function destroymahasiswa($id)
-    {
-        Study_Value::where('id', $id)->delete();
-        return redirect('/krsmahasiswa');
-}
     public function search(Request $request)
     {
     }

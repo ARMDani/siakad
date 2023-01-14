@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Study_Program;
 use App\Models\Study_Faculty;
+use Session;
+use App\Exports\StudyProgramExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Imports\StudyProgramImport;
 
 class StudiprogramController extends Controller
 {
@@ -30,6 +35,7 @@ class StudiprogramController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('tambah','Berhasil menambah data program studi');
         return redirect('/prodi');
     }
 
@@ -58,13 +64,14 @@ class StudiprogramController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('edit','Berhasil mengedit data program studi');
         return redirect('/prodi');
     }
 
     public function destroy($id)
     {
         Study_Program::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data program studi');
         return redirect('/prodi');
     }
     public function search(Request $request)
@@ -77,6 +84,39 @@ class StudiprogramController extends Controller
 
         // mengirim data pegawai ke view index
         return view('admin.studi_program.index', ['prodi' => $prodi]);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new StudyProgramExport(), 'Data Progran Studi.xlsx');
+    }
+    public function import_excel(Request $request)
+    {
+        // validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_faculty',$nama_file);
+ 
+		// import data
+        try {
+            Excel::import(new StudyProgramImport, public_path('/file_faculty/'.$nama_file));
+            Session()::flash('sukses','Data Siswa Berhasil Diimport!');
+        } catch (\Throwable $th) {
+            $request->session()->flash('error', 'Data fakultas gagal diimport');
+        }
+ 
+		// notifikasi dengan session
+ 
+		// alihkan halaman kembali
+		return redirect('/fakultas');
     }
     // ________________________________fungsi jadwal____________________________________________________________________________
     

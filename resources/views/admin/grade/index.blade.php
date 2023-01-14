@@ -21,7 +21,27 @@
           <div class="card">
             <div class="card-body">
               <div class="form">
-                <form action="/nilai/create" method="get">
+                {{-- Begin Sesion --}}
+                @if ($tambah = Session::get('tambah'))
+                <div class="alert alert-success alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $tambah }}</strong>
+                </div>
+                @endif
+                @if ($edit = Session::get('edit'))
+                <div class="alert alert-primary alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $edit }}</strong>
+                </div>
+                @endif
+                @if ($hapus = Session::get('hapus'))
+                <div class="alert alert-danger alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $hapus }}</strong>
+                </div>
+                @endif
+                {{-- end Sesion --}}
+                <form action="/nilai_grade/create" method="get">
                   {{ csrf_field() }}
           
                   <div class="row">
@@ -50,8 +70,8 @@
                         <td>{{ $nilai->poin}}</td>
                         <td>{{ $nilai->keterangan}}</td>
                         <td>
-                          <a href="/nilai/edit{{ $nilai->id }}" type="button" class="btn btn-warning">Edit</a>
-                          <a href="/nilai/hapus/{{ $nilai->id }}" type="button" class="btn btn-danger">Hapus</a>
+                          <a href="/nilai_grade/edit{{ $nilai->id }}" type="button" class="btn btn-warning">Edit</a>
+                          <a href="/nilai_grade/hapus/{{ $nilai->id }}" type="button" class="btn btn-danger">Hapus</a>
                         </td>
                       </tr>
                       <?php $no++ ?>

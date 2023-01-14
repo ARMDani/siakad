@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\FacultyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +34,13 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::middleware(['auth', 'cekLogin:user'])->group(function () {
+// Route::middleware(['auth', 'cekLogin:user'])->group(function () {
 
-    Route::get('/home', [LoginController::class, 'index'])->name('home');
-});
+//     Route::get('/home', [LoginController::class, 'index'])->name('home');
+// });
 
 
-Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
+// Route::get('/home', [App\Http\Controllers\LoginController::class, 'index']);
 
 
 //==================================================================================================================
@@ -52,9 +53,8 @@ Route::get('/fakultas/edit/{id}', [App\Http\Controllers\FacultyController::class
 Route::post('/fakultas/update', [App\Http\Controllers\FacultyController::class, 'update']);
 Route::get('/fakultas/hapus/{id}', [App\Http\Controllers\FacultyController::class, 'destroy']);
 Route::get('/fakultas/cari', [App\Http\Controllers\FacultyController::class, 'search']);
-// Route::get('/faculty/cari', [App\Http\Controllers\FacultyController::class, 'cari']);
-// Route::post('/siswa/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
-// Route::get('/faculty/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
+Route::get('/fakultas/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
+Route::post('/fakultas/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
 
 Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->middleware('auth');
 Route::get('/student/create', [App\Http\Controllers\StudentController::class, 'create']);
@@ -63,6 +63,8 @@ Route::get('/student/edit/{id}', [App\Http\Controllers\StudentController::class,
 Route::post('/student/update', [App\Http\Controllers\StudentController::class, 'update']);
 Route::get('/student/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
 Route::get('/student/cari', [App\Http\Controllers\StudentController::class, 'search']);
+Route::get('/student/export_excel', [App\Http\Controllers\StudentController::class, 'export_excel']);
+Route::post('/student/import_excel', [App\Http\Controllers\StudentController::class, 'import_excel']);
 
 Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
@@ -71,6 +73,8 @@ Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::clas
 Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
+Route::get('/leacture/export_excel', [App\Http\Controllers\LeactureController::class, 'export_excel']);
+Route::post('/leacture/import_excel', [App\Http\Controllers\LeactureController::class, 'import_excel']);
 
 Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index'])->middleware('auth');
 Route::get('/prodi/create', [App\Http\Controllers\StudiprogramController::class, 'create']);
@@ -79,6 +83,8 @@ Route::get('/prodi/edit/{id}', [App\Http\Controllers\StudiprogramController::cla
 Route::post('/prodi/update', [App\Http\Controllers\StudiprogramController::class, 'update']);
 Route::get('/prodi/hapus/{id}', [App\Http\Controllers\StudiprogramController::class, 'destroy']);
 Route::get('/prodi/cari', [App\Http\Controllers\StudiprogramController::class, 'search']);
+Route::get('/prodi/export_excel', [App\Http\Controllers\StudiprogramController::class, 'export_excel']);
+Route::post('/prodi/import_excel', [App\Http\Controllers\StudiprogramController::class, 'import_excel']);
 
 Route::get('/kelas', [App\Http\Controllers\ClassController::class, 'index']);
 Route::get('/kelas/create', [App\Http\Controllers\ClassController::class, 'create']);
@@ -87,6 +93,8 @@ Route::get('/kelas/edit/{id}', [App\Http\Controllers\ClassController::class, 'ed
 Route::post('/kelas/update', [App\Http\Controllers\ClassController::class, 'update']);
 Route::get('/kelas/hapus/{id}', [App\Http\Controllers\ClassController::class, 'destroy']);
 Route::get('/kelas/cari', [App\Http\Controllers\ClassController::class, 'search']);
+Route::get('/kelas/export_excel', [App\Http\Controllers\ClassController::class, 'export_excel']);
+Route::post('/kelas/import_excel', [App\Http\Controllers\ClassController::class, 'import_excel']);
 
 Route::get('/matakuliah', [App\Http\Controllers\SubjekcourseController::class, 'index']);
 Route::get('/matakuliah/create', [App\Http\Controllers\SubjekcourseController::class, 'create']);
@@ -95,6 +103,8 @@ Route::get('/matakuliah/edit/{id}', [App\Http\Controllers\SubjekcourseController
 Route::post('/matakuliah/update', [App\Http\Controllers\SubjekcourseController::class, 'update']);
 Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SubjekcourseController::class, 'destroy']);
 Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::class, 'search']);
+Route::get('/matakuliah/export_excel', [App\Http\Controllers\SubjekcourseController::class, 'export_excel']);
+Route::post('/matakuliah/import_excel', [App\Http\Controllers\SubjekcourseController::class, 'import_excel']);
 
 Route::get('/ruangan', [App\Http\Controllers\RoomController::class, 'index']);
 Route::get('/ruangan/create', [App\Http\Controllers\RoomController::class, 'create']);
@@ -103,6 +113,8 @@ Route::get('/ruangan/edit/{id}', [App\Http\Controllers\RoomController::class, 'e
 Route::post('/ruangan/update', [App\Http\Controllers\RoomController::class, 'update']);
 Route::get('/ruangan/hapus/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
 Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search']);
+Route::get('/ruangan/export_excel', [App\Http\Controllers\RoomController::class, 'export_excel']);
+Route::post('/ruangan/import_excel', [App\Http\Controllers\RoomController::class, 'import_excel']);
 
 Route::get('/tahun_akademik', [App\Http\Controllers\AcademicYearController::class, 'index']);
 Route::get('/tahun_akademik/create', [App\Http\Controllers\AcademicYearController::class, 'create']);
@@ -112,20 +124,25 @@ Route::post('/tahun_akademik/update', [App\Http\Controllers\AcademicYearControll
 Route::get('/tahun_akademik/active/{id}/{status}', [App\Http\Controllers\AcademicYearController::class, 'active']);
 Route::get('/tahun_akademik/cari', [App\Http\Controllers\AcademicYearController::class, 'search']);
 
-Route::get('/nilai', [App\Http\Controllers\GradeController::class, 'index']);
-Route::get('/nilai/create', [App\Http\Controllers\GradeController::class, 'create']);
-Route::post('/nilai/store', [App\Http\Controllers\GradeController::class, 'store']);
-Route::get('/nilai/edit{id}', [App\Http\Controllers\GradeController::class, 'edit']);
-Route::post('/nilai/update', [App\Http\Controllers\GradeController::class, 'update']);
-Route::get('/nilai/hapus/{id}', [App\Http\Controllers\GradeController::class, 'destroy']);
-Route::get('/nilai/cari', [App\Http\Controllers\GradeController::class, 'search']);
+Route::get('/nilai_grade', [App\Http\Controllers\GradeController::class, 'index']);
+Route::get('/nilai_grade/create', [App\Http\Controllers\GradeController::class, 'create']);
+Route::post('/nilai_grade/store', [App\Http\Controllers\GradeController::class, 'store']);
+Route::get('/nilai_grade/edit{id}', [App\Http\Controllers\GradeController::class, 'edit']);
+Route::post('/nilai_grade/update', [App\Http\Controllers\GradeController::class, 'update']);
+Route::get('/nilai_grade/hapus/{id}', [App\Http\Controllers\GradeController::class, 'destroy']);
+Route::get('/nilai_grade/cari', [App\Http\Controllers\GradeController::class, 'search']);
 
 Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
+Route::get('/pengaturan/create', [App\Http\Controllers\SettingController::class, 'create']);
+Route::post('/pengaturan/store', [App\Http\Controllers\SettingController::class, 'store']);
+Route::get('/pengaturan/edit{id}', [App\Http\Controllers\SettingController::class, 'edit']);
+Route::post('/pengaturan/update', [App\Http\Controllers\SettingController::class, 'update']);
+Route::get('/pengaturan/hapus/{id}', [App\Http\Controllers\SettingController::class, 'destroy']);
+Route::get('/pengaturan/cari', [App\Http\Controllers\SettingController::class, 'search']);
 
 //==================================================================================================================
 // ---------------------------------------END FITUR ADMINISTRATOR-------------------------------------------------
 //==================================================================================================================
-
 
 
 //==================================================================================================================
@@ -151,6 +168,10 @@ Route::get('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
+Route::get('/krs/pdf/', [App\Http\Controllers\KRSController::class, 'createPDF']);
+// Route::get('/file-import',[App\Http\Controllers\KRSController::class,'importView'])->name('import-view');
+// Route::post('/import',[App\Http\Controllers\KRSController::class,'import'])->name('import');
+// Route::get('/export-users',[App\Http\Controllers\KRSController::class,'exportUsers'])->name('export-users');
 
 // --------------------------------------------KHS Prodi--------------------------------------------------------------------------
 Route::get('/khs', [App\Http\Controllers\KHSController::class, 'index']);
@@ -164,6 +185,11 @@ Route::get('/nilai/input_nilai/{matakuliah}', [App\Http\Controllers\NilaiControl
 Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::post('/nilai/store/{id}', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
+
+
+
+
+
 
 //--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
@@ -189,6 +215,10 @@ Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class
 Route::post('/khsmahasiswa/input_nilai', [App\Http\Controllers\KHSController::class, 'update']);
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
+
+Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
+Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, 'edit']);
+
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
 

@@ -20,7 +20,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form">
-                  <form action="/nilai/store" method="post">
+                  <form action="/nilai_grade/store" method="post">
                     {{ csrf_field() }}
       
                         <div class="form-group">
@@ -44,7 +44,7 @@
                               </select>
                         </div>
                           <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                          <a href="/nilai" class="btn btn-danger">Kembali</a>
+                          <a href="/nilai_grade" class="btn btn-danger">Kembali</a>
                   </form>
                 </div>
               </div>

@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">
-        <h3>Tambah Tahun Akademik</h3>
+        <h3>Edit Tahun Akademik</h3>
       </div>
     </div>
   

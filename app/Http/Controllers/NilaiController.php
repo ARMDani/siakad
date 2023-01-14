@@ -58,7 +58,6 @@ class NilaiController extends Controller
 
                 ->get();
          
-
         return view('prodi.input_nilai.input_nilai')->with([ 
             'grade' =>$grade,
             'lecture_scheduling' => $lecture_scheduling,
@@ -69,7 +68,11 @@ class NilaiController extends Controller
     }
     public function update(Request $request, $id)
     {
-    //   
+        Study_Value::where('id', $request->id)->update([
+            'grade_id' => $request->grade_id,
+    
+        ]);
+        return redirect('/nilai/input_nilai/{matakuliah}');
     }
     
     

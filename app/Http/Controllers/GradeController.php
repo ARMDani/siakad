@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use Session;
 use Illuminate\Http\Request;
 
 
@@ -30,6 +31,7 @@ class GradeController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('tambah','Berhasil menambah data nilai');
         return redirect('/nilai');
     }
 
@@ -54,12 +56,14 @@ class GradeController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-        return redirect('/nilai');
+        Session::flash('edit','Berhasil mengedit data nilai');
+        return redirect('/nilai_grade');
     }
 
     public function destroy($id)
     {
         Grade::where('id', $id)->delete();
-        return redirect('/nilai');
+        Session::flash('hapus','Berhasil menghapus data nilai');
+        return redirect('/nilai_grade');
     }
 }

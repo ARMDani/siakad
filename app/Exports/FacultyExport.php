@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Faculty;
+use App\Models\Study_Faculty;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +15,7 @@ class FacultyExport implements FromCollection
     */
     public function collection()
     {
-        return Faculty::all();
+        return Study_Faculty::all();    
     }
 }
 

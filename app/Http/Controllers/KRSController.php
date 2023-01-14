@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Generations;
 use App\Models\Study_Value;
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\Academic_Year;
 use App\Models\Grade;
 use App\Models\LectureScheduling;
 use App\Models\Student;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\Auth;
 
 class KRSController extends Controller
@@ -69,7 +70,6 @@ class KRSController extends Controller
                 'mahasiswa' => $mahasiswa,
                 'tahun_akademik' => $tahun_akademik
             ]);
-           
         $mahasiswa = Study_Value::where('study_value.student_id', $tahun_akademik)
             ->get();
 
@@ -80,9 +80,20 @@ class KRSController extends Controller
             'academic_year' => $academic_year,
             'mahasiswa' => $mahasiswa,
             'tahun_akademik' => $tahun_akademik
-
         ]);
     }
+    // Generate PDF
+    public function createPDF() {
+        // retreive all records from db
+        $data = Study_Value::all();
+        // share data to view
+        view()->share('students',$data);
+        $pdf = PDF::loadView('prodi.krs.pdf', compact('data'));
+
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+      }
+
     public function storemahasiswa(Request $request)
     {
         $username = Auth::user()->username;
@@ -98,7 +109,6 @@ class KRSController extends Controller
                Study_Value::insert([
                     'student_id' => $mahasiswa->id,
                     'lecture_schedulings_id' =>$id_lecture_schedulings,
-               
                     'created_by' => 1,
                     'updated_by' => 1
                 ]);
@@ -109,6 +119,7 @@ class KRSController extends Controller
        
         $cari = $request->cari;
     }
+ 
     public function show()
     {
         //

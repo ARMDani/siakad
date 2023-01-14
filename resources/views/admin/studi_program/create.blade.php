@@ -1,28 +1,36 @@
 @extends('template.home')
 @section('content')
-<html>
-    <head>
-        <title>Tambah data Program Studi</title>
-        <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card-mt-5">
-                        <div class="card-boy">
-                            <h3>Tambah Data Program Studi</h3>
-                            <form action="/prodi/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
-                            {{ csrf_field() }} 
-                            <div class="form-group">
-                                <label>Kode Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="number" name="code_prodi" placeholder="Masukkan Program Studi ..." required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
-                                <input class="form-control" type="text" name="name" placeholder="Masukan Program Studi ..." type="text" name="name" required="required">
-                            </div>
-							<div class="form-group">
+
+<div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h3>Tambah Data Program Studi</h3>
+      </div>
+    </div>
+  
+    {{-- BEGIN CONTENT --}}
+    <div class="content">
+  
+      {{-- BEGIN CONTAINER --}}
+      <div class="container-fluid">
+     
+        {{-- BEGIN ROW 2 --}}
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="form">
+                    <form action="/prodi/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Code<span class="required" style="color: #dd4b39;">*</span></label>
+                            <input class="form-control" type="text" name="code_prodi"placeholder="Masukkan Code ..." required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
+                            <input class="form-control" type="text" name="name" placeholder="Masukan Nama ..." type="text" name="name" required="required">
+                        </div>
+                        <div class="form-group">
                                 <label>Fakultas<span class="required" style="color: #dd4b39;">*</span></label>
                                 <select class="form-control" name="study_faculty" required="required">
                                     <option value="">- Pilih Fakultas -</option>
@@ -32,17 +40,25 @@
                                     </option>
                                     @endforeach 
                                 </select>
-                            </div>
-                                <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                                <a href="/student" class="btn btn-danger">Kembali</a>
-                            </form>
-                            </form>
-                        </div>
-                    </div>
+                            	</div>
+                            <input class="btn btn-secondary" type="submit" value="Simpan Data">
+                            <a href="/prodi" class="btn btn-danger">Kembali</a>
+                    </form>
                 </div>
+              </div>
             </div>
+           
+          </div>
         </div>
-    </body>
-</html>
+  
+        {{-- END ROW 2 --}}
+  
+      </div>
+      {{-- END CONTAINER --}}
+  
+    </div>
+    {{-- END CONTENT --}}
+   
+  </div>
 
 @endsection

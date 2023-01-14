@@ -21,12 +21,12 @@
               <div class="card-body">
                 <div class="form">
                     @foreach ($grades as $grade)
-                    <form action="/nilai/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="/nilai_grade/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $grade->id }}">
                         <div class="form-group">
                             <label>Grade<span class="required" style="color: #dd4b39;">*</span></label>
-                            <input class="form-control" type="number" required="required" name="name" value="{{ $grade->name }}">
+                            <input class="form-control" type="text" required="required" name="name" value="{{ $grade->name }}">
                         </div>
                         <div class="form-group">
                           <label>Bobot<span class="required" style="color: #dd4b39;">*</span></label>
@@ -45,7 +45,7 @@
                           </select>
                       </div>
                         <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                        <a href="/nilai" class="btn btn-danger">Kembali</a>
+                        <a href="/nilai_grade" class="btn btn-danger">Kembali</a>
                       </form>
                       @endforeach
                     </div>

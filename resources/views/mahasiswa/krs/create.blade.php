@@ -43,9 +43,10 @@
                             <td>{{ $data->subject_course->name }}</td>
                             <td>{{ $data->subject_course->sk }}</td>
                             <td>{{ $data->academic_room->name }}</td>
+                            <td>{{ $data->subject_course->semester}}</td>
                             <td>{{ $data->start_time }}</td>
                             <td>{{ $data->hour_over }}</td>
-                            <td>{{ $data->academic_room->name}}</td>
+                           
                             <td>{{ $data->lecturer->name }}</td>                            
                         </tr>
                         </tbody>
