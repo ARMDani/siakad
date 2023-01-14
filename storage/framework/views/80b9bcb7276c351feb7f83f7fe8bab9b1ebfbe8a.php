@@ -21,10 +21,10 @@
               <div class="card-body">
                 <div class="form">
                     <?php $__currentLoopData = $course; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <form action="/fakultas/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="/matakuliah/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     <?php echo e(csrf_field()); ?>
 
-                    <input type="hidden" name="id" value="<?php echo e($course->id); ?>"> <br/>
+                    <input type="hidden" name="id" value="<?php echo e($course->id); ?>">
                     <div class="form-group">
                         <label>Kode Mata Kuliah<span class="required" style="color: #dd4b39;">*</span></label>
                         <input class="form-control" type="number" required="required" name="course_code" value="<?php echo e($course->course_code); ?>">
