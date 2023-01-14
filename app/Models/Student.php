@@ -35,5 +35,9 @@ class Student extends Model
     {
         return $this->hasMany('App\Models\Study_Value');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     
+}
 }

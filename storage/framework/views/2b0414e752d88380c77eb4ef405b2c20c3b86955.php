@@ -108,7 +108,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/nilai" class="nav-link">
+          <a href="/nilai_grade" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Grade
@@ -230,7 +230,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/nilai" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Input Nilai</p>
               </a>

@@ -21,6 +21,26 @@
           <div class="card">
             <div class="card-body">
               <div class="form">
+                {{-- Begin Sesion --}}
+                @if ($tambah = Session::get('tambah'))
+                <div class="alert alert-success alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $tambah }}</strong>
+                </div>
+                @endif
+                @if ($edit = Session::get('edit'))
+                <div class="alert alert-primary alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $edit }}</strong>
+                </div>
+                @endif
+                @if ($hapus = Session::get('hapus'))
+                <div class="alert alert-danger alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong>{{ $hapus }}</strong>
+                </div>
+                @endif
+              {{-- end Sesion --}}
                 <form action="/tahun_akademik/create" method="get">
                   {{ csrf_field() }}
           

@@ -73,10 +73,9 @@
               <th class="tg-k7qf text-center" colspan="18">Nilai</th>
             </tr>
             <tr>
-              <td class="tg-k7qf  text-center">Nilai Akhir</td>
               <td class="tg-k7qf  text-center">Huruf</td>
               <td class="tg-k7qf  text-center">Bobot</td>
-              <td class="tg-k7qf  text-center">SKS x Bobot</td>
+              <td class="tg-k7qf  text-center">Nilai</td>
             </tr>
           </thead>
             <?php $no = 1  ?>
@@ -89,7 +88,6 @@
               <td class="text-center">{{ $khsmahasiswas->lecture_schedulings->academic_year->semester}}</td>
               <td class="text-center">{{ $khsmahasiswas->lecture_schedulings->start_time}}</td>
               <td class="text-center">{{ $khsmahasiswas->lecture_schedulings->hour_over}}</td>
-              <td class="text-center">{{ $khsmahasiswas->lecture_schedulings->lecturer->name }}</td>
           </tr>
             <?php $no++ ?>
             @endforeach

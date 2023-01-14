@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Models\Lecturer;
 
 class LeactureController extends Controller
@@ -18,7 +19,6 @@ class LeactureController extends Controller
     {
         return view('admin.leacture.create');
     }
-
 
     public function store(Request $request)
     {
@@ -39,7 +39,7 @@ class LeactureController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('tambah','Berhasil menambah data Dosen');
         return redirect('/leacture');
     }
 
@@ -77,13 +77,14 @@ class LeactureController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('edit','Berhasil mengedit data Dosen');
         return redirect('/leacture');
     }
 
     public function destroy($id)
     {
         Lecturer::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data Dosen');
         return redirect('/leacture');
     }
     public function search(Request $request)

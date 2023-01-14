@@ -61,6 +61,26 @@
                       
                     </div>
                   </div>
+                  
+                  <?php if($tambah = Session::get('tambah')): ?>
+                      <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong><?php echo e($tambah); ?></strong>
+                      </div>
+                  <?php endif; ?>
+                  <?php if($edit = Session::get('edit')): ?>
+                      <div class="alert alert-primary alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong><?php echo e($edit); ?></strong>
+                      </div>
+                  <?php endif; ?>
+                  <?php if($hapus = Session::get('hapus')): ?>
+                      <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong><?php echo e($hapus); ?></strong>
+                      </div>
+                  <?php endif; ?>
+                  
                 <form action="/fakultas/create" method="get">
                   <?php echo e(csrf_field()); ?>
 

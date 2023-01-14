@@ -6,6 +6,7 @@ use App\Models\Academic_Year;
 use App\Models\Bidding_Time;
 use App\Models\Study_Faculty;
 use App\Models\Value_Input_Time;
+use Session;
 use Illuminate\Http\Request;
 
 class AcademicYearController extends Controller
@@ -37,6 +38,7 @@ class AcademicYearController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('tambah','Berhasil menambah data tahun akademik');
         return redirect('/tahun_akademik');
     }
 
@@ -67,12 +69,14 @@ class AcademicYearController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('edit','Berhasil mengedit data tahun akademik');
         return redirect('/tahun_akademik');
     }
 
     public function destroy($id)
     {
         Academic_Year::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data tahun akademik');
         return redirect('/prodi');
     }
     public function search(Request $request)

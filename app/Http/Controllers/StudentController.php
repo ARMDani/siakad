@@ -6,6 +6,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
+use Session;
 use App\Models\Study_Program;
 use App\Models\Districts;
 use App\Models\ClassModel;
@@ -21,7 +22,7 @@ class StudentController extends Controller
         $students = Student::paginate(10)->fragment('students');
         // dd($student);
         // //Mengirim data Ke View 
-        return view('admin.student.index', ['students' => $students]);
+        return view('admin.student.index', ['student' => $students]);
     }
     public function create()
     {
@@ -60,7 +61,7 @@ class StudentController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('tambah','Berhasil menambah data mahasiswa');
         return redirect('/student');
     }
     public function show($id)
@@ -105,12 +106,13 @@ class StudentController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('edit','Berhasil mengedit data mahasiswa');
         return redirect('/student');
     }
     public function destroy($id)
     {
         Student::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data mahasiswa');
         return redirect('/student');
     }
     public function search(Request $request)
@@ -122,6 +124,6 @@ class StudentController extends Controller
         // dd($students);
 
         // mengirim data pegawai ke view index
-        return view('admin.student.index', ['students' => $students]);
+        return view('admin.student.index', ['student' => $students]);
     }
 }

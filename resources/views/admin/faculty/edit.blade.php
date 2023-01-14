@@ -26,7 +26,7 @@
                         <input type="hidden" name="id" value="{{ $faculti->id }}">
                         <div class="form-group">
                         <label>Code<span class="required" style="color: #dd4b39;">*</span></label>
-                        <input class="form-control" type="number" required="required" name="code_faculty" value="{{ $faculti->code_faculty }}">
+                        <input class="form-control" type="text" required="required" name="code_faculty" value="{{ $faculti->code_faculty }}">
                         </div>
                         <div class="form-group">
                         <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>

@@ -13,13 +13,16 @@
               <div class="form-group row">
                 <div class="card col-5" style="width: 18rem;">
                  
-                  <ul class="list-group list-group-flush">
-                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li class="list-group-item"><b>NIM : </b> <?php echo e($datas->student->nim); ?></li>
-                    <li class="list-group-item"><b>Nama : </b> <?php echo e($datas->student->name); ?></li>
-                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> <?php echo e($datas->student->study_program->name); ?></li>
-                    <?php break; ?>
+                  <?php $__currentLoopData = $mahasiswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <ul class="list-group list-group-flush" value="<?php echo e($data->id); ?>">
+                  
+                 
+                    <li class="list-group-item"><b>NIM : </b> <?php echo e($data->nim); ?> </li>
+                    <li class="list-group-item"><b>Nama : </b> <?php echo e($data->name); ?> </li>
+                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> <?php echo e($data->study_program->name); ?></li>
+                    
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    
                   </ul>
                  
                 </div>
@@ -47,8 +50,18 @@
             </ul>
             <br>
             <button type="submit" class="btn btn-primary" >Refresh</button>
-            
+         
           </div>
+          <?php if(session('status')): ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php echo e(session('status')); ?>
+
+               <button type="button" class="close close-light" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <?php endif; ?>
+      
 
           <form action="/krsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">
             <?php echo e(csrf_field()); ?>
@@ -76,6 +89,7 @@
       </div>
     </form>
     <br>
+ 
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
                 <th>No</th>
@@ -101,7 +115,7 @@
               <td><?php echo e($krsmahasiswas->lecture_schedulings->lecturer->name); ?></td>
             
               <td >
-                <a href="/krsmahasiswa/hapus/<?php echo e($krsmahasiswas->id); ?> "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
+                <a href="/krsmahasiswa/destroymahasiswa/<?php echo e($krsmahasiswas->id); ?> "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
             </td>
           </tr>
             <?php $no++ ?>

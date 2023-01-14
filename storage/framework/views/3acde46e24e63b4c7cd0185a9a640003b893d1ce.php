@@ -1,5 +1,5 @@
-@extends('template.home')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <style type="text/css">
   .pagination li{
     float: left;
@@ -32,7 +32,7 @@
                   <div class="input-group mb-12">
                     <form action="/ruangan/cari" method="GET">
                       <span class="input-group-append">
-                        <input type="text" name="cari" placeholder="Cari Data Fakultas .." value="{{ old('cari') }}">
+                        <input type="text" name="cari" placeholder="Cari Data Fakultas .." value="<?php echo e(old('cari')); ?>">
                         <input type="submit" value="CARI">
                       </span>
                     </form>
@@ -57,24 +57,25 @@
                       <th>Opsi</th>
                     </tr>
                     <?php $no = $rooms->currentPage() * $rooms->perPage() -9 ; ?>
-                    @foreach ($rooms as $room)
+                    <?php $__currentLoopData = $rooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $room): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $no }}</td>
-                        <td>{{ $room->name }}</td>
-                        <td>{{ $room->code_room }}</td>
+                        <td><?php echo e($no); ?></td>
+                        <td><?php echo e($room->name); ?></td>
+                        <td><?php echo e($room->code_room); ?></td>
                         <td>
-                            <a href="/ruangan/edit/{{ $room->id }}" class="btn btn-secondary"> Edit </a>
-                            <a href="/ruangan/hapus/{{ $room->id }}"class="btn btn-danger"> Hapus </a>
+                            <a href="/ruangan/edit/<?php echo e($room->id); ?>" class="btn btn-secondary"> Edit </a>
+                            <a href="/ruangan/hapus/<?php echo e($room->id); ?>"class="btn btn-danger"> Hapus </a>
                         </td>
                     </tr>
                     <?php $no++ ?>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </table>
                 <br/>
-                Halaman : {{ $rooms->currentPage() }} <br/>
-                Jumlah Data : {{ $rooms->total() }} <br/>
-                Data Per Halaman : {{ $rooms->perPage() }} <br/>
-                {{ $rooms->links() }}
+                Halaman : <?php echo e($rooms->currentPage()); ?> <br/>
+                Jumlah Data : <?php echo e($rooms->total()); ?> <br/>
+                Data Per Halaman : <?php echo e($rooms->perPage()); ?> <br/>
+                <?php echo e($rooms->links()); ?>
+
               </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -82,7 +83,7 @@
                   </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -93,3 +94,4 @@
 
 
   
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\kampus\resources\views/admin/room/index.blade.php ENDPATH**/ ?>

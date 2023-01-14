@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Study_Faculty;
 use Session;
 use App\Exports\FacultyExport;
-use App\Imports\FacultyImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Imports\StudyFacultyImport;
@@ -32,6 +29,7 @@ class FacultyController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('tambah','Berhasil menambah data fakultas');
         return redirect('/fakultas');
     }
     public function show()
@@ -52,11 +50,13 @@ class FacultyController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('edit','Berhasil mengedit data fakultas');
         return redirect('/fakultas');
     }
     public function destroy($id)
     {
         Study_Faculty::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data fakultas');
         return redirect('/fakultas');
     }
     public function search(Request $request)
@@ -67,7 +67,7 @@ class FacultyController extends Controller
     }
     public function export_excel()
     {
-        return Excel::download(new FacultyExport(), 'Fakultas.xlsx');
+        return Excel::download(new FacultyExport(), 'Data Fakultas.xlsx');
     }
     public function import_excel(Request $request)
     {

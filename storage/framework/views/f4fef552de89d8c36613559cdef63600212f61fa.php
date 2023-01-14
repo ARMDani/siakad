@@ -106,7 +106,7 @@
                     <input type="hidden" name="tahun_akademik" value="">
                     
                     <div class="row">
-                      <h5>Kartu Hasil Studi Mahasiswa 2019</h5>
+                      <h5>Kartu Hasil Studi Mahasiswa</h5>
                     </div>
                   
                     <table class="table table-bordered table-hover table-wrapper">

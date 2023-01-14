@@ -73,8 +73,7 @@
                   
               </div>
             </div>
-            {{-- end card --}}
-
+          
           </div>
           {{-- end col 1--}}
           

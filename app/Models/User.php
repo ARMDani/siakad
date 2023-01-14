@@ -15,8 +15,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 
+
 class User extends Authenticatable
 {
+    use HasApiTokens, HasFactory, Notifiable;
     // use HasApiTokens, HasFactory, Notifiable;
     // protected $table = 'tb_user';
     // protected $primaryKey = 'user_id';
@@ -30,10 +32,13 @@ class User extends Authenticatable
         'name',
         'username',
         'password',
-        'roles_id'
-
-
+        'roles_id',
+        'remember_token'
     ];
+    public function student()
+    {
+        return $this->hasMany('App\Models\Student');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

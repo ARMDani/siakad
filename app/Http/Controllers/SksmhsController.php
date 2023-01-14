@@ -15,11 +15,11 @@ class SksmhsController extends Controller
 
     public function index(Request $request)
     {
-        $generations = Generations::get();
-        $academikyear = Academic_Year::get();
+        $generations = Generations::get(); //AMBIL DATA DI TABEL GENERATION MELALUI MODEL
+        $academikyear = Academic_Year::get(); //AMBIL DATA DI TABEL GENERATION MELALUI MODEL
 
-        $mahasiswa = [];
-        $params = ['angkatan' => null, 'tahun_akademik' =>  null];
+        $mahasiswa = []; //NILAI AWAL DATA MAHASISWA YANG DI TAMPILKAN YAITU NULL
+        $params = ['angkatan' => null, 'tahun_akademik' =>  null]; // 
 
         if ($request->isMethod('post')) {
             $mahasiswa = DB::table('student')
@@ -29,13 +29,13 @@ class SksmhsController extends Controller
                         ->where('sksmhs.academic_year_id', $request->tahun_akademik_id);
                 })
                 ->where('student.generations_id', $request->angkatan)
+                ->orderBy('student.nim', 'ASC')
                 ->get();
 
             $angkatan = Generations::find($request->angkatan);
             $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
 
             $params = ['angkatan' => $angkatan, 'tahun_akademik' => $tahun_akademik];
-            // dd($mahasiswa);
         }
         return view('prodi.pengaturansks.index', [
             'mahasiswa' => $mahasiswa,
@@ -48,9 +48,8 @@ class SksmhsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+
         $data_sks = $request->sks;
-        // dd($data_sks);
         $tahun_akademik_id = $request->tahun_akademik;
 
         foreach ($data_sks as $student_id => $data_sksmhs) {

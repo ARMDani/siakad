@@ -21,7 +21,27 @@
           <div class="card">
             <div class="card-body">
               <div class="form">
-                <form action="/nilai/create" method="get">
+                
+                <?php if($tambah = Session::get('tambah')): ?>
+                <div class="alert alert-success alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong><?php echo e($tambah); ?></strong>
+                </div>
+                <?php endif; ?>
+                <?php if($edit = Session::get('edit')): ?>
+                <div class="alert alert-primary alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong><?php echo e($edit); ?></strong>
+                </div>
+                <?php endif; ?>
+                <?php if($hapus = Session::get('hapus')): ?>
+                <div class="alert alert-danger alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button> 
+                  <strong><?php echo e($hapus); ?></strong>
+                </div>
+                <?php endif; ?>
+                
+                <form action="/nilai_grade/create" method="get">
                   <?php echo e(csrf_field()); ?>
 
           
@@ -51,8 +71,8 @@
                         <td><?php echo e($nilai->poin); ?></td>
                         <td><?php echo e($nilai->keterangan); ?></td>
                         <td>
-                          <a href="/nilai/edit<?php echo e($nilai->id); ?>" type="button" class="btn btn-warning">Edit</a>
-                          <a href="/nilai/hapus/<?php echo e($nilai->id); ?>" type="button" class="btn btn-danger">Hapus</a>
+                          <a href="/nilai_grade/edit<?php echo e($nilai->id); ?>" type="button" class="btn btn-warning">Edit</a>
+                          <a href="/nilai_grade/hapus/<?php echo e($nilai->id); ?>" type="button" class="btn btn-danger">Hapus</a>
                         </td>
                       </tr>
                       <?php $no++ ?>

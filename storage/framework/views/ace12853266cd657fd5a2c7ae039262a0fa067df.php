@@ -31,6 +31,9 @@
                             <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
                             <input class="form-control" type="text" name="name" placeholder="Masukan Nama ..." type="text" name="name" required="required">
                         </div>
+
+             
+
                             <input class="btn btn-secondary" type="submit" value="Simpan Data">
                             <a href="/fakultas" class="btn btn-danger">Kembali</a>
                     </form>

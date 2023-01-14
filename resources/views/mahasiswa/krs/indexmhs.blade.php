@@ -13,13 +13,16 @@
               <div class="form-group row">
                 <div class="card col-5" style="width: 18rem;">
                  
-                  <ul class="list-group list-group-flush">
-                    @foreach ($data as $datas)
-                    <li class="list-group-item"><b>NIM : </b> {{ $datas->student->nim }}</li>
-                    <li class="list-group-item"><b>Nama : </b> {{ $datas->student->name }}</li>
-                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $datas->student->study_program->name }}</li>
-                    @break
+                  @foreach ($mahasiswa as $data)
+                  <ul class="list-group list-group-flush" value="{{ $data->id }}">
+                  
+                 
+                    <li class="list-group-item"><b>NIM : </b> {{ $data->nim}} </li>
+                    <li class="list-group-item"><b>Nama : </b> {{ $data->name }} </li>
+                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $data->study_program->name }}</li>
+                    
                     @endforeach
+                    
                   </ul>
                  
                 </div>
@@ -45,9 +48,17 @@
             </ul>
             <br>
             <button type="submit" class="btn btn-primary" >Refresh</button>
-            {{-- <a href="#" class="btn btn-warning ml-4">Cetak</a>
-            <a href="/penjadwalan" class="btn btn-success ml-4">Tambah Jadwal</a> --}}
+         
           </div>
+          @if (session('status'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+               <button type="button" class="close close-light" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+      
 
           <form action="/krsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}
@@ -74,6 +85,7 @@
       </div>
     </form>
     <br>
+ 
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
                 <th>No</th>
@@ -99,7 +111,7 @@
               <td>{{ $krsmahasiswas->lecture_schedulings->lecturer->name }}</td>
             
               <td >
-                <a href="/krsmahasiswa/hapus/{{ $krsmahasiswas->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
+                <a href="/krsmahasiswa/destroymahasiswa/{{ $krsmahasiswas->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
             </td>
           </tr>
             <?php $no++ ?>
