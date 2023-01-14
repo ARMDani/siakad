@@ -165,14 +165,6 @@ Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::post('/nilai/store/{id}', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
 
-
-
-
-
-
-
-
-
 //--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
 //==================================================================================================================
 // ---------------------------------------KRS Mahasiswa-------------------------------------------------------
