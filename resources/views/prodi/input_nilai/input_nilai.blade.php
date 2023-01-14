@@ -25,9 +25,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form">
-                  <form action="/nilai/store" method="post">
-                    {{ csrf_field() }}
-                      {{-- @if(count($mahasiswas)) --}}
+                 
                     <div class="row">
                      </div>
                     <div class="row">
@@ -36,56 +34,61 @@
                       </div>
                     </div>
                       {{-- @endif --}}
-                    <table class="table table-bordered table-hover table-wrapper">
+                      <table class="table table-bordered table-hover table-wrapper">
+                        <thead>
+                          <tr>
+                            <th class="tg-6h95" rowspan="4">No</th>
+                            <th class="tg-6h95" rowspan="4">Nim</th>
+                            <th class="tg-6h95" rowspan="4">Nama</th>
+                            <th class="tg-k7qf text-center" colspan="18">Nilai</th>
+                          </tr>
+                          <tr class="ng-light">
+                            <td class="tg-k7qf">Tugas</td>
+                            <td class="tg-k7qf">UTS</td>
+                            <td class="tg-k7qf">UAS</td>
+                            <td class="tg-k7qf">Grade</td>
+                          </tr>
+                        </thead>
+                        <tbody>
 
-                      <thead>
-                        <tr class="text-center">
-                          <th>No</th>
-                          <th>NIM</th>
-                          <th>Nama Mahasiswa</th>
-                          <th>Nilai Tugas</th>
-                          <th>UTS</th>
-                          <th>UAS</th>
-                          <th>Grade</th>
-                          <th>#Opsi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                          <form action="/nilai/store/{{ Request::segment(3) }}" method="post">
+                            {{ csrf_field() }}
+                          
+                    
+                        @forelse ($mahasiswas as $mhs => $item)
                         <?php $no = 1  ?>
-                        @foreach ($mahasiswas as $mhs)
-                        <tr>
-                          <td>{{ $no }}</td>
-                          <td>{{ $mhs->student->nim }}</td>
-                          <td>{{ $mhs->student->name }}</td>
-                        </td>
-                        <td>  
-                          <input class="form-control" type="number" value="{{ $mhs->assignment_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
-                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
-                        </td>
-                        <td>
-                          <input class="form-control"  type="number" value="{{ $mhs->uts_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
-                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
-                       
-                        </td>
-                        <td>
-                          <input class="form-control" type="number" value="{{ $mhs->uas_value }}" name="nilai[{{ $mhs->id }}][grade_id]" placeholder="Masukkan nilai ..." required="required">
-                          <input type="hidden" name="nilai[{{ $mhs->id }}][id_nilaimhs]" value="{{ $mhs->id_nilaimhs  }}">
-                        </td>
-                      <td>
-                        <button class="btn btn-success center-block align-bottom " placeholder="..."></button>
-                      </td>
-                      <td>
-                        <input type="submit" class="btn btn-primary" value="Simpan">
-                           
-                      </td>
-                      </tr>
-                      <?php $no++ ?>
-                      @endforeach
-                      
-                    </tbody>
-
-                    </table>
-                  </form>
+                          <tr>
+                            <input type="hidden" class="nilai" name="id[]" value="{{ old('id') ? old('id') : $item->id }}">
+                            <td>{{ $no }}</td>
+                            <td class="tg-3xi5">{{ $item->student->nim}}</td>
+                            <td class="tg-3xi5">{{ $item->student->name }}</td>
+                           <td class="tg-3xi5">
+                              <input type="number" class="nilai" name="assignment_value[]" value="{{ old('assignment_value') ? old('assignment_value') : $item->assignment_value }}">
+                            </td>
+                            <td class="tg-3xi5">
+                              <input type="number" class="nilai" name="uts_value[]" value="{{ old('uts_value') ? old('uts_value') : $item->uts_value }}">
+                            </td>
+                            <td class="tg-3xi5">
+                              <input type="number" class="nilai" name="uas_value[]" value="{{ old('uas_value') ? old('uas_value') : $item->uas_value }}">
+                            </td>
+                            <td class="tg-3xi5">{{($item->grade_id == null) ? "-" : $item->grade->name }}</td>
+                          </tr>
+                          @empty
+                          <tr>
+                            <td>
+                              Mahasiswa Belum Mengambil KRS
+                            </td>
+                          </tr>
+                          <?php $no++ ?>
+                          @endforelse
+                        </tbody>
+                  
+                      </table>
+                      <div class="d-flex">
+                        <button type="submit" class="btn btn-success ml-auto">Simpan Nilai</button>
+                      </div>
+                      </form>
+                  
                 </div>
               </div>
             </div>

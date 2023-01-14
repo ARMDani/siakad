@@ -18,8 +18,6 @@ class LeactureController extends Controller
     {
         return view('admin.leacture.create');
     }
-
-
     public function store(Request $request)
     {
         $photo = null;
@@ -88,13 +86,16 @@ class LeactureController extends Controller
     }
     public function search(Request $request)
     {
-        // menangkap data pencarian
+      
         $cari = $request->cari;
 
-        // mengambil data dari table pegawai sesuai pencarian data
         $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
 
-        // mengirim data pegawai ke view index
         return view('admin.leacture.index', ['leacture' => $leacture]);
+    }
+// --------------------------------------------------------------TAMPLAN DOSEN -----------------------------------------------------------------
+public function indexdosen()
+    {
+       return view('dosen.jadwal.index');
     }
 }

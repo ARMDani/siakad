@@ -238,7 +238,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#MahasiswaPerwalian" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Mahasiswa Perwalian
@@ -247,7 +247,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/lecturedsn" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Jadwal Mengajar
