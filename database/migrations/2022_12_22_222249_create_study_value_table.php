@@ -30,6 +30,8 @@ return new class extends Migration
             $table->integer('assignment_value');
             $table->integer('uts_value');
             $table->integer('uas_value');
+            $table->integer(' final_score');
+           
 
 
             $table->bigInteger('created_by');

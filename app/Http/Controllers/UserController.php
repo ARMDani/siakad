@@ -34,7 +34,6 @@ class UserController extends Controller
         return redirect()->route('login')->with('success', 'Registration success. Please login!');
     }
 
-
     public function login()
     {
         $data['title'] = 'Login';

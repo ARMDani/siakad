@@ -133,6 +133,12 @@ Route::get('/nilai_grade/hapus/{id}', [App\Http\Controllers\GradeController::cla
 Route::get('/nilai_grade/cari', [App\Http\Controllers\GradeController::class, 'search']);
 
 Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
+Route::get('/pengaturan/create', [App\Http\Controllers\SettingController::class, 'create']);
+Route::post('/pengaturan/store', [App\Http\Controllers\SettingController::class, 'store']);
+Route::get('/pengaturan/edit{id}', [App\Http\Controllers\SettingController::class, 'edit']);
+Route::post('/pengaturan/update', [App\Http\Controllers\SettingController::class, 'update']);
+Route::get('/pengaturan/hapus/{id}', [App\Http\Controllers\SettingController::class, 'destroy']);
+Route::get('/pengaturan/cari', [App\Http\Controllers\SettingController::class, 'search']);
 
 //==================================================================================================================
 // ---------------------------------------END FITUR ADMINISTRATOR-------------------------------------------------
@@ -177,7 +183,7 @@ Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 Route::get('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::get('/nilai/input_nilai/{matakuliah}', [App\Http\Controllers\NilaiController::class, 'indexnilai']);
 Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
-Route::post('/nilai/store', [App\Http\Controllers\NilaiController::class, 'store']);
+Route::post('/nilai/store/{id}', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
 
 
@@ -215,8 +221,15 @@ Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, '
 
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
-//==================================================================================================================
 
+//===========================================Dosen Tampilan=================================================================
+Route::get('/leacturedsn', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
+Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
+Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
+Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
+Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
+Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
+Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

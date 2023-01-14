@@ -4,9 +4,6 @@ namespace App\Exports;
 
 use App\Models\Lecturer;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
 
 class LecturerExport implements FromCollection
 {
@@ -15,7 +12,6 @@ class LecturerExport implements FromCollection
     */
     public function collection()
     {
-        return Lecturer::all();    
+        return Lecturer::all();
     }
 }
-

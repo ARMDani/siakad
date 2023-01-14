@@ -9,7 +9,7 @@ use Session;
 use App\Exports\StudyProgramExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
-use App\Imports\StudyFacultyImport;
+use App\Imports\StudyProgramImport;
 
 class StudiprogramController extends Controller
 {
@@ -35,6 +35,7 @@ class StudiprogramController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
+        Session::flash('tambah','Berhasil menambah data program studi');
         return redirect('/prodi');
     }
 
@@ -63,13 +64,14 @@ class StudiprogramController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-
+        Session::flash('edit','Berhasil mengedit data program studi');
         return redirect('/prodi');
     }
 
     public function destroy($id)
     {
         Study_Program::where('id', $id)->delete();
+        Session::flash('hapus','Berhasil menghapus data program studi');
         return redirect('/prodi');
     }
     public function search(Request $request)
@@ -105,7 +107,7 @@ class StudiprogramController extends Controller
  
 		// import data
         try {
-            Excel::import(new StudyFacultyImport, public_path('/file_faculty/'.$nama_file));
+            Excel::import(new StudyProgramImport, public_path('/file_faculty/'.$nama_file));
             Session()::flash('sukses','Data Siswa Berhasil Diimport!');
         } catch (\Throwable $th) {
             $request->session()->flash('error', 'Data fakultas gagal diimport');

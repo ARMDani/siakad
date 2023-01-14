@@ -4,9 +4,6 @@ namespace App\Exports;
 
 use App\Models\Study_Program;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
 
 class StudyProgramExport implements FromCollection
 {
@@ -15,8 +12,6 @@ class StudyProgramExport implements FromCollection
     */
     public function collection()
     {
-        return Study_Program::all(); 
-        // return Study_Program::select('code_prodi','name')->get();
+        return Study_Program::all();
     }
 }
-

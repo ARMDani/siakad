@@ -53,7 +53,9 @@ class NilaiController extends Controller
               
         $lecture_scheduling = LectureScheduling::get();
         $mahasiswas = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')  
-        ->where('lecture_schedulings.subject_course_id', $matakuliah )           
+        ->select ('study_value.*')
+        ->where('lecture_schedulings.subject_course_id', $matakuliah )    
+
                 ->get();
          
         return view('prodi.input_nilai.input_nilai')->with([ 
@@ -85,69 +87,45 @@ class NilaiController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store($id ,Request $request, )
     {
-        $student_id = $request->student;
-        $data_nilai = $request->nilai;
-        $jadwal_id = $request->jadwal;
-        $matakuliah =  $request->matakuliah;
+    $data = $request->all();
+   
+      $jumlah = count($data['assignment_value']);
+      for($nilai = 0; $nilai < $jumlah; $nilai++){
 
-        foreach ($data_nilai as $student_id => $data_nilaimhs) {
-
-            // $grade_id = $data_nilaimhs['grade_id'];
-            $assignment_value = $data_nilaimhs['assignment_value'];
-            $uts_value = $data_nilaimhs['uts_value'];
-            $uas_value = $data_nilaimhs['uas_value'];
-            $id_nilaimhs = $data_nilaimhs['id_nilaimhs'];
-
-            //(nilai uts * 35 /100) + (nilai uas * 35 /100) + (nilai tugas * 30 / 100) = nilai_akhir
-            $nilai_akhir = ($assignment_value * 35 / 100) + ($uts_value * 35 / 100) + ($uas_value * 35 / 100);
-            if ($nilai_akhir >= 86 ){
+        $Na = (($request->assignment_value[$nilai])*0.35)+(($request->uts_value[$nilai])*0.35)+(($request->uas_value[$nilai])*0.35);
+       
+        if($Na >= 86){
                 $grade_id = 1;
-            }elseif ($nilai_akhir >= 80){
+            }elseif($Na >= 80 && $Na < 85){
                 $grade_id = 2;
-
-            }elseif ($nilai_akhir >= 76){
+            }elseif($Na >= 76 && $Na < 79){
                 $grade_id = 3;
-
-            }elseif ($nilai_akhir >= 71){
+            }elseif($Na >= 71 && $Na < 75){
                 $grade_id = 4;
-
-            }elseif ($nilai_akhir >= 66){
+            }elseif($Na >= 66 && $Na < 70){
                 $grade_id = 5;
-
-            }elseif ($nilai_akhir >= 61){
+            }elseif($Na >= 61 && $Na < 65){
                 $grade_id = 6;
-
-            }elseif ($nilai_akhir >= 56){
+            }elseif($Na >= 56 && $Na < 60){
                 $grade_id = 7;
-
-            }elseif ($nilai_akhir >= 41){
+            }elseif($Na >= 41 && $Na < 45){
                 $grade_id = 8;
-
             }else{
                 $grade_id = 9;
             }
-
-            if ($id_nilaimhs !== null) {
-                $nilaimhs = Study_Value::where('id', $id_nilaimhs)
-                ->where('lecture_schedulings_id', $jadwal_id)
+            Study_Value::where('id', $request->id[$nilai])
                 ->update([
-                    'grade_id' => $grade_id,
-                    'assignment_value' => $assignment_value,
-                    'uts_value' => $uts_value,
-                    'uas_value' => $uas_value,
-                    'updated_by' => Auth::user()->id
+                    'assignment_value' => $request->assignment_value[$nilai],
+                    'uts_value' => $request->uts_value[$nilai],
+                    'uas_value' => $request->uas_value[$nilai],
+                    'final_score' => $Na,
+                    'grade_id' => $grade_id
                 ]);
-            }
-        }
-        return redirect('/nilai/input_nilai/'.$matakuliah);
+     }
+      
+        return redirect('/nilai/input_nilai/'.$id)->with('status', 'Nilai Mahasiswa Telah Terinput !!!');
     }
 
 

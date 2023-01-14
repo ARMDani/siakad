@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Subject_Course;
 use App\Models\Lecturer;
 use Session;
-use App\Exports\StudentExport;
+use App\Exports\subject_courseExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Imports\StudyFacultyImport;
@@ -83,7 +83,7 @@ class SubjekcourseController extends Controller
     }
     public function export_excel()
     {
-        return Excel::download(new StudentExport(), 'Data Fakultas.xlsx');
+        return Excel::download(new subject_courseExport(), 'Data Mata Kuliah.xlsx');
     }
     public function import_excel(Request $request)
     {
