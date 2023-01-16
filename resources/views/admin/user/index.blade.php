@@ -4,7 +4,7 @@
 <div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
-      <h3>Data Fakultas</h3>
+      <h3>DATA <strong> USER </strong> ISTEK 'Aisyiyah Kendari</h3>
     </div>
   </div>
   {{-- BEGIN CONTENT --}}
@@ -22,11 +22,16 @@
                     <div class="col">
                       {{-- Begin Import data --}}
                       {{-- notifikasi form validasi --}}
+                      @if ($errors->has('file'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('file') }}</strong>
+                      </span>
+                      @endif
                       {{-- notifikasi sukses --}}
-                      @if ($tambah = Session::get('sukses'))
+                      @if ($sukses = Session::get('sukses'))
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $tambah }}</strong>
+                        <strong>{{ $sukses }}</strong>
                       </div>
                       @endif
                       <!-- Import Excel -->
@@ -75,53 +80,63 @@
                       </div>
                   @endif
                   {{-- end Sesion --}}
-                <form action="/fakultas/create" method="get">
-                  {{ csrf_field() }}
-
-                  <div class="row">
-                    <div class="col">
-                      <input class="btn btn-primary mb-3" type="submit" value="Tambah Data">
+                      
+                  <form class="form-inline">
+                    <div class="form-group mr-1">
+                      <a class="btn btn-success" href="/user">Refresh</a>
                     </div>
+                    <div class="form-group mr-1">
+                        <a class="btn btn-primary" href="/user/create">Tambah</a>
+                    </div>
+                </form>
                     <div class="col">
-                      <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel">Import Data</button>
-                      <a href="/fakultas/export_excel" class="btn btn-success mr-3 float-right" target="_blank">Export Data</a>
+                      <button type="button" class="btn btn-light mr-4 float-right" data-toggle="modal" data-target="#importExcel">Import Data</button>
+                      <a href="/fakultas/export_excel" class="btn btn-success ml-5 float-right" target="_blank">Export Data</a>
                     </div>
                   </div>
                 </form>
-                  <div class="input-group mb-3 col-12" >
-                    <form action="/fakultas/cari" method="GET">
-                      <span class="input-group-append">
-                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="{{ old('cari') }}">
-                        <input type="submit" value="CARI">
-                      </span>
-                    </form>
-                  </div>
+                <div class="">
+                  <form action="/user/cari" method="GET">
+                    <span class="input-group-append">
+                      <input class="form-control" type="text" name="cari" placeholder="Cari User .." value="{{ old('cari') }}">
+                      <input class="mr-2 for btn btn-light" type="submit" value="CARI">
+                    </span>
+                  </form>
+                </div>
                 <table class="table table-bordered table-hover table-wrapper">
-                  <tr>
+                  <tr class="text-center">
                     <th>No</th>
-                    <th>Code</th>
-                    <th>Fakultas</th>
-                    <th>Opsi</th>
+                    <th>Nama</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th># Opsi</th>
                   </tr>
-                  <?php $no = $faculty->currentPage() * $faculty->perPage() -9 ; ?>
-                  @foreach ($faculty as $facultys)
-                  <tr>
-                      <td>{{ $no }}</td>
-                      <td>{{ $facultys->code_faculty }}</td>
-                      <td>{{ $facultys->name }}</td>
+                  
+                  <?php $no = $pengguna->currentPage() * $pengguna->perPage() -9 ; ?>
+                  @foreach ($pengguna as $penggunas)
+                  <tr class="text-center">
+                    <td>{{ $no++ }}</td>
+                      <td>{{ $penggunas->name }}</td>
+                      <td>{{ $penggunas->username }}</td>
+                      <td>{{ $penggunas->email }}</td>
                       <td>
-                          <a href="/fakultas/edit/{{ $facultys->id }}" class="btn btn-secondary"> Edit </a>
-                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-danger"> Hapus </a>
+                        <h6 class="text-primary">{{  $penggunas->role->name }}</h6>
+                      </td>
+                      <td>
+                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> Edit </a>
+                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-danger"> Hapus </a>
+                          <a href="/user/aktif/{{ $penggunas->id }}"class="btn btn-primary"> Aktif </a>
                       </td>
                   </tr>
-                  <?php $no++ ?>
-                  @endforeach
-              </table>
+              
+              @endforeach
+            </table>
               <br/>
-                Halaman : {{ $faculty->currentPage() }} <br/>
-                Jumlah Data : {{ $faculty->total() }} <br/>
-                Data Per Halaman : {{ $faculty->perPage() }} <br/>
-                {{ $faculty->links() }}
+                Halaman : {{ $pengguna->currentPage() }} <br/>
+                Jumlah Data : {{ $pengguna->total() }} <br/>
+                Data Per Halaman : {{ $pengguna->perPage() }} <br/>
+                {{ $pengguna->links() }}
            
               </div>
             </div>

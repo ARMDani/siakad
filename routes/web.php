@@ -230,6 +230,17 @@ Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::clas
 Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
+
+// --------------------------------------------BEGIN USER---------------------------------------------------------
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');
+Route::get('/user/create', [App\Http\Controllers\UserController::class, 'create']);
+Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store']);
+Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update']);
+Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('/user/cari', [App\Http\Controllers\UserController::class, 'search']);
+
+// ------------------------------------------------Batas Controller--------------------------------------------------
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

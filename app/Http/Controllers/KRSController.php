@@ -134,7 +134,7 @@ class KRSController extends Controller
     public function destroymahasiswa($id)
     {
         Study_Value::where('id', $id)->delete();
-        return redirect('/krsmahasiswa')->with('status', 'Berhasil Dihapus !!');;
+        return redirect('/krsmahasiswa')->with('hapus', 'Berhasil Dihapus !!');;
 }
     public function search(Request $request)
     {

@@ -58,6 +58,14 @@
             </button>
           </div>
           @endif
+          @if (session('hapus'))
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('hapus') }}
+               <button type="button" class="close close-light" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
       
 
           <form action="/krsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">

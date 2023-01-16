@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Study_Faculty;
-use Session;
 use App\Exports\FacultyExport;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
+use Session;
 use App\Imports\StudyFacultyImport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class FacultyController extends Controller
 {
@@ -50,8 +51,8 @@ class FacultyController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-        Session::flash('edit','Berhasil mengedit data fakultas');
-        return redirect('/fakultas');
+        // Session::flash('edit','Berhasil mengedit data fakultas');
+        return redirect('/fakultas')->with('edit', 'Berhasil mengedit data fakultas');
     }
     public function destroy($id)
     {

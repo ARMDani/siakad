@@ -1,5 +1,5 @@
-@extends('template.home')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <div class="content-wrapper">
   <div class="content-header">
@@ -7,12 +7,12 @@
       <h3>Data Fakultas</h3>
     </div>
   </div>
-  {{-- BEGIN CONTENT --}}
+  
   <div class="content">
-    {{-- BEGIN CONTAINER --}}
+    
     <div class="container-fluid">
    
-      {{-- BEGIN ROW 2 --}}
+      
       <div class="row">
         <div class="col">
           <div class="card">
@@ -20,15 +20,15 @@
               <div class="form">
                   <div class="row">
                     <div class="col">
-                      {{-- Begin Import data --}}
-                      {{-- notifikasi form validasi --}}
-                      {{-- notifikasi sukses --}}
-                      @if ($tambah = Session::get('sukses'))
+                      
+                      
+                      
+                      <?php if($tambah = Session::get('sukses')): ?>
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $tambah }}</strong>
+                        <strong><?php echo e($tambah); ?></strong>
                       </div>
-                      @endif
+                      <?php endif; ?>
                       <!-- Import Excel -->
                       <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -38,7 +38,8 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                               </div>
                               <div class="modal-body">
-                                {{ csrf_field() }}
+                                <?php echo e(csrf_field()); ?>
+
                                 <label>Pilih file excel</label>
                                 <div class="form-group">
                                   <input type="file" name="file" required="required">
@@ -52,31 +53,32 @@
                           </form>
                         </div>
                       </div>
-                      {{-- End Import data --}}
+                      
                     </div>
                   </div>
-                  {{-- Begin Sesion --}}
-                  @if ($tambah = Session::get('tambah'))
+                  
+                  <?php if($tambah = Session::get('tambah')): ?>
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $tambah }}</strong>
+                        <strong><?php echo e($tambah); ?></strong>
                       </div>
-                  @endif
-                  @if ($edit = Session::get('edit'))
+                  <?php endif; ?>
+                  <?php if($edit = Session::get('edit')): ?>
                       <div class="alert alert-primary alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $edit }}</strong>
+                        <strong><?php echo e($edit); ?></strong>
                       </div>
-                  @endif
-                  @if ($hapus = Session::get('hapus'))
+                  <?php endif; ?>
+                  <?php if($hapus = Session::get('hapus')): ?>
                       <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $hapus }}</strong>
+                        <strong><?php echo e($hapus); ?></strong>
                       </div>
-                  @endif
-                  {{-- end Sesion --}}
+                  <?php endif; ?>
+                  
                 <form action="/fakultas/create" method="get">
-                  {{ csrf_field() }}
+                  <?php echo e(csrf_field()); ?>
+
 
                   <div class="row">
                     <div class="col">
@@ -91,7 +93,7 @@
                   <div class="input-group mb-3 col-12" >
                     <form action="/fakultas/cari" method="GET">
                       <span class="input-group-append">
-                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="{{ old('cari') }}">
+                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="<?php echo e(old('cari')); ?>">
                         <input type="submit" value="CARI">
                       </span>
                     </form>
@@ -104,24 +106,25 @@
                     <th>Opsi</th>
                   </tr>
                   <?php $no = $faculty->currentPage() * $faculty->perPage() -9 ; ?>
-                  @foreach ($faculty as $facultys)
+                  <?php $__currentLoopData = $faculty; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $facultys): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
-                      <td>{{ $no }}</td>
-                      <td>{{ $facultys->code_faculty }}</td>
-                      <td>{{ $facultys->name }}</td>
+                      <td><?php echo e($no); ?></td>
+                      <td><?php echo e($facultys->code_faculty); ?></td>
+                      <td><?php echo e($facultys->name); ?></td>
                       <td>
-                          <a href="/fakultas/edit/{{ $facultys->id }}" class="btn btn-secondary"> Edit </a>
-                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-danger"> Hapus </a>
+                          <a href="/fakultas/edit/<?php echo e($facultys->id); ?>" class="btn btn-secondary"> Edit </a>
+                          <a href="/fakultas/hapus/<?php echo e($facultys->id); ?>"class="btn btn-danger"> Hapus </a>
                       </td>
                   </tr>
                   <?php $no++ ?>
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </table>
               <br/>
-                Halaman : {{ $faculty->currentPage() }} <br/>
-                Jumlah Data : {{ $faculty->total() }} <br/>
-                Data Per Halaman : {{ $faculty->perPage() }} <br/>
-                {{ $faculty->links() }}
+                Halaman : <?php echo e($faculty->currentPage()); ?> <br/>
+                Jumlah Data : <?php echo e($faculty->total()); ?> <br/>
+                Data Per Halaman : <?php echo e($faculty->perPage()); ?> <br/>
+                <?php echo e($faculty->links()); ?>
+
            
               </div>
             </div>
@@ -130,17 +133,17 @@
         </div>
       </div>
 
-      {{-- END ROW 2 --}}
+      
 
     </div>
-    {{-- END CONTAINER --}}
+    
 
   </div>
-  {{-- END CONTENT --}}
+  
  
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -167,3 +170,4 @@
 
 
   
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Windows 10\Documents\Technos Studio\siakad\resources\views/admin/faculty/index.blade.php ENDPATH**/ ?>

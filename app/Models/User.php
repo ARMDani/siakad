@@ -18,10 +18,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
+    
     use HasApiTokens, HasFactory, Notifiable;
     // use HasApiTokens, HasFactory, Notifiable;
-    // protected $table = 'tb_user';
-    // protected $primaryKey = 'user_id';
+    protected $table = 'users';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -58,15 +59,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    // public function role()
+    // {
+    //     return $this->belongsTo('App\Models\Role');
+    // }
+    public function study_faculty()
+    {
+        return $this->belongsTo('App\Models\Study_Faculty');
+    }
     public function role()
     {
-        return $this->belongsTo(Role::class, 'roles_id', 'id');
+        return $this->belongsTo(Role::class, 'roles_id', 'id', 'name');
     }
     protected function roles(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["Administrator", "Prodi", "Dosen", "Mahasiswa"][$value],
+            get: fn ($value) =>  ["admin", "prodi", "dosen", "mahasiswa"][$value],
         );
     }
 }

@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('roles_id');
             $table->foreign('roles_id')->references('id')->on('roles');
+            $table->enum('active', ['Y', 'N'])->nullable(true);
 
 
             $table->integer('created_by')->nullable();

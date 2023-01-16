@@ -17,13 +17,13 @@
                     </div>
                       <div class="p-5 py-md-5 bg-light">
                     <div class="card-body">
-                        <h3 class="login-box-msg">Welcome in  <b>SIAKAD</b></h3>
+                        <h3 class="login-box-msg">Welcome in  <b>SIMAK</b></h3>
                           <br>
                     <form method="POST" action="<?php echo e(route('login')); ?>">
                         <?php echo csrf_field(); ?>
 
                         <div class="row mb-2">
-                            <label for="username" class="col-md-4 col-form-label text-md-end"><?php echo e(__('username')); ?></label>
+                            <label for="username" class="col-md-4 col-form-label text-md-end"><?php echo e(__('Username')); ?></label>
 
                             <div class="col-md-8">
                                 <input id="username" type="username" class="form-control <?php $__errorArgs = ['username'];
@@ -78,18 +78,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
-
-                                    <label class="form-check-label" for="remember">
-                                        <?php echo e(__('Remember Me')); ?>
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        <br>
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
