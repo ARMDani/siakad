@@ -38,17 +38,17 @@
     {{-- ---------------------mulai admin--------------------------- --}}
     <li class="nav-header">ADMIN</li>
     <li class="nav-item menu-open">
+      <i class="fas fa-tachometer-alt-slowest"></i>
       <a href="/home" class="nav-link active">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <i class="fa-solid fa-house"></i>
         <p>
           Dashboard
-          <i class="right fas fa-angle-left"></i>
         </p>
       </a>
     </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
+            <i class="fal fa-database"></i>
             <p>
               Master Data
               <i class="fas fa-angle-left right"></i>
@@ -58,7 +58,7 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/fakultas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fal fa-table nav-icon"></i>
                 <p>Data Fakultas</p>
               </a>
             </li>
@@ -118,6 +118,7 @@
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
+            <i class="fas fa-user-circle-o"></i>
             <p>
               Users
               <i class="fas fa-angle-left right"></i>

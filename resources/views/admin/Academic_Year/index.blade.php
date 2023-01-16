@@ -41,17 +41,16 @@
                 </div>
                 @endif
               {{-- end Sesion --}}
-                <form action="/tahun_akademik/create" method="get">
-                  {{ csrf_field() }}
-          
                   <div class="row">
                     <div class="col">
-                      <input class="btn btn-primary mb-3" type="submit" value="Tambah Data">
+                      <form action="/tahun_akademik/create" method="get">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
                     </div>
                   </div>
                   <table class="table table-bordered table-hover table-wrapper">
                     <thead>
-                      <tr>
+                      <tr class="text-center">
                         <th>No</th>
                         <th>Tahun Akademik</th>
                         <th>Semester</th>
@@ -64,17 +63,17 @@
                     <tbody>
                       <?php $no = 1 ?>
                       @foreach($ta as $tahun_akademik)
-                      <tr>
+                      <tr class="text-center">
                         <td>{{ $no }}</td>
                         <td>{{ $tahun_akademik->name }}</td>
                         <td>{{ $tahun_akademik->semester }}</td>
-                        <td>{{ $tahun_akademik->start_time_value . " Sampai " .$tahun_akademik->end_of_time_value}}</td>
-                        <td>{{ $tahun_akademik->start_time_bidding ." Sampai ". $tahun_akademik->end_of_time_bidding}}</td>
+                        <td>{{ $tahun_akademik->start_time_value . " sampai " .$tahun_akademik->end_of_time_value}}</td>
+                        <td>{{ $tahun_akademik->start_time_bidding ." sampai ". $tahun_akademik->end_of_time_bidding}}</td>
                         <td>{{ ($tahun_akademik->active == "Y") ? "Aktif" : "Tidak Aktif" }}</td>
                         <td>
                           <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/Y" type="button" class="btn btn-success">Aktif</a>
                           <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/N" type="button" class="btn btn-danger">Tidak Aktif</a>
-                          <a href="/tahun_akademik/edit{{ $tahun_akademik->id }}" type="button" class="btn btn-warning">Edit</a>
+                          <a href="/tahun_akademik/edit{{ $tahun_akademik->id }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                         </td>
                       </tr>
                       <?php $no++ ?>

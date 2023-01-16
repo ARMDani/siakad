@@ -85,13 +85,13 @@ class KRSController extends Controller
     // Generate PDF
     public function createPDF() {
         // retreive all records from db
-        $data = Study_Value::all();
+        $krs = Study_Value::all();
         // share data to view
-        view()->share('students',$data);
-        $pdf = PDF::loadView('prodi.krs.pdf', compact('data'));
+        view()->share('students',$krs);
+        $pdf = PDF::loadView('prodi.krs.pdf', compact('krs'));
 
         // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('KRS.pdf');
       }
 
     public function storemahasiswa(Request $request)

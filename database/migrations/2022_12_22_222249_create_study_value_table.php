@@ -25,8 +25,6 @@ return new class extends Migration
             $table->unsignedBigInteger('grade_id');
             $table->foreign('grade_id')->references('id')->on('grade');
 
-            $table->unsignedBigInteger('academic_year_id');
-            $table->foreign('academic_year_id')->references('id')->on('academic_year');
             $table->integer('assignment_value');
             $table->integer('uts_value');
             $table->integer('uas_value');

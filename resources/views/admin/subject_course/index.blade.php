@@ -80,29 +80,43 @@
                       </div>
                   @endif
                   {{-- end Sesion --}}
-                <form action="/matakuliah/create" method="get">
-                  {{ csrf_field() }}
-
+                  {{-- Begin row --}}
                   <div class="row">
-                    <div class="col">
-                      <input class="btn btn-primary mb-3" type="submit" value="Tambah Data">
+                    <div class="col-1">
+                        <form action="/matakuliah/create" method="get">
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                          <a class="btn btn-success" href="/matakuliah"><i class="fas fa-redo-alt"></i></a>
+                        </form>
                     </div>
-                    <div class="col">
-                      <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel">Import Data</button>
-                      <a href="/matakuliah/export_excel" class="btn btn-success mr-3 float-right" target="_blank">Export Data</a>
+                    <div class="col-2">
+                      <a class="nav-link" data-widget="navbar-search" href="#">
+                        <i class="fas fa-search"></i>
+                      </a>
+                      <div class="navbar-search-block">
+                        <form class="form-inline" action="/matakuliah/cari" method="GET">
+                          <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" name="cari" placeholder="Cari Data Mahasiswa ..."  value="{{ old('cari') }}">
+                            <div class="input-group-append">
+                              <button class="btn btn-navbar" type="submit" value="CARI">
+                                <i class="fas fa-search"></i>
+                              </button>
+                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                <i class="fas fa-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-9">
+                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
+                          <a href="/matakuliah/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
                     </div>
                   </div>
-                </form>
-                  <div class="input-group mb-3 col-12" >
-                    <form action="/matakuliah/cari" method="GET">
-                      <span class="input-group-append">
-                        <input class="col-12" type="text" name="cari" placeholder="Cari Fakultas .." value="{{ old('cari') }}">
-                        <input type="submit" value="CARI">
-                      </span>
-                    </form>
-                  </div>
+                {{-- end row --}}
                 <table class="table table-bordered table-hover table-wrapper">
-                  <tr>
+                  <tr class="text-center">
                     <th>No</th>
                     <th>Kode</th>
                     <th>Mata Kuliah</th>
@@ -114,15 +128,15 @@
                   <?php $no = $course->currentPage() * $course->perPage() -9 ; ?>
                   @foreach ($course as $courses)
                   <tr>
-                    <td>{{ $no }}</td>
+                    <td class="text-center">{{ $no }}</td>
                     <td>{{ $courses->course_code }}</td>
                     <td>{{ $courses->name }}</td>
-                    <td>{{ $courses->sk }}</td>
-                    <td>{{ $courses->semester }}</td>
+                    <td class="text-center">{{ $courses->sk }}</td>
+                    <td class="text-center">{{ $courses->semester }}</td>
                     <td>{{ $courses->lecturer->name }}</td>
-                    <td >
-                        <a href="/matakuliah/edit/{{ $courses->id }}" class="btn btn-secondary"> Edit </a>
-                        <a href="/matakuliah/hapus/{{ $courses->id }}"class="btn btn-danger"> Hapus </a>
+                    <td class="text-center">
+                        <a href="/matakuliah/edit/{{ $courses->id }}" class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
+                        <a href="/matakuliah/hapus/{{ $courses->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
                     </td>
                   </tr>
                   <?php $no++ ?>
