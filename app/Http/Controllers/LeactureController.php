@@ -46,7 +46,6 @@ class LeactureController extends Controller
         return redirect('/leacture');
     }
 
-
     public function show($id)
     {
         //
