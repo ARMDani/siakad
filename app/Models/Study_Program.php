@@ -22,4 +22,8 @@ class Study_Program extends Model
     {
         return $this->hasOne('App\Models\LectureScheduling');
     }
+    public function lecturer()
+    {
+        return $this->hasMany('App\Models\Lecturer');
+    }
 }

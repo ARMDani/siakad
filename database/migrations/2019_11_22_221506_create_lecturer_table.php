@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('lecturer', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->char('nidn', 9);
+            $table->char('nidn', 9)->unique();
+            
+            $table->unsignedBigInteger('study_program_id');
+            $table->foreign('study_program_id')->references('id')->on('study_program');
+        
             $table->enum('gender', ['Laki-Laki', 'Perempuan']);
             $table->enum('religion', ['Islam', 'Hindu', 'Kristen', 'Protestan', 'Katolik', 'Budha', 'Konghucu']);
             $table->text('address');

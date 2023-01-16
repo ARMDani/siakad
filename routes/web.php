@@ -223,9 +223,10 @@ Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, '
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
 
 //===========================================Dosen Tampilan=================================================================
-Route::get('/leacturedsn', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
+Route::get('/dosen', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
+Route::post('/dosen', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
-Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
+Route::post('/dosen/store', [App\Http\Controllers\LeactureController::class, 'storedosen']);
 Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
 Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);

@@ -55,4 +55,4 @@
 </html>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\kampus\resources\views/admin/leacture/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Windows 10\Documents\Technos Studio\siakad\resources\views/admin/leacture/edit.blade.php ENDPATH**/ ?>

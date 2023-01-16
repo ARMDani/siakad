@@ -31,6 +31,18 @@
                             <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
                             <input class="form-control" type="number" name="nidn"placeholder="Masukkan NIDN ..." required="required">
                         </div>
+                        <div class="form-group">
+                          <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
+                          <select class="form-control" name="program_studi" required="required">
+                              <option value="">- Pilih Program Studi -</option>
+                              <?php $__currentLoopData = $study_program; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($data->id); ?>">
+                                  <?php echo e($data->name); ?>
+
+                              </option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                          </select>
+                      </div>
                         <div class="form-group ">
                             <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
                                 <select class="form-control" name="gender" required="required">
@@ -83,4 +95,4 @@
   </div>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\kampus\resources\views/admin/leacture/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Windows 10\Documents\Technos Studio\siakad\resources\views/admin/leacture/create.blade.php ENDPATH**/ ?>

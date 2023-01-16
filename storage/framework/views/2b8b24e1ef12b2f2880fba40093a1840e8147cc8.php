@@ -266,7 +266,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/lecturedsn" class="nav-link">
+          <a href="/dosen" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Jadwal Mengajar

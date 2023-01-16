@@ -30,6 +30,17 @@
                             <label>NIDN<span class="required" style="color: #dd4b39;">*</span></label>
                             <input class="form-control" type="number" name="nidn"placeholder="Masukkan NIDN ..." required="required">
                         </div>
+                        <div class="form-group">
+                          <label>Program Studi<span class="required" style="color: #dd4b39;">*</span></label>
+                          <select class="form-control" name="program_studi" required="required">
+                              <option value="">- Pilih Program Studi -</option>
+                              @foreach ($study_program as $data)
+                              <option value="{{$data->id}}">
+                                  {{$data->name}}
+                              </option>
+                              @endforeach 
+                          </select>
+                      </div>
                         <div class="form-group ">
                             <label>Jenis Kelamin<span class="required" style="color: #dd4b39;">*</span></label>
                                 <select class="form-control" name="gender" required="required">
