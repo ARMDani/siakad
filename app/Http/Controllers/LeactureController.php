@@ -70,6 +70,7 @@ class LeactureController extends Controller
             $file->move(public_path('public/Image'), $filename);
             $photo = $filename;
         }
+
         $leactures = Lecturer::insert([
             'name' => $request->name,
             'nidn' => $request->nidn,
@@ -84,7 +85,6 @@ class LeactureController extends Controller
         Session::flash('tambah','Berhasil menambah data Dosen');
         return redirect('/leacture');
     }
-
 
     public function show($id)
     {

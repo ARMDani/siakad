@@ -41,17 +41,16 @@
                 </div>
                 @endif
                 {{-- end Sesion --}}
-                <form action="/nilai_grade/create" method="get">
-                  {{ csrf_field() }}
-          
-                  <div class="row">
-                    <div class="col">
-                      <input class="btn btn-primary mb-3" type="submit" value="Tambah Data">
-                    </div>
+                <div class="row">
+                  <div class="col">
+                    <form action="/nilai_grade/create" method="get">
+                      {{ csrf_field() }}
+                      <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
                   </div>
+                </div>
                   <table class="table table-bordered table-hover table-wrapper">
                     <thead>
-                      <tr>
+                      <tr class="text-center">
                         <th>No</th>
                         <th>Grade</th>
                         <th>Bobot</th>
@@ -63,15 +62,15 @@
                     <tbody>
                       <?php $no = 1 ?>
                       @foreach($grades as $nilai)
-                      <tr>
+                      <tr class="text-center">
                         <td>{{ $no }}</td>
                         <td>{{ $nilai->name }}</td>
                         <td>{{ $nilai->bobot }}</td>
                         <td>{{ $nilai->poin}}</td>
                         <td>{{ $nilai->keterangan}}</td>
                         <td>
-                          <a href="/nilai_grade/edit{{ $nilai->id }}" type="button" class="btn btn-warning">Edit</a>
-                          <a href="/nilai_grade/hapus/{{ $nilai->id }}" type="button" class="btn btn-danger">Hapus</a>
+                          <a href="/nilai_grade/edit{{ $nilai->id }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                          <a href="/nilai_grade/hapus/{{ $nilai->id }}" type="button" class="btn btn-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
                         </td>
                       </tr>
                       <?php $no++ ?>

@@ -80,29 +80,40 @@
                       </div>
                   @endif
                   {{-- end Sesion --}}
-                      
-                  <form class="form-inline">
-                    <div class="form-group mr-1">
-                      <a class="btn btn-success" href="/user">Refresh</a>
+                  {{-- Begin row --}}
+                  <div class="row">
+                    <div class="col-1">
+                        <form action="/user/create" method="get">
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                          <a class="btn btn-success" href="/user"><i class="fas fa-redo-alt"></i></a>
+                        </form>
                     </div>
-                    <div class="form-group mr-1">
-                        <a class="btn btn-primary" href="/user/create">Tambah</a>
+                    <div class="col-2">
+                      <a class="nav-link" data-widget="navbar-search" href="#">
+                        <i class="fas fa-search"></i>
+                      </a>
+                      <div class="navbar-search-block">
+                        <form class="form-inline" action="/user/cari" method="GET">
+                          <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" name="cari" placeholder="Cari Data User ..."  value="{{ old('cari') }}">
+                            <div class="input-group-append">
+                              <button class="btn btn-navbar" type="submit" value="CARI">
+                                <i class="fas fa-search"></i>
+                              </button>
+                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                <i class="fas fa-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                </form>
-                    <div class="col">
-                      <button type="button" class="btn btn-light mr-4 float-right" data-toggle="modal" data-target="#importExcel">Import Data</button>
-                      <a href="/fakultas/export_excel" class="btn btn-success ml-5 float-right" target="_blank">Export Data</a>
+                    <div class="col-9">
+                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
+                          <a href="/user/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
                     </div>
                   </div>
-                </form>
-                <div class="">
-                  <form action="/user/cari" method="GET">
-                    <span class="input-group-append">
-                      <input class="form-control" type="text" name="cari" placeholder="Cari User .." value="{{ old('cari') }}">
-                      <input class="mr-2 for btn btn-light" type="submit" value="CARI">
-                    </span>
-                  </form>
-                </div>
                 <table class="table table-bordered table-hover table-wrapper">
                   <tr class="text-center">
                     <th>No</th>
@@ -124,8 +135,8 @@
                         <h6 class="text-primary">{{  $penggunas->role->name }}</h6>
                       </td>
                       <td>
-                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> Edit </a>
-                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-danger"> Hapus </a>
+                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> <i class="fas fa-edit"></i> </a>
+                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
                           <a href="/user/aktif/{{ $penggunas->id }}"class="btn btn-primary"> Aktif </a>
                       </td>
                   </tr>

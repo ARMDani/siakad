@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">
-        <h3>Edit Data Fakultas</h3>
+        <h3>Edit Data User</h3>
       </div>
     </div>
   
@@ -21,19 +21,38 @@
               <div class="card-body">
                 <div class="form">
                     @foreach ($pengguna as $penggunas)
-                    <form action="/fakultas/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="/user/update" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $penggunas->id }}">
                         <div class="form-group">
-                        <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
-                        <input class="form-control" type="text" required="required" name="code_pengguna" value="{{ $penggunas->code_pengguna }}">
+                          <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>
+                          <input class="form-control" type="text" required="required" name="name" value="{{ $penggunas->name }}">
                         </div>
                         <div class="form-group">
-                        <label>Username<span class="required" style="color: #dd4b39;">*</span></label>
-                        <input class="form-control" type="text" required="required" name="name" value="{{ $penggunas->name }}">
+                          <label>Username<span class="required" style="color: #dd4b39;">*</span></label>
+                          <input class="form-control" type="text" required="required" name="username" value="{{ $penggunas->username }}">
                         </div>
+                        <div class="form-group">
+                          <label>Password<span class="required" style="color: #dd4b39;">*</span></label>
+                          <input class="form-control" type="text" required="required" name="password" value="{{ $penggunas->password }}">
+                        </div>
+                        <div class="form-group">
+                          <label>Email<span class="required" style="color: #dd4b39;">*</span></label>
+                          <input class="form-control" type="text" required="required" name="email" value="{{ $penggunas->email }}">
+                        </div>
+                        <div class="form-group">
+                          <label>User<span class="required" style="color: #dd4b39;">*</span></label>
+                          <select class="form-control" name="roles" required="required">
+                              <option value="">- Pilih Role -</option>
+                              @foreach ($roles_id as $data)
+                              <option value="{{$data->id}}" <?php echo $data->id == $penggunas->roles_id ? 'selected' : ' ';  ?>>
+                                  {{$data->name}}
+                              </option>
+                              @endforeach 
+                          </select>
+                      </div>
                         <input class="btn btn-secondary" type="submit" value="Simpan Data">
-                        <a href="/fakultas" class="btn btn-danger">Kembali</a>
+                        <a href="/user" class="btn btn-danger">Kembali</a>
                     </form>
                     @endforeach
                 </div>

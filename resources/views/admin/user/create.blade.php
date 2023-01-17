@@ -20,7 +20,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form">
-                    <form action="/fakultas/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="/user/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Nama<span class="required" style="color: #dd4b39;">*</span></label>

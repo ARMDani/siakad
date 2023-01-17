@@ -79,7 +79,7 @@
       <div class="card">
         <div class="card-body">
       <ul>
-      <a href="#" class="btn btn-warning ml-">Cetak</a>
+      <a href="{{ URL::to('/krs/pdf') }}" class="btn btn-warning ml-">Cetak</a>
       <a href="/krsmahasiswa/createmahasiswa/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah KRS</a>
     </ul>
     <form class="form-inline">

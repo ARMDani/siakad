@@ -65,6 +65,29 @@ class LectureSchedulingController extends Controller
         return redirect('/penjadwalan')->with('status', 'Data Berhasil Ditambahkan !');
        
     }
+
+    public function edit($id){
+        $academic_year = Academic_Year::where('id' , $id)->get();
+        $subject_course = Subject_Course::where('id' , $id)->get();
+        $lecturer = Lecturer::where('id' , $id)->get();
+        $class = ClassModel::where('id' , $id)->get();
+        $academic_day = Academic_Day::where('id' , $id)->get();
+        $academic_room = Academic_Room::where('id' , $id)->get();
+        //memanggil view create
+        return view('prodi.penjadwalankuliah.edit', [
+            'academic_year' => $academic_year,
+            'subject_course' => $subject_course,
+            'lecturer' => $lecturer,
+            'class' => $class,
+            'academic_day' => $academic_day,
+            'academic_room' => $academic_room,
+        ]);
+
+    }
+    public function update(Request $request){
+
+
+    }
     public function show($id)
     {
     //
@@ -73,5 +96,11 @@ class LectureSchedulingController extends Controller
     {
         LectureScheduling::where('id', $id)->delete();
         return redirect('/penjadwalan');
-}
     }
+    public function search(Request $request)
+    {
+        $cari = $request->cari;
+        $jadwal = LectureScheduling::where('code_faculty', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
+        return view('admin.faculty.index', ['faculty' =>  $faculty]);
+    }
+}

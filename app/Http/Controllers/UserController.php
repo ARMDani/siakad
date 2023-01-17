@@ -33,11 +33,20 @@ class UserController extends Controller
  
   return redirect('/user')->with('tambah','Berhasil menambah Data User SIMAK');
   }
+  public function edit($id)
+  {
+        $roles = ModelsRole::where('id', $id)->get();
+      $pengguna = User::where('id', $id)->get();
+      return view('admin.user.edit', [
+          'pengguna' => $pengguna,
+          'roles_id' => $roles,
+      ]);
+  }
 
   public function update(Request $request)
   {
       User::where('id', $request->id)->update([
-          'name' => $request->$name,
+          'name' => $request->name,
           'username' =>$request->username,
           'password' =>$request->password,
           'email' =>$request->email,
@@ -46,7 +55,7 @@ class UserController extends Controller
           'updated_by' => 1
       ]);
       Session::flash('edit','Berhasil mengedit data program studi');
-      return redirect('/prodi');
+      return redirect('/user');
   }
 
   public function search(Request $request)
@@ -63,6 +72,6 @@ class UserController extends Controller
   public function destroy($id)
   {
       User::where('id', $id)->delete();
-      return redirect('/student')->with('hapus','Berhasil menghapus data mahasiswa');;
+      return redirect('/user')->with('hapus','Berhasil menghapus data mahasiswa');;
   }
 }

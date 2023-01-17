@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->char('code_faculty', 10);
             $table->string('name');
-
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');
             $table->timestamps();
