@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>SIASTEK | LOGIN</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -57,32 +57,6 @@
 
  @include('template/footer')
 
-
- {{-- <!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="{{ asset ('lte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ asset ('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- overlayScrollbars -->
-<script src="{{ asset ('lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset ('lte/dist/js/adminlte.js') }}"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="{{ asset ('lte/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-<script src="{{ asset ('lte/plugins/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset ('lte/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-<script src="{{ asset ('lte/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset ('lte/plugins/chart.js/Chart.min.js') }}"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset ('lte/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset ('lte/dist/js/pages/dashboard2.js') }}"></script> --}}
-
-{{-- -------------------------------- --}}
 <!-- jQuery -->
 <script src="{{ asset ('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

@@ -34,7 +34,6 @@ class AcademicYearController extends Controller
             'end_of_time_value' => $request->end_of_time_value,
             'start_time_bidding' => $request->start_time_bidding,
             'end_of_time_bidding' => $request->end_of_time_bidding,
-
             'created_by' => 1,
             'updated_by' => 1
         ]);

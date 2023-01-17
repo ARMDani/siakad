@@ -36,7 +36,6 @@ class NilaiController extends Controller
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik )       
                 ->get();
         
-
         return view('prodi.input_nilai.index')->with([
             'academic_year' => $academic_year, 
             'mahasiswa' => $mahasiswa,

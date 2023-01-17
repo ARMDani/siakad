@@ -140,6 +140,14 @@ Route::post('/pengaturan/update', [App\Http\Controllers\SettingController::class
 Route::get('/pengaturan/hapus/{id}', [App\Http\Controllers\SettingController::class, 'destroy']);
 Route::get('/pengaturan/cari', [App\Http\Controllers\SettingController::class, 'search']);
 
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');
+Route::get('/user/create', [App\Http\Controllers\UserController::class, 'create']);
+Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store']);
+Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update']);
+Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('/user/cari', [App\Http\Controllers\UserController::class, 'search']);
+
 //==================================================================================================================
 // ---------------------------------------END FITUR ADMINISTRATOR-------------------------------------------------
 //==================================================================================================================
@@ -223,13 +231,19 @@ Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, '
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------
 
 //===========================================Dosen Tampilan=================================================================
-Route::get('/leacturedsn', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
+Route::get('/dosen', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
+Route::post('/dosen', [App\Http\Controllers\LeactureController::class, 'indexdosen'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
-Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
+Route::post('/dosen/store', [App\Http\Controllers\LeactureController::class, 'storedosen']);
 Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
 Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
+
+// --------------------------------------------BEGIN USER---------------------------------------------------------
+
+
+// ------------------------------------------------Batas Controller--------------------------------------------------
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

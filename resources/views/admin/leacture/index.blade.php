@@ -120,6 +120,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NIDN</th>
+                    <th>Program Studi</th>
                     <th>Jenis Kelamin</th>
                     <th>Agama</th>
                     <th>Alamat</th>
@@ -132,6 +133,7 @@
                     <td  class="text-center">{{ $no }}</td>
                     <td>{{ $leactures->name }}</td>
                     <td>{{ $leactures->nidn }}</td>
+                    <td>{{ $leactures->study_program->name}}</td>
                     <td>{{ $leactures->gender }}</td>
                     <td>{{ $leactures->religion }}</td>
                     <td>{{ $leactures->address }}</td>

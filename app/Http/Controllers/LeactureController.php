@@ -9,6 +9,11 @@ use App\Exports\LecturerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Imports\LecturerImport;
+use App\Models\Academic_Year;
+use App\Models\LectureScheduling;
+use App\Models\Study_Program;
+use App\Models\Study_Value;
+use Illuminate\Support\Facades\Auth;
 
 class LeactureController extends Controller
 {
@@ -17,11 +22,44 @@ class LeactureController extends Controller
         $leacture = Lecturer::paginate(10);
         return view('admin.leacture.index', ['leacture' => $leacture]);
     }
+    // --------------------------------------------------------------TAMPLAN DOSEN -----------------------------------------------------------------
+    public function indexdosen(Request $request)
+    {
+        $academic_year = Academic_Year::get();
+        $username = Auth::user()->username;
+        $lecturer = Lecturer::where('nidn', $username)->get();
+        $jadwal = LectureScheduling::get();
+        
+        $dosen = $request->dosen_id;
+        $tahun_akademik = $request->tahun_akademik_id ?? null;
+        $dosenjadwal = LectureScheduling::
+        select('lecture_schedulings.*')
+        ->where('lecture_schedulings.academic_year_id', $tahun_akademik)
+        ->where('lecture_schedulings.lecturer_id', $lecturer[0]->id)        
+                ->get();
+        
+
+
+    return view('dosen.jadwal.index')->with([
+        'academic_year' => $academic_year, 
+        'tahun_akademik' => $tahun_akademik,
+        'dosen' => $dosen,
+        'dosenjadwal' => $dosenjadwal,
+        'lecturer' => $lecturer
+    ]);
+    }
+    public function storedosen(Request $request)
+    {
+       
+    }
 
 
     public function create()
     {
-        return view('admin.leacture.create');
+        $study_program = Study_Program::get();
+        return view('admin.leacture.create', [
+            'study_program' => $study_program,
+        ]);
     }
     public function store(Request $request)
     {
@@ -32,13 +70,15 @@ class LeactureController extends Controller
             $file->move(public_path('public/Image'), $filename);
             $photo = $filename;
         }
+
         $leactures = Lecturer::insert([
             'name' => $request->name,
             'nidn' => $request->nidn,
+            'study_program_id' => $request->program_studi,
             'gender' => $request->gender,
             'religion' => $request->religion,
             'address' => $request->address,
-            'photo' => $photo,
+            'photo' => $request->photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
@@ -72,10 +112,11 @@ class LeactureController extends Controller
         Lecturer::where('id', $request->id)->update([
             'name' => $request->name,
             'nidn' => $request->nidn,
+            'study_program_id' =>$request->study_program,
             'gender' => $request->gender,
             'religion' => $request->religion,
             'address' => $request->address,
-            'photo' => $photo,
+            'photo' => $request->photo,
             'created_by' => 1,
             'updated_by' => 1
         ]);
@@ -86,8 +127,8 @@ class LeactureController extends Controller
     public function destroy($id)
     {
         Lecturer::where('id', $id)->delete();
-        Session::flash('hapus','Berhasil menghapus data Dosen');
-        return redirect('/leacture');
+        Session::flash('hapus','Berhasil menghapus data mahasiswa');
+        return redirect('/student');
     }
     public function search(Request $request)
     {
@@ -98,11 +139,7 @@ class LeactureController extends Controller
 
         return view('admin.leacture.index', ['leacture' => $leacture]);
     }
-// --------------------------------------------------------------TAMPLAN DOSEN -----------------------------------------------------------------
-public function indexdosen()
-    {
-       return view('dosen.jadwal.index');
-    }
+
     public function export_excel()
     {
         return Excel::download(new LecturerExport(), 'Data Dosen.xlsx');

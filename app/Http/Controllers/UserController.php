@@ -2,84 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role as ModelsRole;
 use App\Models\User;
+use Database\Seeders\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function register()
+  public function index(){
+    $pengguna = User::paginate(10);    
+    return view('admin.user.index', [ 'pengguna' => $pengguna]);
+  }
+  public function create()
     {
-        $data['title'] = 'Register';
-        return view('user/register', $data);
-    }
-
-    public function register_action(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:tb_user',
-            'password' => 'required',
-            'password_confirm' => 'required|same:password',
-        ]);
-
-        $user = new User([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
-        $user->save();
-
-        return redirect()->route('login')->with('success', 'Registration success. Please login!');
-    }
-
-    public function login()
-    {
-        $data['title'] = 'Login';
-        return view('user/login', $data);
-    }
-
-    public function login_action(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-
-        return back()->withErrors([
-            'password' => 'Wrong username or password',
+        $roles_id = ModelsRole::get();
+        //memanggil view create
+        return view('admin.user.create', [
+            'roles_id' => $roles_id
         ]);
     }
+  public function store(Request $request){
+    User::insert([
+      'name' => $request->name,
+      'roles_id' => $request->roles,
+      'created_by' => 1,
+      'updated_by' => 1
+  ]);
+ 
+  return redirect('/user')->with('tambah','Berhasil menambah Data User SIMAK');
+  }
+  public function edit($id)
+  {
+        $roles = ModelsRole::where('id', $id)->get();
+      $pengguna = User::where('id', $id)->get();
+      return view('admin.user.edit', [
+          'pengguna' => $pengguna,
+          'roles_id' => $roles,
+      ]);
+  }
 
-    public function password()
-    {
-        $data['title'] = 'Change Password';
-        return view('user/password', $data);
-    }
+  public function update(Request $request)
+  {
+      User::where('id', $request->id)->update([
+          'name' => $request->name,
+          'username' =>$request->username,
+          'password' =>$request->password,
+          'email' =>$request->email,
+          'roles_id' => $request->roles_id,
+          'created_by' => 1,
+          'updated_by' => 1
+      ]);
+      Session::flash('edit','Berhasil mengedit data program studi');
+      return redirect('/user');
+  }
 
-    public function password_action(Request $request)
-    {
-        $request->validate([
-            'old_password' => 'required|current_password',
-            'new_password' => 'required|confirmed',
-        ]);
-        $user = User::find(Auth::id());
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-        $request->session()->regenerate();
-        return back()->with('success', 'Password changed!');
-    }
+  public function search(Request $request)
+  {
+      // menangkap data pencarian
+      $cari = $request->cari;
+      // mengambil data dari table pegawai sesuai pencarian data
+      $pengguna = User::where('name', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->orwhere('email', 'like', "%" . $cari . "%")->paginate(10);
+      // dd($students);
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
-    }
+      // mengirim data pegawai ke view index
+      return view('admin.user.index', ['pengguna' => $pengguna]);
+  }
+  public function destroy($id)
+  {
+      User::where('id', $id)->delete();
+      return redirect('/user')->with('hapus','Berhasil menghapus data mahasiswa');;
+  }
 }

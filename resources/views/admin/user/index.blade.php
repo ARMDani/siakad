@@ -4,7 +4,7 @@
 <div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
-      <h3>Data Fakultas</h3>
+      <h3>DATA <strong> USER </strong> ISTEK 'Aisyiyah Kendari</h3>
     </div>
   </div>
   {{-- BEGIN CONTENT --}}
@@ -22,11 +22,16 @@
                     <div class="col">
                       {{-- Begin Import data --}}
                       {{-- notifikasi form validasi --}}
+                      @if ($errors->has('file'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('file') }}</strong>
+                      </span>
+                      @endif
                       {{-- notifikasi sukses --}}
-                      @if ($tambah = Session::get('sukses'))
+                      @if ($sukses = Session::get('sukses'))
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $tambah }}</strong>
+                        <strong>{{ $sukses }}</strong>
                       </div>
                       @endif
                       <!-- Import Excel -->
@@ -75,68 +80,74 @@
                       </div>
                   @endif
                   {{-- end Sesion --}}
-              {{-- Begin row --}}
-              <div class="row">
-                <div class="col-1">
-                  <form action="/fakultas/create" method="get">
-                    {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
-                    <a class="btn btn-success" href="/fakultas"><i class="fas fa-redo-alt"></i></a>
-                  </form>
-                </div>
-                <div class="col-2" >
-                  <a class="nav-link" data-widget="navbar-search" href="#">
-                    <i class="fas fa-search"></i>
-                  </a>
-                  <div class="navbar-search-block">
-                    <form class="form-inline" action="/fakultas/cari" method="GET">
-                      <div class="input-group input-group-sm">
-                        <input class="form-control" type="text" name="cari" placeholder="Cari Data fakultas ..."  value="{{ old('cari') }}">
-                        <div class="input-group-append">
-                          <button class="btn btn-navbar" type="submit" value="CARI">
-                            <i class="fas fa-search"></i>
-                          </button>
-                          <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                            <i class="fas fa-times"></i>
-                          </button>
-                        </div>
+                  {{-- Begin row --}}
+                  <div class="row">
+                    <div class="col-1">
+                        <form action="/user/create" method="get">
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                          <a class="btn btn-success" href="/user"><i class="fas fa-redo-alt"></i></a>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                      <a class="nav-link" data-widget="navbar-search" href="#">
+                        <i class="fas fa-search"></i>
+                      </a>
+                      <div class="navbar-search-block">
+                        <form class="form-inline" action="/user/cari" method="GET">
+                          <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" name="cari" placeholder="Cari Data User ..."  value="{{ old('cari') }}">
+                            <div class="input-group-append">
+                              <button class="btn btn-navbar" type="submit" value="CARI">
+                                <i class="fas fa-search"></i>
+                              </button>
+                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                <i class="fas fa-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
                       </div>
-                    </form>
+                    </div>
+                    <div class="col-9">
+                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
+                          <a href="/user/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
+                    </div>
                   </div>
-                </div>
-                <div class="col-9">
-                  <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"> <i class="fas fa-file-import"></i> </button>
-                  <a href="/fakultas/export_excel" class="btn btn-success mr-3 float-right" target="_blank"> <i class="fas fa-file-export"></i> </a>
-                </div>
-              </div>
-              {{-- end row --}}
-
                 <table class="table table-bordered table-hover table-wrapper">
                   <tr class="text-center">
                     <th>No</th>
-                    <th>Code</th>
-                    <th>Fakultas</th>
-                    <th>Opsi</th>
+                    <th>Nama</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th># Opsi</th>
                   </tr>
-                  <?php $no = $faculty->currentPage() * $faculty->perPage() -9 ; ?>
-                  @foreach ($faculty as $facultys)
-                  <tr>
-                      <td class="text-center">{{ $no }}</td>
-                      <td class="text-center">{{ $facultys->code_faculty }}</td>
-                      <td>{{ $facultys->name }}</td>
-                      <td class="text-center">
-                          <a href="/fakultas/edit/{{ $facultys->id }}"class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
-                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                  
+                  <?php $no = $pengguna->currentPage() * $pengguna->perPage() -9 ; ?>
+                  @foreach ($pengguna as $penggunas)
+                  <tr class="text-center">
+                    <td>{{ $no++ }}</td>
+                      <td>{{ $penggunas->name }}</td>
+                      <td>{{ $penggunas->username }}</td>
+                      <td>{{ $penggunas->email }}</td>
+                      <td>
+                        <h6 class="text-primary">{{  $penggunas->role->name }}</h6>
+                      </td>
+                      <td>
+                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> <i class="fas fa-edit"></i> </a>
+                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                          <a href="/user/aktif/{{ $penggunas->id }}"class="btn btn-primary"> Aktif </a>
                       </td>
                   </tr>
-                  <?php $no++ ?>
-                  @endforeach
-              </table>
+              
+              @endforeach
+            </table>
               <br/>
-                Halaman : {{ $faculty->currentPage() }} <br/>
-                Jumlah Data : {{ $faculty->total() }} <br/>
-                Data Per Halaman : {{ $faculty->perPage() }} <br/>
-                {{ $faculty->links() }}
+                Halaman : {{ $pengguna->currentPage() }} <br/>
+                Jumlah Data : {{ $pengguna->total() }} <br/>
+                Data Per Halaman : {{ $pengguna->perPage() }} <br/>
+                {{ $pengguna->links() }}
            
               </div>
             </div>
