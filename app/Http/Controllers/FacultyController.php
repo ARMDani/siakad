@@ -8,6 +8,7 @@ use App\Exports\FacultyExport;
 use Session;
 use App\Imports\StudyFacultyImport;
 use App\Http\Controllers\Controller;
+use App\Imports\ImportFakulti;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -70,33 +71,9 @@ class FacultyController extends Controller
     {
         return Excel::download(new FacultyExport(), 'Data Fakultas.xlsx');
     }
-    public function import_excel(Request $request)
-    {
-        // validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_faculty',$nama_file);
- 
-		// import data
-        try {
-            Excel::import(new StudyFacultyImport, public_path('/file_faculty/'.$nama_file));
-            Session()::flash('sukses','Data Siswa Berhasil Diimport!');
-        } catch (\Throwable $th) {
-            $request->session()->flash('error', 'Data fakultas gagal diimport');
-        }
- 
-		// notifikasi dengan session
- 
-		// alihkan halaman kembali
-		return redirect('/fakultas');
+    public function import_excel(Request $request){
+        Excel::import(new ImportFakulti, $request->file('file')->store('files'));
+        Session::flash('import','Berhasil mengimport data fakultas');
+        return redirect()->back();
     }
 }

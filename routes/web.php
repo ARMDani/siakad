@@ -54,7 +54,7 @@ Route::post('/fakultas/update', [App\Http\Controllers\FacultyController::class, 
 Route::get('/fakultas/hapus/{id}', [App\Http\Controllers\FacultyController::class, 'destroy']);
 Route::get('/fakultas/cari', [App\Http\Controllers\FacultyController::class, 'search']);
 Route::get('/fakultas/export_excel', [App\Http\Controllers\FacultyController::class, 'export_excel']);
-Route::post('/fakultas/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel']);
+Route::post('/fakultas/import_excel', [App\Http\Controllers\FacultyController::class, 'import_excel'])->name('import');
 
 Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->middleware('auth');
 Route::get('/student/create', [App\Http\Controllers\StudentController::class, 'create']);
@@ -64,7 +64,7 @@ Route::post('/student/update', [App\Http\Controllers\StudentController::class, '
 Route::get('/student/hapus/{id}', [App\Http\Controllers\StudentController::class, 'destroy']);
 Route::get('/student/cari', [App\Http\Controllers\StudentController::class, 'search']);
 Route::get('/student/export_excel', [App\Http\Controllers\StudentController::class, 'export_excel']);
-Route::post('/student/import_excel', [App\Http\Controllers\StudentController::class, 'import_excel']);
+Route::post('/student/import_excel', [App\Http\Controllers\StudentController::class, 'import_excel'])->name('import');;
 
 Route::get('/leacture', [App\Http\Controllers\LeactureController::class, 'index'])->middleware('auth');
 Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
@@ -74,7 +74,7 @@ Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class,
 Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
 Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 'search']);
 Route::get('/leacture/export_excel', [App\Http\Controllers\LeactureController::class, 'export_excel']);
-Route::post('/leacture/import_excel', [App\Http\Controllers\LeactureController::class, 'import_excel']);
+Route::post('/leacture/import_excel', [App\Http\Controllers\LeactureController::class, 'import_excel'])->name('import');;
 
 Route::get('/prodi', [App\Http\Controllers\StudiprogramController::class, 'index'])->middleware('auth');
 Route::get('/prodi/create', [App\Http\Controllers\StudiprogramController::class, 'create']);
@@ -84,7 +84,7 @@ Route::post('/prodi/update', [App\Http\Controllers\StudiprogramController::class
 Route::get('/prodi/hapus/{id}', [App\Http\Controllers\StudiprogramController::class, 'destroy']);
 Route::get('/prodi/cari', [App\Http\Controllers\StudiprogramController::class, 'search']);
 Route::get('/prodi/export_excel', [App\Http\Controllers\StudiprogramController::class, 'export_excel']);
-Route::post('/prodi/import_excel', [App\Http\Controllers\StudiprogramController::class, 'import_excel']);
+Route::post('/prodi/import_excel', [App\Http\Controllers\StudiprogramController::class, 'import_excel'])->name('import');;
 
 Route::get('/kelas', [App\Http\Controllers\ClassController::class, 'index']);
 Route::get('/kelas/create', [App\Http\Controllers\ClassController::class, 'create']);
@@ -94,7 +94,7 @@ Route::post('/kelas/update', [App\Http\Controllers\ClassController::class, 'upda
 Route::get('/kelas/hapus/{id}', [App\Http\Controllers\ClassController::class, 'destroy']);
 Route::get('/kelas/cari', [App\Http\Controllers\ClassController::class, 'search']);
 Route::get('/kelas/export_excel', [App\Http\Controllers\ClassController::class, 'export_excel']);
-Route::post('/kelas/import_excel', [App\Http\Controllers\ClassController::class, 'import_excel']);
+Route::post('/kelas/import_excel', [App\Http\Controllers\ClassController::class, 'import_excel'])->name('import');;
 
 Route::get('/matakuliah', [App\Http\Controllers\SubjekcourseController::class, 'index']);
 Route::get('/matakuliah/create', [App\Http\Controllers\SubjekcourseController::class, 'create']);
@@ -104,7 +104,7 @@ Route::post('/matakuliah/update', [App\Http\Controllers\SubjekcourseController::
 Route::get('/matakuliah/hapus/{id}', [App\Http\Controllers\SubjekcourseController::class, 'destroy']);
 Route::get('/matakuliah/cari', [App\Http\Controllers\SubjekcourseController::class, 'search']);
 Route::get('/matakuliah/export_excel', [App\Http\Controllers\SubjekcourseController::class, 'export_excel']);
-Route::post('/matakuliah/import_excel', [App\Http\Controllers\SubjekcourseController::class, 'import_excel']);
+Route::post('/matakuliah/import_excel', [App\Http\Controllers\SubjekcourseController::class, 'import_excel'])->name('import');;
 
 Route::get('/ruangan', [App\Http\Controllers\RoomController::class, 'index']);
 Route::get('/ruangan/create', [App\Http\Controllers\RoomController::class, 'create']);
@@ -114,7 +114,7 @@ Route::post('/ruangan/update', [App\Http\Controllers\RoomController::class, 'upd
 Route::get('/ruangan/hapus/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
 Route::get('/ruangan/cari', [App\Http\Controllers\RoomController::class, 'search']);
 Route::get('/ruangan/export_excel', [App\Http\Controllers\RoomController::class, 'export_excel']);
-Route::post('/ruangan/import_excel', [App\Http\Controllers\RoomController::class, 'import_excel']);
+Route::post('/ruangan/import_excel', [App\Http\Controllers\RoomController::class, 'import_excel'])->name('import');;
 
 Route::get('/tahun_akademik', [App\Http\Controllers\AcademicYearController::class, 'index']);
 Route::get('/tahun_akademik/create', [App\Http\Controllers\AcademicYearController::class, 'create']);
@@ -147,6 +147,8 @@ Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit
 Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update']);
 Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
 Route::get('/user/cari', [App\Http\Controllers\UserController::class, 'search']);
+Route::get('/user/export_excel', [App\Http\Controllers\UserController::class, 'export_excel']);
+Route::post('/user/import_excel', [App\Http\Controllers\UserController::class, 'import_excel'])->name('import');;
 
 //==================================================================================================================
 // ---------------------------------------END FITUR ADMINISTRATOR-------------------------------------------------

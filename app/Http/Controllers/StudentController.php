@@ -12,6 +12,7 @@ use App\Models\Districts;
 use App\Models\ClassModel;
 use App\Models\Generations;
 use App\Exports\StudentExport;
+use App\Imports\Importstudent;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -134,31 +135,9 @@ class StudentController extends Controller
     }
     public function import_excel(Request $request)
     {
-        // validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_faculty',$nama_file);
- 
-		// import data
-        try {
-            Excel::import(new StudyFacultyImport, public_path('/file_faculty/'.$nama_file));
-            Session()::flash('sukses','Data Siswa Berhasil Diimport!');
-        } catch (\Throwable $th) {
-            $request->session()->flash('error', 'Data fakultas gagal diimport');
-        }
- 
-		// notifikasi dengan session
- 
-		// alihkan halaman kembali
-		return redirect('/fakultas');
+        Excel::import(new Importstudent, $request->file('file')->store('files'));
+        Session::flash('import','Berhasil mengimport data mahasiswa');
+        return redirect()->back();
+       
     }
 }

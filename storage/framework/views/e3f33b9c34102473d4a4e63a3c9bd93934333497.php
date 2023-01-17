@@ -1,18 +1,19 @@
-@extends('template.home')
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 <div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
-      <h3>Data Ruangan</h3>
+      <h3>Data Kelas</h3>
     </div>
   </div>
-  {{-- BEGIN CONTENT --}}
+  
   <div class="content">
-    {{-- BEGIN CONTAINER --}}
+    
     <div class="container-fluid">
    
-      {{-- BEGIN ROW 2 --}}
+      
       <div class="row">
         <div class="col">
           <div class="card">
@@ -20,34 +21,31 @@
               <div class="form">
                   <div class="row">
                     <div class="col">
-                      {{-- Begin Import data --}}
-                      {{-- notifikasi form validasi --}}
-                      @if ($errors->has('file'))
+                      
+                      
+                      <?php if($errors->has('file')): ?>
                       <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('file') }}</strong>
+                        <strong><?php echo e($errors->first('file')); ?></strong>
                       </span>
-                      @endif
-                      {{-- notifikasi sukses --}}
-                      @if ($sukses = Session::get('sukses'))
+                      <?php endif; ?>
+                      
+                      <?php if($sukses = Session::get('sukses')): ?>
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $sukses }}</strong>
+                        <strong><?php echo e($sukses); ?></strong>
                       </div>
-                      @endif
+                      <?php endif; ?>
                       <!-- Import Excel -->
                       <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
+                          <form method="post" action="/kelas/import_excel" enctype="multipart/form-data">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                               </div>
-                              <div class="modal-header">
-                                <p>File harus format exel, serta panduan import bisa lihat disini</p>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-eye"></i></button>
-                              </div>
-                              <form method="post" action="/ruangan/import_excel" enctype="multipart/form-data">
                               <div class="modal-body">
-                                {{ csrf_field() }}
+                                <?php echo e(csrf_field()); ?>
+
                                 <label>Pilih file excel</label>
                                 <div class="form-group">
                                   <input type="file" name="file" required="required">
@@ -61,52 +59,47 @@
                           </form>
                         </div>
                       </div>
-                      {{-- End Import data --}}
+                      
                     </div>
                   </div>
-                  {{-- Begin Sesion --}}
-                  @if ($import = Session::get('import'))
-                      <div class="alert alert-warning alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $import }}</strong>
-                      </div>
-                  @endif
-                  @if ($tambah = Session::get('tambah'))
+                  
+                  <?php if($tambah = Session::get('tambah')): ?>
                       <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $tambah }}</strong>
+                        <strong><?php echo e($tambah); ?></strong>
                       </div>
-                  @endif
-                  @if ($edit = Session::get('edit'))
+                  <?php endif; ?>
+                  <?php if($edit = Session::get('edit')): ?>
                       <div class="alert alert-primary alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $edit }}</strong>
+                        <strong><?php echo e($edit); ?></strong>
                       </div>
-                  @endif
-                  @if ($hapus = Session::get('hapus'))
+                  <?php endif; ?>
+                  <?php if($hapus = Session::get('hapus')): ?>
                       <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button> 
-                        <strong>{{ $hapus }}</strong>
+                        <strong><?php echo e($hapus); ?></strong>
                       </div>
-                  @endif
-                  {{-- end Sesion --}}
-                  {{-- Begin row --}}
-                  <div class="row">
+                  <?php endif; ?>
+                  
+                    
+                    <div class="row">
                       <div class="col-1">
-                          <form action="/ruangan/create" method="get">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
-                            <a class="btn btn-success" href="/ruangan"><i class="fas fa-redo-alt"></i></a>
-                          </form>
+                        <form action="/kelas/create" method="get">
+                          <?php echo e(csrf_field()); ?>
+
+                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                          <a class="btn btn-success" href="/kelas"><i class="fas fa-redo-alt"></i></a>
+                      </form>
                       </div>
                       <div class="col-2">
                         <a class="nav-link" data-widget="navbar-search" href="#">
                           <i class="fas fa-search"></i>
                         </a>
                         <div class="navbar-search-block">
-                          <form class="form-inline" action="/ruangan/cari" method="GET">
+                          <form class="form-inline" action="/kelas/cari" method="GET">
                             <div class="input-group input-group-sm">
-                              <input class="form-control" type="text" name="cari" placeholder="Cari Data Ruangan ..."  value="{{ old('cari') }}">
+                              <input class="form-control" type="text" name="cari" placeholder="Cari Data Mahasiswa ..."  value="<?php echo e(old('cari')); ?>">
                               <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit" value="CARI">
                                   <i class="fas fa-search"></i>
@@ -120,39 +113,36 @@
                         </div>
                       </div>
                       <div class="col-9">
-                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
-                          <a href="/ruangan/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
+                        <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
+                        <a href="/kelas/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
                       </div>
-                  </div>
-                      
-                      
-                {{-- end row --}}
+                    </div>
+                    
                 <table class="table table-bordered table-hover table-wrapper">
-                  <tr class="text-center">
+                  <tr  class="text-center">
                     <th>No</th>
-                    <th>Code</th>
-                    <th>Ruangan</th>
+                    <th>Kelas</th>
                     <th>Opsi</th>
                   </tr>
-                  <?php $no = $room->currentPage() * $room->perPage() -9 ; ?>
-                  @foreach ($room as $rooms)
+                  <?php $no = $class->currentPage() * $class->perPage() -9 ; ?>
+                  <?php $__currentLoopData = $class; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kelas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
-                      <td class="text-center">{{ $no }}</td>
-                      <td class="text-center">{{ $rooms->code_room }}</td>
-                      <td class="text-center">{{ $rooms->name }}</td>
+                      <td class="text-center"><?php echo e($no); ?></td>
+                      <td class="text-center"><?php echo e($kelas->name); ?></td>
                       <td class="text-center">
-                          <a href="/ruangan/edit/{{ $rooms->id }}" class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
-                          <a href="/ruangan/hapus/{{ $rooms->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                          <a href="/kelas/edit/<?php echo e($kelas->id); ?>" class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
+                          <a href="/kelas/hapus/<?php echo e($kelas->id); ?>"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
                       </td>
                   </tr>
                   <?php $no++ ?>
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </table>
               <br/>
-                Halaman : {{ $room->currentPage() }} <br/>
-                Jumlah Data : {{ $room->total() }} <br/>
-                Data Per Halaman : {{ $room->perPage() }} <br/>
-                {{ $room->links() }}
+                Halaman : <?php echo e($class->currentPage()); ?> <br/>
+                Jumlah Data : <?php echo e($class->total()); ?> <br/>
+                Data Per Halaman : <?php echo e($class->perPage()); ?> <br/>
+                <?php echo e($class->links()); ?>
+
            
               </div>
             </div>
@@ -161,17 +151,17 @@
         </div>
       </div>
 
-      {{-- END ROW 2 --}}
+      
 
     </div>
-    {{-- END CONTAINER --}}
+    
 
   </div>
-  {{-- END CONTENT --}}
+  
  
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -182,3 +172,4 @@
 
 
   
+<?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\kampus\resources\views/admin/class/index.blade.php ENDPATH**/ ?>
