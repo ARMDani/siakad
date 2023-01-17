@@ -88,7 +88,7 @@
     </div>
     </div>
   </div>
-        <!-- /.card-body -->
+       
 <?php $__env->stopSection(); ?> 
 
 <?php echo $__env->make('template.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Windows 10\Documents\Technos Studio\siakad\resources\views/dosen/jadwal/index.blade.php ENDPATH**/ ?>
