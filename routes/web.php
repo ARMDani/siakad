@@ -252,4 +252,5 @@ Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 's
 // ------------------------------------------------Batas Controller--------------------------------------------------
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
