@@ -226,6 +226,10 @@ Route::post('/khsmahasiswa/input_nilai', [App\Http\Controllers\KHSController::cl
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
 
+
+Route::get('/transkipnilai', [App\Http\Controllers\NilaiController::class, 'indexmahasiswa']);
+Route::post('/transkipnilai', [App\Http\Controllers\NilaiController::class, 'indexmahasiswa']);
+
 Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
 Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, 'edit']);
 
@@ -248,4 +252,4 @@ Route::get('/leacture/cari', [App\Http\Controllers\LeactureController::class, 's
 // ------------------------------------------------Batas Controller--------------------------------------------------
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);

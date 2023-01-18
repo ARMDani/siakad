@@ -48,7 +48,7 @@
     </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="fal fa-database"></i>
+            <i class="fa fa-folder-open" aria-hidden="true"></i>
             <p>
               Master Data
               <i class="fas fa-angle-left right"></i>
@@ -58,50 +58,50 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/fakultas" class="nav-link">
-                <i class="fal fa-table nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Fakultas</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/prodi" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Prodi</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/kelas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Kelas</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/ruangan" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Ruangan</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/matakuliah" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Mata Kuliah</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/leacture" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Dosen</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/student" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-file nav-icon"></i>
                 <p>Data Mahasiswa<p>
               </a>
             </li>
           </ul>
         <li class="nav-item">
           <a href="/tahun_akademik" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-calendar"></i>
             <p>
               Tahun Akademik
             </p>
@@ -109,56 +109,29 @@
         </li>
         <li class="nav-item">
           <a href="/nilai_grade" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-calculator"></i>
             <p>
               Grade
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
+          <a href="/user" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
             <i class="fas fa-user-circle-o"></i>
             <p>
-              Users
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">4</span>
+              Users             
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/user" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Administrator</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Prodi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dosen</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Mahasiswa</p>
-              </a>
-            </li>
-          </ul>
+{{--           
         <li class="nav-item">
           <a href="/pengaturan" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-cog"></i>
             <p>
               Pengaturan
             </p>
           </a>
-        </li>
+        </li> --}}
         {{-- -----------------------batas admin------------------------}}
         @endif
 
@@ -174,7 +147,7 @@
         </li>
         <li class="nav-item">
           <a href="/leacture" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-user"></i>
             <p>
               Dosen
             </p>
@@ -182,7 +155,7 @@
         </li>
         <li class="nav-item">
           <a href="/student" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-user-circle"></i>
             <p>
               Mahasiswa
             </p>
@@ -190,7 +163,7 @@
         </li>
         <li class="nav-item">
           <a href="/matakuliah" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-book"></i>
             <p>
               Mata Kuliah
             </p>
@@ -307,8 +280,8 @@
     </a>
   </li>
   <li class="nav-item">
-    <a href="#" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
+    <a href="/transkipnilai" class="nav-link">
+      <i class="nav-icon fas fa-calculator"></i>
       <p>
         Transkip Nilai
       </p>

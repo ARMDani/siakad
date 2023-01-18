@@ -22,7 +22,7 @@ class LeactureController extends Controller
         $leacture = Lecturer::paginate(10);
         return view('admin.leacture.index', ['leacture' => $leacture]);
     }
-    // --------------------------------------------------------------TAMPLAN DOSEN -----------------------------------------------------------------
+    // --------------------------------------------------------------TAMPLAN Jadwal DOSEN -----------------------------------------------------------------
     public function indexdosen(Request $request)
     {
         $academic_year = Academic_Year::get();
@@ -37,8 +37,6 @@ class LeactureController extends Controller
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik)
         ->where('lecture_schedulings.lecturer_id', $lecturer[0]->id)        
                 ->get();
-        
-
 
     return view('dosen.jadwal.index')->with([
         'academic_year' => $academic_year, 
@@ -48,6 +46,14 @@ class LeactureController extends Controller
         'lecturer' => $lecturer
     ]);
     }
+// -------------------------------------TAMPILAN PRODI DOSEN PENASEHAT AKADEMIK----------------------------------------------------
+    public function indexprodidosen(){
+        $leacture = Lecturer::paginate(10);
+        return view('prodi.dosen.index', ['leacture' => $leacture]);
+
+    }
+
+
     public function storedosen(Request $request)
     {
        

@@ -73,6 +73,30 @@ class NilaiController extends Controller
         ]);
         return redirect('/nilai/input_nilai/{matakuliah}');
     }
+    // -------------------------------Transkip Nilai-------------------------------------------
+    public function indexmahasiswa(Request $request)
+    {
+        $data = Study_Value::get();
+        $academic_year = Academic_Year::get();
+        $username = Auth::user()->username;
+        $mahasiswa = Student::where('nim', $username)->first();
+        $academic_year = Academic_Year::get();
+        // $params = ['tahun_akademik' =>  null];
+        $tahun_akademik = $request->tahun_akademik_id ?? null;
+        $khsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        ->where('student_id', $mahasiswa->id)                
+                ->get();
+        
+        // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
+        // $params = ['tahun_akademik' => $tahun_akademik];
+            
+        return view('mahasiswa.transkip_nilai.indexmhsnilai')->with([
+            'academic_year' => $academic_year, 
+            'khsmahasiswa' => $khsmahasiswa,
+            'tahun_akademik' => $tahun_akademik,
+            'data' => $data
+            ]);
+    }
     
     
 

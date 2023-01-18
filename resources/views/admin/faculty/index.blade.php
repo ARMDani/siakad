@@ -88,14 +88,14 @@
                   {{-- end Sesion --}}
               {{-- Begin row --}}
               <div class="row">
-                <div class="col-1">
+                <div class="col-2">
                   <form action="/fakultas/create" method="get">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
                     <a class="btn btn-success" href="/fakultas"><i class="fas fa-redo-alt"></i></a>
                   </form>
                 </div>
-                <div class="col-2" >
+                <div class="col-8" >
                   <a class="nav-link" data-widget="navbar-search" href="#">
                     <i class="fas fa-search"></i>
                   </a>
@@ -115,7 +115,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="col-9">
+                <div class="col-2">
                   <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"> <i class="fas fa-file-import"></i> </button>
                   <a href="/fakultas/export_excel" class="btn btn-success mr-3 float-right" target="_blank"> <i class="fas fa-file-export"></i> </a>
                 </div>

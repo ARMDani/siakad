@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\JadwalController;
 |
 */
 Route::post('login', [AuthController::class, 'login']);
-Route::post('jadwal', [JadwalController::class, 'index']);
+Route::post('index', [JadwalController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
