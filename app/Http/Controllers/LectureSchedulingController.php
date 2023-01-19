@@ -62,7 +62,7 @@ class LectureSchedulingController extends Controller
             'created_by' => 1,
             'updated_by' => 1
         ]);
-        return redirect('/penjadwalan')->with('status', 'Data Berhasil Ditambahkan !');
+        return redirect('/penjadwalan')->with('success', 'Data Berhasil Ditambahkan !');
        
     }
 
@@ -94,13 +94,28 @@ class LectureSchedulingController extends Controller
     }
     public function destroy($id)
     {
-        LectureScheduling::where('id', $id)->delete();
-        return redirect('/penjadwalan');
+        try {
+            LectureScheduling::where('id', $id)->delete();
+            return redirect('/penjadwalan')->with('success', 'Berhasil Menghapus Data');
+          }
+          
+          //catch exception
+          catch(\Exception $e) {
+            return redirect('/penjadwalan')->with('error', 'Data Sedang Digunakan');
+          }
+        
     }
     public function search(Request $request)
     {
+        // menangkap data pencarian
         $cari = $request->cari;
-        $jadwal = LectureScheduling::where('code_faculty', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
-        return view('admin.faculty.index', ['faculty' =>  $faculty]);
+        $tahun_akademik = $request->tahun_akademik_id ?? null;
+        // mengambil data dari table pegawai sesuai pencarian data
+        $matakuliah = LectureScheduling::  $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
+        ->where('select count(*) as subject_course from lecture_schedlings where subject_course.name,', 'like', "%" . $cari . "%")->paginate(10);
+        // dd($students);
+  
+        // mengirim data pegawai ke view index
+        return view('prodi.penjadwalankuliah.index', ['matakuliah' => $matakuliah]);
     }
 }

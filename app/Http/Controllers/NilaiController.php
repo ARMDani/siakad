@@ -56,6 +56,7 @@ class NilaiController extends Controller
         ->where('lecture_schedulings.subject_course_id', $matakuliah )    
 
                 ->get();
+        
          
         return view('prodi.input_nilai.input_nilai')->with([ 
             'grade' =>$grade,
@@ -113,12 +114,18 @@ class NilaiController extends Controller
     public function store($id ,Request $request, )
     {
     $data = $request->all();
+    $matakuliah = $request->matakuliah_id;
+    $mahasiswas = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')  
+        ->select ('study_value.*')
+        ->where('lecture_schedulings.subject_course_id', $matakuliah )    
+
+                ->get();
    
       $jumlah = count($data['assignment_value']);
       for($nilai = 0; $nilai < $jumlah; $nilai++){
 
         $Na = (($request->assignment_value[$nilai])*0.35)+(($request->uts_value[$nilai])*0.35)+(($request->uas_value[$nilai])*0.35);
-       
+     
         if($Na >= 86){
                 $grade_id = 1;
             }elseif($Na >= 80 && $Na < 85){
@@ -148,7 +155,9 @@ class NilaiController extends Controller
                 ]);
      }
       
-        return redirect('/nilai/input_nilai/'.$id)->with('status', 'Nilai Mahasiswa Telah Terinput !!!');
+        return redirect('/nilai/input_nilai/'.$id)->with('status', 'Nilai Mahasiswa Telah Terinput !!!')->with([
+               
+            ]);
     }
 
 

@@ -96,7 +96,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form">
-                  <form action="/krsmahasiswa/storemahasiswa" method="post">
+                  <form action="/kHsmahasiswa/storemahasiswa" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="tahun_akademik" value="">
                     
@@ -124,7 +124,7 @@
                           <td>
                             <div class="form-group">
                               <div class="">
-                                <button type="button" class="btn btn-secondary">Lihat KHS</button>
+                                <a class="btn btn-primary" href="/khs/pdf/{{ $khss->id }}/{{ $tahun_akademik }}/{{ $angkatan }}"><i class="fas fa-print"></i></a>
                               </div>
                             </div>
                           </td> 

@@ -22,8 +22,10 @@
                   </ul>                 
                 </div>
               </div>
-              <label>Tahun Akademik</label>
-                <select class="form-control col-3" name="tahun_akademik_id" required="required">
+              <div class="form-group row">
+                <label class="col-form-label">Tahun Akademik<span class="required" style="color: #dd4b39;">*</span></label>
+                <li class="list-group ml-2"> 
+                <select class="form-control" name="tahun_akademik_id" required="required">
                   <option value="">- Pilih Tahun Akademik -</option>
                   @foreach ($academic_year as $data)
                   @if ($data->id==$tahun_akademik)
@@ -35,10 +37,14 @@
                     {{$data->name}}
                     </option> 
                   @endif
-                 
                   @endforeach 
               </select>
-              <button type="submit" class="btn btn-primary" >Refresh</button>
+              </li>
+            </ul>
+            <br>
+            <button type="submit" class="btn btn-primary" >Refresh</button>
+         
+          </div>
           </div>
           <form action="/dosen/store" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}

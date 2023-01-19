@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
+use App\Models\Student;
+use PDF;
 use App\Models\Generations;
 use App\Models\Study_Value;
 use Illuminate\Http\Request;
 use App\Models\Academic_Year;
-use App\Models\Grade;
 use App\Models\LectureScheduling;
-use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -54,6 +55,7 @@ class KHSController extends Controller
         // $params = ['tahun_akademik' => $tahun_akademik];
             
         return view('mahasiswa.khs.indexmhs')->with([
+            'mahasiswa' => $mahasiswa,
             'academic_year' => $academic_year, 
             'khsmahasiswa' => $khsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
@@ -87,6 +89,32 @@ class KHSController extends Controller
        
         $cari = $request->cari;
     }
+     // Generate PDF
+     public function createPDF(Request $request) {
+     
+        $tahun_akademik = Academic_Year::find( $request->segment(4));
+        
+        $angkatan = Generations::find( $request->segment(5));
+        $mahasiswa = $request->segment(3);
+      
+        $khs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+            ->where('study_value.lecture_schedulings_id', $tahun_akademik->id)
+            ->where('student.generations_id', $angkatan->id)
+            ->where('study_value.student_id', $mahasiswa)   
+            ->get();
+         
+            
+
+        view()->share('students',$khs);
+        $pdf = PDF::loadView('prodi.khs.pdf', ['khs'=> $khs,
+            'khs' => $khs,
+            'tahun_akademik' => $tahun_akademik,
+            'mahasiswa' => $mahasiswa,
+            'angkatan' => $angkatan
+            ]);
+
+        return $pdf->download('KHS.pdf');
+      }
     public function show()
     {
         //

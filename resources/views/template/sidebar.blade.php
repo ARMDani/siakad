@@ -18,7 +18,7 @@
       </div>
     </div>
     <!-- SidebarSearch Form -->
-    <div class="form-inline">
+    {{-- <div class="form-inline">
       <div class="input-group" data-widget="sidebar-search">
         <input class="form-control form-control-sidebar text-dark bg-light" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -27,14 +27,14 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-    @if (Auth::user()->role->id == 1)    
+    @if (Auth::user()->roles->id == 1)    
     {{-- ---------------------mulai admin--------------------------- --}}
     <li class="nav-header">ADMIN</li>
     <li class="nav-item menu-open">
@@ -135,7 +135,7 @@
         {{-- -----------------------batas admin------------------------}}
         @endif
 
-        @if (Auth::user()->role->id == 2)
+        @if (Auth::user()->roles->id == 2)
         <li class="nav-header">PRODI</li>
         <li class="nav-item menu-open">
           <a href="/home" class="nav-link active">
@@ -219,7 +219,7 @@
         {{-- --------------------------batas prodi----------------------------------}}
         @endif
 
-        @if (Auth::user()->role->id == 3)
+        @if (Auth::user()->roles->id == 3)
         {{-- ---------------------------------mulai dosen------------------------------ --}}
         <li class="nav-header">DOSEN</li>
         <li class="nav-item menu-open">
@@ -251,7 +251,7 @@
 
   @endif
 
-  @if (Auth::user()->role->id == 4)
+  @if (Auth::user()->roles->id == 4)
   {{-- ---------------------------------mulai mahasiswa--------------------------- --}}
   <li class="nav-header">MAHASISWA</li>
   <li class="nav-item menu-open">
@@ -265,7 +265,7 @@
   </li>
   <li class="nav-item">
     <a href="/krsmahasiswa" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
+      <i class="nav-icon fas fa-book"></i>
       <p>
         Kartu Rencana Studi
       </p>
@@ -273,7 +273,7 @@
   </li>
   <li class="nav-item">
     <a href="/khsmahasiswa" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
+      <i class="nav-icon fas fa-book"></i>
       <p>
         Kartu Hasil Studi
       </p>

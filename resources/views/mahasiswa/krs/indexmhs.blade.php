@@ -16,7 +16,10 @@
                   @foreach ($mahasiswa as $data)
                   <ul class="list-group list-group-flush" value="{{ $data->id }}">
                   
-                 
+                    <?php 
+                    $id_angkatan = $data->generations_id;
+                    $id_mahasiswa = $data->id;
+                    ?>
                     <li class="list-group-item"><b>NIM : </b> {{ $data->nim}} </li>
                     <li class="list-group-item"><b>Nama : </b> {{ $data->name }} </li>
                     <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $data->study_program->name }}</li>
@@ -50,6 +53,12 @@
             <button type="submit" class="btn btn-primary" >Refresh</button>
          
           </div>
+          @if ($sukses = Session::get('error'))
+          <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <strong>{{ $sukses }}</strong>
+          </div>
+          @endif
           @if (session('status'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }}
@@ -79,19 +88,10 @@
       <div class="card">
         <div class="card-body">
       <ul>
-      <a href="{{ URL::to('/krs/pdf') }}" class="btn btn-warning ml-">Cetak</a>
+      <a href="/krs/pdf/{{ $id_mahasiswa }}/{{ $tahun_akademik }}/{{ $id_angkatan }}" class="btn btn-warning ml-">Cetak</a>
       <a href="/krsmahasiswa/createmahasiswa/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah KRS</a>
     </ul>
-    <form class="form-inline">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+   
     <br>
  
         <table class="table table-bordered table-hover table-wrapper">

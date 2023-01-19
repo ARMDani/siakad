@@ -72,7 +72,7 @@ class SksmhsController extends Controller
                 ]);
             }
         }
-        return redirect('/sksmhs');
+        return redirect('/sksmhs')->with('success', 'Berhasil Memberikan SKS Mahasiswa !');
     }
 
     public function show($id)

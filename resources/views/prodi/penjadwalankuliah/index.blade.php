@@ -55,18 +55,44 @@
     </div>        
       {{-- -------------------------------------tabel jadwal----------------------------------------------------------------------- --}}
      <div class="card">
-     
-        <div class="card-body">
-          <form class="input-group-append" action="/matakuliah/cari"  method="GET">
-              <input class="form-control" type="text"  name="cari" placeholder="Cari Mata Kuliah .." value="{{ old('cari') }} ">
-              <input type="submit" value="CARI">
-          </form>
-          
+      <div class="navbar-search-block">
+        <form class="form-inline" action="/penjadwalan/cari" method="GET">
+          <div class="input-group input-group-sm">
+            <input class="form-control" type="text" name="cari" placeholder="Cari Jadwal ..."  value="{{ old('cari') }}">
+            <div class="input-group-append">
+              <button class="btn btn-navbar" type="submit" value="CARI">
+                <i class="fas fa-search"></i>
+              </button>
+              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <ul>
-      <a href="#" class="btn btn-warning ml-">Cetak</a>
+    </div>
+     
+        <div class="card">
+          <div class="card-body">
+                       {{-- notifikasi sukses --}}
+            @if ($sukses = Session::get('error'))
+            <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong>{{ $sukses }}</strong>
+            </div>
+            @endif
+            @if ($sukses = Session::get('success'))
+            <div class="alert alert-success alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong>{{ $sukses }}</strong>
+            </div>
+            @endif
+      
+      
+      <a href="#" class="btn btn-warning ">Cetak</a>
       <a href="/penjadwalan/create/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah Jadwal</a>
-    </ul>
+    <br>
+    <br>
         <table class="table table-bordered table-hover table-wrapper">
             <tr class="text-center">
               <th>No</th>

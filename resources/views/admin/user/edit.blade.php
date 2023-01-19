@@ -41,7 +41,7 @@
                           <input class="form-control" type="text" required="required" name="email" value="{{ $penggunas->email }}">
                         </div>
                         <div class="form-group">
-                          <label>User<span class="required" style="color: #dd4b39;">*</span></label>
+                          <label>Role<span class="required" style="color: #dd4b39;">*</span></label>
                           <select class="form-control" name="roles" required="required">
                               <option value="">- Pilih Role -</option>
                               @foreach ($roles_id as $data)

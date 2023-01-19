@@ -178,7 +178,7 @@ Route::get('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs', [App\Http\Controllers\KRSController::class, 'index']);
 Route::post('/krs/store', [App\Http\Controllers\KRSController::class, 'store']);
 Route::get('/krs/cari', [App\Http\Controllers\KRSController::class, 'search']);
-Route::get('/krs/pdf/', [App\Http\Controllers\KRSController::class, 'createPDF']);
+Route::get('/krs/pdf/{id}/{tahun_akademik}/{angkatan}', [App\Http\Controllers\KRSController::class, 'createPDF']);
 // Route::get('/file-import',[App\Http\Controllers\KRSController::class,'importView'])->name('import-view');
 // Route::post('/import',[App\Http\Controllers\KRSController::class,'import'])->name('import');
 // Route::get('/export-users',[App\Http\Controllers\KRSController::class,'exportUsers'])->name('export-users');
@@ -188,6 +188,7 @@ Route::get('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
 Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
+Route::get('/khs/pdf/{id}/{tahun_akademik}/{angkatan}', [App\Http\Controllers\KHSController::class, 'createPDF']);
 // -------------------------------------------------Nilai Prodi-----------------------------------------------------------------------
 
 Route::get('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
@@ -195,10 +196,6 @@ Route::get('/nilai/input_nilai/{matakuliah}', [App\Http\Controllers\NilaiControl
 Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::post('/nilai/store/{id}', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
-
-
-
-
 
 
 //--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------

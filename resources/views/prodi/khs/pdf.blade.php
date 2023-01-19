@@ -5,62 +5,81 @@
         </div>
     </div>
 </div>
+<style>
+h3 {
+text-align: center;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
 <hr>
+<h3>KARTU HASIL STUDI</h3>
+<br>
+
+@foreach($khs as $mhs)
 <table border="0" width="100%">
     <tr class="text-center">
         <td width="35%"><b>Nama</b></td>
-        <td>: <?= $krsmahasiswa[0]->students->nama ?></td>
+        <td>: <?= $mhs->student->name ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>NIM</b></td>
-        <td>: <?= $krsmahasiswa[0]->students->nim ?></td>
+        <td>: <?= $mhs->student->nim ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>Semester</b></td>
-        <td>: <?= $krsmahasiswa[0]->students->nim ?></td>
+        <td>: <?= $mhs->lecture_schedulings->subject_course->semester ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>Jurusan/Program Studi</b></td>
-        <td>:Administrasi Kesehatan</td>
+        <td>: <?= $mhs->student->study_program->name ?></td>
     </tr>
 </table>
 
-<table class="table" width="100%">
-    <thead>
-        <tr class="text-center">
-            <th>No.</th>
-            <th>Mata Kuliah</th>
-            <th>SKS</th>
-            <th>Hari</th>
-            <th>Jam</th>
-            <th>Dosen</th>
-            <th>Kelas</th>
+@endforeach 
 
-        </tr>
+<br><br>
+<div style="overflow-x:auto;">
+    <table>
+    <thead >
+      <tr  class="text-center">
+        <th class="tg-6h95  text-center" rowspan="2">No</th>
+        <th class="tg-6h95  text-center" rowspan="2">Kode</th>
+        <th class="tg-6h95  text-center" rowspan="2" >Mata Kuliah</th>
+        <th class="tg-6h95  text-center" rowspan="2">SKS</th>
+        <th class="text-center" colspan="18">Nilai</th>
+      </tr>
+      <tr>
+        <td class="tg-k7qf  text-center">Bobot</td>
+        <td class="tg-k7qf  text-center">Nilai</td>
+        <td class="tg-k7qf  text-center">Huruf</td>
+      </tr>
     </thead>
-    <tbody>
-        {{-- <?php 
-            $i = 1; 
-            foreach($krsmahasiswa as $mk);
-            ?> --}}
-        <tr class="text-center">
-            <td><?= $i ?></td>
-            <td>
-                <?= $mk-> ?>
-            </td>
-            <td>Adminnistrasi Kesehatan</td>
-            <td>3</td>
-            <td>Senin</td>
-            <td>08.00</td>
-            <td>Irma</td>
-            <td>1A</td>
-        </tr>
-        <?php  
-        $i++;
-    endforeach;
-        ?>
-    </tbody>
-</table>
+      <?php $no = 1  ?>
+      @foreach($khs as $mhs)
+      <tr >
+        <td class="tg-3xi5 text-center">{{ $no }}</td>
+        <td class="tg-3xi5 text-center">{{ $mhs->lecture_schedulings->subject_course->course_code }}</td>
+        <td class="tg-3xi5 text-center">{{ $mhs->lecture_schedulings->subject_course->name }}</td>
+        <td class="text-center">{{ $mhs->lecture_schedulings->subject_course->sk}}</td>
+        <td class="text-center">{{ $mhs->grade->bobot}}</td>
+        <td class="text-center">{{ $mhs->final_score}}</td>
+        <td class="text-center">{{ $mhs->grade->name}}</td>
+    </tr>
+      <?php $no++ ?>
+      @endforeach
+  </table>
+</div>
 
 <br><br><br><br>
 <u></u><br>
@@ -74,7 +93,7 @@
         </td>
     </tr>
 </table>
-<table class="table">
+<table class="table" style="width:100%">
     <thead>
         <tr>
             <th><b>Menyetujui</b></th>
@@ -83,17 +102,17 @@
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td style="width:50%">
                 Mahasiswa,
-                <br><br><br>
+                <br><br><br><br>
                 <u></u><br>
-                NIM.
+                <?= $mhs->student->name ?>
             </td>
-            <td style="text-align: right;">
+            <td style="text-align: right; width:50%;">
                 Penasehat Akademik
-                <br><br><br>
+                <br><br><br><br>
                 <u></u><br>
-                NIDN/NIDK
+                NIDN/NIDK.
             </td>
         </tr>
     </tbody>
@@ -102,7 +121,7 @@
     <tr>
         <td style="text-align: center;">
             Ketua Jurusan/Program Studi
-            <br><br><br>
+            <br><br><br><br>
             <u></u><br>
             NIDN/NIDK. 
         </td>

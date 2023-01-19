@@ -37,7 +37,7 @@
  <div class="card">
  <div class="card-body">
   <div>
-  <a href="#" class="btn btn-success">Cetak KHS</a> 
+  <a href="#" class="btn btn-success">Cetak Transkip</a> 
 </div>  
 <br> 
     <form action="/khsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">

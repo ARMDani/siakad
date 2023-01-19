@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @if (Auth::user()->role->id == 1)
+    @if (Auth::user()->roles->id == 1)
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -30,7 +30,7 @@
                 <p>Fakutas</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="fa fa-building"></i>
               </div>
               <a href="/fakultas" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -46,7 +46,7 @@
                 <p>Prodi</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-graduation-cap"></i>
               </div>
               <a href="/prodi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -61,7 +61,7 @@
                 <p>Dosen</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="/leacture" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -76,7 +76,7 @@
                 <p>Mahasiswa</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-users"></i>
               </div>
               <a href="/student" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -85,7 +85,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role->id == 2)
+        @if (Auth::user()->roles->id == 2)
         <section class="content">
           <div class="container-fluid">
         <div class="content-header">
@@ -108,9 +108,9 @@
                 <p>Mata Kuliah</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-book"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/matakuliah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -123,9 +123,9 @@
                 <p>Dosen</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/leacture" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -138,16 +138,16 @@
                 <p>Mahasiswa</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/student" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
         </div>
         @endif
 
-        @if (Auth::user()->role->id == 3)
+        @if (Auth::user()->roles->id == 3)
             <div>
               <br>
                 @foreach ($lecturer as $data)   
@@ -168,7 +168,7 @@
             @endif
             
             
-            @if (Auth::user()->role->id == 4) 
+            @if (Auth::user()->roles->id == 4) 
             <div>
               <br>
                 @foreach ($mahasiswa as $data)   

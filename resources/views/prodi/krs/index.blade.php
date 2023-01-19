@@ -124,7 +124,7 @@
                           <td class="text-center">
                             <div class="form-group">
                               <div class="">
-                                <a class="btn btn-primary" href="{{ URL::to('/krs/pdf') }}"><i class="fas fa-print"></i></a>
+                              <a class="btn btn-primary" href="/krs/pdf/{{ $student->id }}/{{ $tahun_akademik }}/{{ $angkatan }}"><i class="fas fa-print"></i></a>
                               </div>
                             </div>
                           </td> 

@@ -67,14 +67,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Study_Faculty');
     }
-    public function role()
+    public function roles()
     {
         return $this->belongsTo(Role::class, 'roles_id', 'id', 'name');
     }
-    protected function roles(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) =>  ["admin", "prodi", "dosen", "mahasiswa"][$value],
-        );
-    }
+   
 }

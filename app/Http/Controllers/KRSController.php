@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Academic_Year;
 use App\Models\Grade;
 use App\Models\LectureScheduling;
+use App\Models\Sksmhs;
 use App\Models\Student;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\Auth;
@@ -83,41 +84,86 @@ class KRSController extends Controller
         ]);
     }
     // Generate PDF
-    public function createPDF() {
-        // retreive all records from db
-        $krs = Study_Value::all();
-        // share data to view
-        view()->share('students',$krs);
-        $pdf = PDF::loadView('prodi.krs.pdf', compact('krs'));
+    public function createPDF(Request $request) {
+     
+        $tahun_akademik = Academic_Year::find( $request->segment(4));
+        
+        $angkatan = Generations::find( $request->segment(5));
+        $mahasiswa = $request->segment(3);
+      
+        $krs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+            ->where('study_value.lecture_schedulings_id', $tahun_akademik->id)
+            ->where('student.generations_id', $angkatan->id)
+            ->where('study_value.student_id', $mahasiswa)   
+            ->get();
+         
+            
 
-        // download PDF file with download method
+        view()->share('students',$krs);
+        $pdf = PDF::loadView('mahasiswa.krs.pdf', ['krs'=> $krs,
+            'krs' => $krs,
+            'tahun_akademik' => $tahun_akademik,
+            'mahasiswa' => $mahasiswa,
+            'angkatan' => $angkatan
+            ]);
+
         return $pdf->download('KRS.pdf');
       }
 
     public function storemahasiswa(Request $request)
     {
+        $tahun_akademik = $request->tahun_akademik;
+    
         $username = Auth::user()->username;
         $mahasiswa = Student::where('nim', $username)->first();
         $listjadwal = $request->pilih;
-     
-        foreach ($listjadwal as $i => $id_lecture_schedulings) { 
-            $pilih = Study_Value::where('lecture_schedulings_id', $id_lecture_schedulings)
-            ->where('student_id', $mahasiswa->id)
-            ->first();
 
-            if(!$pilih){
-               Study_Value::insert([
-                    'student_id' => $mahasiswa->id,
-                    'lecture_schedulings_id' =>$id_lecture_schedulings,
-                    'created_by' => 1,
-                    'updated_by' => 1
-                ]);
+        $jadwal = Study_Value::where('student_id', $mahasiswa->id)->get();
+        $totalskslama = 0;
+        foreach ($jadwal as $i => $j) {
+        $totalskslama += $j->lecture_schedulings->subject_course->sk ;
+        }
+        $totalSksBaru = 0;
+        $daftarSks = $request->sks;
+        foreach ($listjadwal as $i => $idjadwal) {
+           $totalSksBaru += $daftarSks[$idjadwal];
+        }
+        $totalsemua = $totalskslama + $totalSksBaru;
+
+
+        $sksmahasiswa = Sksmhs::where('student_id',  $mahasiswa->id)
+                    ->where('academic_year_id', $tahun_akademik)
+                ->first();
+
+        // dd($totalsemua);
+        if($sksmahasiswa->sks >= $totalsemua){
+            foreach ($listjadwal as $i => $id_lecture_schedulings) { 
+                $pilih = Study_Value::where('lecture_schedulings_id', $id_lecture_schedulings)
+                ->where('student_id', $mahasiswa->id)
+                ->first();
+    
+                if(!$pilih){
+                   Study_Value::insert([
+                        'student_id' => $mahasiswa->id,
+                        'lecture_schedulings_id' =>$id_lecture_schedulings,
+                        'created_by' => 1,
+                        'updated_by' => 1
+                    ]);
+                }
             }
+            
+            return redirect('/krsmahasiswa')->with('status', 'Berhasil Menawar Mata Kuliah !!');
+            
+        }else{
+            
+            return redirect('/krsmahasiswa')->with('error', 'Jumlah SKS Tidak Mencukup !!!!');
         }
         
-        return redirect('/krsmahasiswa')->with('status', 'Berhasil Menawar Mata Kuliah !!');
+
+
+     
        
-        $cari = $request->cari;
+        
     }
  
     public function show()

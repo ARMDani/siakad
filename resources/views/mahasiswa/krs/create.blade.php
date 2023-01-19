@@ -11,7 +11,7 @@
          <div class="card">
           <div class="card-body">
            <h3>Tambah Rencana Studi </h3>
-           <form action="/krsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">
+           <form action="/krsmahasiswa/storemahasiswa/" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-12">
@@ -33,12 +33,17 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <input name="tahun_akademik" value="{{ $tahun_akademik }}" type="hidden">
                           <?php $no = 1  ?>
                           @foreach ($mahasiswa as $data)
                                                    
                           <tr>
                             
-                            <td><input name="pilih[]" value="{{ $data->id }}" type="checkbox" ></td>
+                            <td>
+                              <input name="pilih[]" value="{{ $data->id }}" type="checkbox" >
+                              <input name="sks[{{ $data->id }}]" value="{{ $data->subject_course->sk }}" type="hidden">
+                            </td>
+                            
                             <td>{{ $no }}</td>
                             <td>{{ $data->subject_course->name }}</td>
                             <td>{{ $data->subject_course->sk }}</td>

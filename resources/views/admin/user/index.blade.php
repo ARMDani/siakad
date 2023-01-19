@@ -37,7 +37,7 @@
                       <!-- Import Excel -->
                       <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                          <form method="post" action="/fakultas/import_excel" enctype="multipart/form-data">
+                          <form method="post" action="/user/import_excel" enctype="multipart/form-data">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
@@ -132,7 +132,7 @@
                       <td>{{ $penggunas->username }}</td>
                       <td>{{ $penggunas->email }}</td>
                       <td>
-                        <h6 class="text-primary">{{  $penggunas->role->name }}</h6>
+                        <h6 class="text-primary">{{  $penggunas->roles->name }}</h6>
                       </td>
                       <td>
                           <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> <i class="fas fa-edit"></i> </a>

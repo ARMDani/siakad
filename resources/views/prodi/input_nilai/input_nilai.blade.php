@@ -10,10 +10,12 @@
       {{-- BEGIN CONTAINER --}}
       <div class="container-fluid">
         <div class="row">            {{-- begin card --}}
-             
+          {{-- @forelse ($mahasiswas as $mhs) --}}
               <div class="card-body col-12">
-                <h3>Penginputan Nilai Mahasiswa Mata Kuliah</h3> 
+                <h3>Penginputan Nilai Mahasiswa Mata Kuliah {{ $mahasiswas[0]->lecture_schedulings->subject_course->name }}</h3> 
               </div>
+              {{-- @endforeach --}}
+              
             </div>
           
           </div>
@@ -63,13 +65,13 @@
                             <td class="tg-3xi5">{{ $item->student->nim}}</td>
                             <td class="tg-3xi5">{{ $item->student->name }}</td>
                            <td class="tg-3xi5">
-                              <input type="number" class="nilai" name="assignment_value[]" value="{{ old('assignment_value') ? old('assignment_value') : $item->assignment_value }}">
+                              <input type="number" class="nilai" name="assignment_value[]" required max="89" value="{{ old('assignment_value') ? old('assignment_value') : $item->assignment_value }}">
                             </td>
                             <td class="tg-3xi5">
-                              <input type="number" class="nilai" name="uts_value[]" value="{{ old('uts_value') ? old('uts_value') : $item->uts_value }}">
+                              <input type="number" class="nilai" name="uts_value[]"  required max="89" value="{{ old('uts_value') ? old('uts_value') : $item->uts_value }}">
                             </td>
                             <td class="tg-3xi5">
-                              <input type="number" class="nilai" name="uas_value[]" value="{{ old('uas_value') ? old('uas_value') : $item->uas_value }}">
+                              <input type="number" class="nilai" name="uas_value[]"  required max="89" value="{{ old('uas_value') ? old('uas_value') : $item->uas_value }}">
                             </td>
                             <td class="tg-3xi5">{{($item->grade_id == null) ? "-" : $item->grade->name }}</td>
                           </tr>
