@@ -9,6 +9,7 @@ use App\Models\Study_Value;
 use Illuminate\Http\Request;
 use App\Models\Academic_Year;
 use App\Models\Grade;
+use PDF;
 use App\Models\Subject_Course;
 use App\Models\LectureScheduling;
 use Illuminate\Support\Facades\DB;
@@ -77,15 +78,13 @@ class NilaiController extends Controller
     // -------------------------------Transkip Nilai-------------------------------------------
     public function indexmahasiswa(Request $request)
     {
-        $data = Study_Value::get();
         $academic_year = Academic_Year::get();
         $username = Auth::user()->username;
-        $mahasiswa = Student::where('nim', $username)->first();
-        $academic_year = Academic_Year::get();
-        // $params = ['tahun_akademik' =>  null];
+        $mahasiswaku = Student::where('nim', $username)->first();
+        // dd($mahasiswaku);
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $khsmahasiswa = Study_Value::leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
-        ->where('student_id', $mahasiswa->id)                
+        ->where('student_id', $mahasiswaku->id)                
                 ->get();
         
         // $tahun_akademik = Academic_Year::find($request->tahun_akademik_id);
@@ -95,7 +94,7 @@ class NilaiController extends Controller
             'academic_year' => $academic_year, 
             'khsmahasiswa' => $khsmahasiswa,
             'tahun_akademik' => $tahun_akademik,
-            'data' => $data
+            'mahasiswaku' => $mahasiswaku,
             ]);
     }
     
@@ -159,7 +158,29 @@ class NilaiController extends Controller
                
             ]);
     }
+    public function createPDF(Request $request) {
+     
+        $tahun_akademik = Academic_Year::find( $request->segment(4));
+        
+        $angkatan = Generations::find( $request->segment(5));
+        $mahasiswa = $request->segment(3);
+      
+        $nilai = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+            ->where('student.generations_id', $angkatan)
+            ->where('study_value.student_id', $mahasiswa)   
+            ->get();
+         
+            
 
+        view()->share('students',$nilai);
+        $pdf = PDF::loadView('mahasiswa.transkip_nilai.pdf', ['nilai'=> $nilai,
+            'tahun_akademik' => $tahun_akademik,
+            'mahasiswa' => $mahasiswa,
+            'angkatan' => $angkatan
+            ]);
+
+        return $pdf->download('KHS.pdf');
+      }
 
     /**
      * Display the specified resource.

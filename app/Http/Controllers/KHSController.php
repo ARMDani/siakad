@@ -21,11 +21,13 @@ class KHSController extends Controller
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $angkatan = $request->angkatan_id ?? null;
 
-        $khs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
-            ->where('study_value.lecture_schedulings_id', $tahun_akademik)
-            ->where('student.generations_id', $angkatan)
-            ->orderBy('student.nim', 'ASC')
-            ->get();
+        $khs = Study_Value::leftJoin('student', 'study_value.student_id', '=', 'student.id')
+        ->select('student.nim', 'student.name', 'lecture_schedulings.academic_year_id')
+        ->where('student.generations_id', $angkatan)
+        ->leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        ->where('lecture_schedulings.academic_year_id', $tahun_akademik)
+        ->distinct()
+        ->get();
 
 
         return view('prodi.khs.index')->with ([

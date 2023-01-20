@@ -11,14 +11,17 @@
               {{ csrf_field() }} 
               <div class="form-group row">
                 <div class="card col-5" style="width: 18rem;">
-                 
+                  <?php 
+                  $id_angkatan = $mahasiswa->generations_id;
+                  $id_mahasiswa = $mahasiswa->id;
+                  ?>
                   <ul class="list-group list-group-flush">
                     {{-- @foreach ($mahasiswa as $datas) --}}
                     <li class="list-group-item"><b>NIM : </b> {{ $mahasiswa->nim }}</li>
                     <li class="list-group-item"><b>Nama : </b> {{ $mahasiswa->name }}</li>
                     <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $mahasiswa->study_program->name }}</li>
                     
-                    {{-- @endforeach --}}
+                   
                   </ul>
                  
                 </div>
@@ -58,7 +61,7 @@
  <div class="card">
  <div class="card-body">
   <div>
-  <a href="#" class="btn btn-success">Cetak KHS</a> 
+  <a href="/khsmahasiswa/pdf/{{ $id_mahasiswa }}/{{ $tahun_akademik }}/{{ $id_angkatan }}" class="btn btn-success">Cetak KHS</a> 
 </div>  
 <br> 
     <form action="/khsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">

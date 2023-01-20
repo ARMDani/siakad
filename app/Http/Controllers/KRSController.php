@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Generations;
-use App\Models\Study_Value;
-use PDF;
-use Illuminate\Http\Request;
-use App\Models\Academic_Year;
 use App\Models\Grade;
-use App\Models\LectureScheduling;
 use App\Models\Sksmhs;
 use App\Models\Student;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use PDF;
+use App\Models\Generations;
+use App\Models\Study_Value;
+use Illuminate\Http\Request;
+use App\Models\Academic_Year;
+use App\Models\LectureScheduling;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class KRSController extends Controller
@@ -23,17 +23,20 @@ class KRSController extends Controller
 
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $angkatan = $request->angkatan_id ?? null;
-        $students = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
-            ->where('study_value.lecture_schedulings_id', $tahun_akademik)
-            ->where('student.generations_id', $angkatan)
-            ->orderBy('student.nim', 'ASC')
+        $krs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+        ->select('student.*')
+        ->where('student.generations_id', $angkatan)
+        ->select('study_value.*')
+        ->join('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        ->where('lecture_schedulings.academic_year_id', $tahun_akademik)
+            ->orderBy('student.id', 'desc')
             ->get();
 
         return view('prodi.krs.index')->with([
             'academic_year' => $academic_year,
             'generations' => $generations,
             'angkatan' => $angkatan,
-            'students' => $students,
+            'krs' => $krs,
             'tahun_akademik' => $tahun_akademik
         ]);
     }
@@ -100,7 +103,7 @@ class KRSController extends Controller
             
 
         view()->share('students',$krs);
-        $pdf = PDF::loadView('mahasiswa.krs.pdf', ['krs'=> $krs,
+        $pdf = PDF::loadView('mahasiswa.krs.pdf', [
             'krs' => $krs,
             'tahun_akademik' => $tahun_akademik,
             'mahasiswa' => $mahasiswa,

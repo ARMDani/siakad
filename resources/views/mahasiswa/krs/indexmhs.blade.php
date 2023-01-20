@@ -108,6 +108,10 @@
             </tr>
             <?php $no = 1  ?>
             @foreach ($krsmahasiswa as $krsmahasiswas)
+            <?php 
+            $id_angkatan = $krsmahasiswas->student->generations_id;
+            $id_mahasiswa = $krsmahasiswas->student->id;
+            ?>
             <tr>
               <td>{{ $no }}</td>
               <td>{{ $krsmahasiswas->lecture_schedulings->subject_course->name }}</td>
@@ -122,7 +126,7 @@
                 <a href="/krsmahasiswa/destroymahasiswa/{{ $krsmahasiswas->id }} "class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i></a>
             </td>
           </tr>
-            <?php $no++ ?>
+               <?php $no++ ?>
             @endforeach
         </table>
       </form>

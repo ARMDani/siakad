@@ -189,6 +189,7 @@ Route::post('/khs', [App\Http\Controllers\KHSController::class, 'index']);
 Route::post('/khs/store', [App\Http\Controllers\KHSController::class, 'store']);
 Route::get('/khs/cari', [App\Http\Controllers\KHSController::class, 'search']);
 Route::get('/khs/pdf/{id}/{tahun_akademik}/{angkatan}', [App\Http\Controllers\KHSController::class, 'createPDF']);
+
 // -------------------------------------------------Nilai Prodi-----------------------------------------------------------------------
 
 Route::get('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
@@ -209,7 +210,7 @@ Route::post('/krsmahasiswa/storemahasiswa', [App\Http\Controllers\KRSController:
 Route::get('/krsmahasiswa/edit/{id}', [App\Http\Controllers\KRSController::class, 'edit']);
 Route::post('/krsmahasiswa/update', [App\Http\Controllers\KRSController::class, 'update']);
 Route::get('/krsmahasiswa/destroymahasiswa/{id}', [App\Http\Controllers\KRSController::class, 'destroymahasiswa']);
-Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']);
+Route::get('/krsmahasiswa/cari', [App\Http\Controllers\KRSController::class, 'search']); 
 
 
 // --------------------------------------------KHS Mahasiswa---------------------------------------------------------------
@@ -222,10 +223,12 @@ Route::get('/khsmahasiswa/edit/{id}', [App\Http\Controllers\KHSController::class
 Route::post('/khsmahasiswa/input_nilai', [App\Http\Controllers\KHSController::class, 'update']);
 Route::get('/khsmahasiswa/hapus/{id}', [App\Http\Controllers\KHSController::class, 'destroymahasiswa']);
 Route::get('/khsmahasiswa/cari', [App\Http\Controllers\KHSController::class, 'search']);
+Route::get('/khsmahasiswa/pdf/{id}/{tahun_akademik}/{angkatan}', [App\Http\Controllers\KHSController::class, 'createPDF']);
 
 
 Route::get('/transkipnilai', [App\Http\Controllers\NilaiController::class, 'indexmahasiswa']);
 Route::post('/transkipnilai', [App\Http\Controllers\NilaiController::class, 'indexmahasiswa']);
+Route::get('/transkip/pdf/{id}/{angkatan}', [App\Http\Controllers\NilaiController::class, 'createPDF']);
 
 Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
 Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, 'edit']);

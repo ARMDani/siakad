@@ -26,7 +26,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 <h3>KARTU HASIL STUDI</h3>
 <br>
 
-@foreach($khs as $mhs)
+@foreach($nilai as $mhs)
 <table border="0" width="100%">
     <tr class="text-center">
         <td width="35%"><b>Nama</b></td>
@@ -66,7 +66,7 @@ tr:nth-child(even){background-color: #f2f2f2}
       </tr>
     </thead>
       <?php $no = 1  ?>
-      @foreach($khs as $mhs)
+      @foreach($nilai as $mhs)
       <tr >
         <td class="tg-3xi5 text-center">{{ $no }}</td>
         <td class="tg-3xi5 text-center">{{ $mhs->lecture_schedulings->subject_course->course_code }}</td>
@@ -106,7 +106,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                 Mahasiswa,
                 <br><br><br><br>
                 <u></u><br>
-                {{-- <?= $khs->student->name ?> --}}
+                {{-- <?= $nilai->student->name ?> --}}
             </td>
             <td style="text-align: right; width:50%;">
                 Penasehat Akademik

@@ -13,12 +13,11 @@
                 <div class="card col-5" style="width: 18rem;">
                  
                   <ul class="list-group list-group-flush">
-                    @foreach ($data as $datas)
-                    <li class="list-group-item"><b>NIM : </b> {{ $datas->student->nim }}</li>
-                    <li class="list-group-item"><b>Nama : </b> {{ $datas->student->name }}</li>
-                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $datas->student->study_program->name }}</li>
-                    @break
-                    @endforeach
+                
+                    <li class="list-group-item"><b>NIM : </b> {{ $mahasiswaku->nim }}</li>
+                    <li class="list-group-item"><b>Nama : </b> {{ $mahasiswaku->name }}</li>
+                    <li class="list-group-item"><b>Jurusan/Program Studi : </b> {{ $mahasiswaku->study_program->name }}</li>
+            
                   </ul>
                  
                 </div>
@@ -37,7 +36,7 @@
  <div class="card">
  <div class="card-body">
   <div>
-  <a href="#" class="btn btn-success">Cetak Transkip</a> 
+  <a href="/transkip/pdf/{{ $mahasiswaku->id }}/{{ $mahasiswaku->generations_id }}" class="btn btn-success">Cetak Transkip</a> 
 </div>  
 <br> 
     <form action="/khsmahasiswa/storemahasiswa" method="POST" enctype="multipart/form-data" class="form-horizontal">
@@ -64,9 +63,9 @@
               <td class="tg-3xi5 text-center">{{ $khsmahasiswas->lecture_schedulings->subject_course->course_code }}</td>
               <td class="tg-3xi5 text-center">{{ $khsmahasiswas->lecture_schedulings->subject_course->name }}</td>
               <td class="text-center">{{ $khsmahasiswas->lecture_schedulings->subject_course->sk}}</td>
-              <td class="text-center">{{ $khsmahasiswas->grade->bobot}}</td>
+              <td class="text-center">{{  ($khsmahasiswas->grade) ? ($khsmahasiswas->grade->bobot) : 'Belum Dinilai'}}</td>
               <td class="text-center">{{ $khsmahasiswas->final_score}}</td>
-              <td class="text-center">{{ $khsmahasiswas->grade->name}}</td>
+              <td class="text-center">{{  ($khsmahasiswas->grade) ? ($khsmahasiswas->grade->name) : 'Belum Dinilai'}}</td>
           </tr>
             <?php $no++ ?>
             @endforeach

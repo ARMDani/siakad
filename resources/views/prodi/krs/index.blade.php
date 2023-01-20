@@ -116,11 +116,11 @@
                       </thead>
                       <tbody>
                         <?php $no = 1 ?>
-                        @foreach ($students as $student)
+                        @foreach ($krs as $student)
                         <tr>
                           <td class="text-center">{{ $no }}</td>
-                          <td class="text-center">{{ $student->nim }}</td>
-                          <td>{{ $student->name }}</td>
+                          <td class="text-center">{{ $student->student->nim }}</td>
+                          <td>{{ $student->student->name }}</td>
                           <td class="text-center">
                             <div class="form-group">
                               <div class="">
