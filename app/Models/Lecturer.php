@@ -24,4 +24,8 @@ class Lecturer extends Model
     {
         return $this->belongsTo('App\Models\Study_Program');
     }
+    public function academicAdvisor()
+    {
+        return $this->hasMany('App\Models\Academic_Advisor');
+    }
 }

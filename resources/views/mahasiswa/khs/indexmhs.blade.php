@@ -85,6 +85,8 @@
             $totalSksMk = 0;
             $totalBobotKaliSks = 0;
             $ips = 0;
+            $ipk = 0;
+
             ?>
             @foreach ($khsmahasiswa as $khsmahasiswas)
             <tr >
@@ -103,12 +105,14 @@
             $totalSksMk += $sks;
             $totalBobotKaliSks += ($bobot * $sks);
             $ips = $totalBobotKaliSks / $totalSksMk;
+            $ipk = $ips / $totalSksMk;
 
             $no++ ?>
             @endforeach
         </table>
-        <p>IPS (Indeks Prestasi Sementara) : {{ $ips }}</p>
-        <p>IPK (Indeks Prestasi Kumulatif) :</p>
+         
+        <p><strong>IPS (Indeks Prestasi Sementara)</strong> : {{ $ips }}</p>
+        <p><strong>IPK (Indeks Prestasi Kumulatif)</strong> : {{ $ipk }}</p>
     </form>
   </div>
  </div>

@@ -31,7 +31,7 @@
                       <form action="/nilai" method="post">
                         {{ csrf_field() }} 
                         <div class="form-group row">
-                          <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
+                          <label for="staticEmail" class="col-2 col-form-label">{{ Auth::user()->name }}</label>
                           <div class="col-3">
                             <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pendidikan teknologi Informasi">
                           </div>

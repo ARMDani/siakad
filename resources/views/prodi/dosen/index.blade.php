@@ -82,19 +82,19 @@
                   {{-- end Sesion --}}
                   {{-- Begin row --}}
                   <div class="row">
-                    <div class="col-1">
+                    <div class="col-4">
                       <form action="/leacture/create" method="get">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
-                        <a class="btn btn-success" href="/leacture"><i class="fas fa-redo-alt"></i></a>
+                        <button type="submit" class="btn btn-primary btn-sm" ><i class="fas fa-plus"></i> Tambah</button>
+                        <a class="btn btn-success btn-sm" href="/leactureprodi"><i class="fas fa-redo-alt"></i> Refresh</a>
                       </form>
                     </div>
-                    <div class="col-2">
+                    <div class="col-5 ">
                       <a class="nav-link" data-widget="navbar-search" href="#">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-search float-right mr-5"></i>
                       </a>
                       <div class="navbar-search-block">
-                        <form class="form-inline" action="/leacture/cari" method="GET">
+                        <form class="form-inline" action="/leactureprodi/cari" method="GET">
                           <div class="input-group input-group-sm">
                             <input class="form-control" type="text" name="cari" placeholder="Cari Data Dosen ..."  value="{{ old('cari') }}">
                             <div class="input-group-append">
@@ -109,9 +109,9 @@
                         </form>
                       </div>
                     </div>
-                    <div class="col-9">
-                        <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i> </button>
-                        <a href="/leacture/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-warning btn-sm  float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i> Import</button>
+                        <a href="/leacture/export_excel" class="btn btn-success btn-sm mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i> Export</a>
                     </div>
                   </div>
                   {{-- end row --}}
@@ -121,6 +121,7 @@
                     <th>Nama</th>
                     <th>NIDN</th>
                     <th>Program Studi</th>
+                    <th>Mahasiswa Perwalian</th>
                     <th>Jenis Kelamin</th>
                     <th>Agama</th>
                     <th>Alamat</th>
@@ -134,6 +135,11 @@
                     <td>{{ $leactures->name }}</td>
                     <td>{{ $leactures->nidn }}</td>
                     <td>{{ $leactures->study_program->name}}</td>
+                    <td class="text-center">
+                      <div class="col">
+                        <a href="/penasehat/{{ $leactures->id }}" type="submit" class="btn btn-success center-block align-bottom ">{{  ($leactures) ? ($leactures->jumlah) : '0'}}</a>
+                      </div>
+                    </td>
                     <td>{{ $leactures->gender }}</td>
                     <td>{{ $leactures->religion }}</td>
                     <td>{{ $leactures->address }}</td>

@@ -88,8 +88,8 @@
       <div class="card">
         <div class="card-body">
       <ul>
-      <a href="/krs/pdf/{{ $id_mahasiswa }}/{{ $tahun_akademik }}/{{ $id_angkatan }}" class="btn btn-warning ml-">Cetak</a>
-      <a href="/krsmahasiswa/createmahasiswa/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah KRS</a>
+        <a class="btn btn-primary" href="/krs/pdf/{{ $id_mahasiswa }}/{{ $tahun_akademik }}/{{  $id_angkatan }}"><i class="fas fa-print"></i>Cetak KRS</a>
+        <a href="/krsmahasiswa/createmahasiswa/{{ $tahun_akademik }}" class="btn btn-success ml-4">Tambah KRS</a>
     </ul>
    
     <br>

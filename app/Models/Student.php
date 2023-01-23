@@ -38,6 +38,9 @@ class Student extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
-    
-}
+    }
+    public function academicAdvisor()
+    {
+        return $this->hasMany('App\Models\Academic_Advisor');
+    }
 }

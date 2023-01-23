@@ -168,7 +168,7 @@ Route::post('/penjadwalan', [App\Http\Controllers\LectureSchedulingController::c
 Route::get('/penjadwalan/create/{tahun_akademik}', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
 Route::get('/penjadwalan/create', [App\Http\Controllers\LectureSchedulingController::class, 'create']);
 Route::post('/penjadwalan/store', [App\Http\Controllers\LectureSchedulingController::class, 'store']);
-Route::get('/penjadwalan/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
+Route::get('/penjadwalankuliah/edit/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'edit']);
 Route::post('/penjadwalan/update', [App\Http\Controllers\LectureSchedulingController::class, 'update']);
 Route::get('/penjadwalankuliah/hapus/{id}', [App\Http\Controllers\LectureSchedulingController::class, 'destroy']);
 Route::get('/penjadwalan/cari', [App\Http\Controllers\LectureSchedulingController::class, 'search']);
@@ -197,6 +197,15 @@ Route::get('/nilai/input_nilai/{matakuliah}', [App\Http\Controllers\NilaiControl
 Route::post('/nilai', [App\Http\Controllers\NilaiController::class, 'index']);
 Route::post('/nilai/store/{id}', [App\Http\Controllers\NilaiController::class, 'store']);
 Route::get('/nilai/cari', [App\Http\Controllers\NilaiController::class, 'search']);
+
+Route::get('/penasehat/{id}', [App\Http\Controllers\AcademicAdvisorController::class, 'index']);
+Route::post('/penasehat/{id}', [App\Http\Controllers\AcademicAdvisorController::class, 'index']);
+Route::post('/penasehat', [App\Http\Controllers\AcademicAdvisorController::class, 'index']);
+Route::get('/penasehat/create/{id}', [App\Http\Controllers\AcademicAdvisorController::class, 'create']);
+Route::post('/penasehat/create/{id}', [App\Http\Controllers\AcademicAdvisorController::class, 'create']);
+Route::post('/penasehat/store', [App\Http\Controllers\AcademicAdvisorController::class, 'store']);
+Route::get('/penasehat/cari', [App\Http\Controllers\LeactureController::class, 'searchprodi']);
+Route::get('/penasehat/pdf/{id}/{tahun_akademik}/{angkatan}', [App\Http\Controllers\AcademicAdvisorController::class, 'createPDF']);
 
 
 //--------------------------------------------BEGIN FITUR MAHASISWA-------------------------------------------------
@@ -232,6 +241,17 @@ Route::get('/transkip/pdf/{id}/{angkatan}', [App\Http\Controllers\NilaiControlle
 
 Route::get('/pengaturan', [App\Http\Controllers\SettingController::class, 'index']);
 Route::get('/pengaturan/edit', [App\Http\Controllers\SettingController::class, 'edit']);
+
+
+Route::get('/leactureprodi', [App\Http\Controllers\LeactureController::class, 'indexprodidosen'])->middleware('auth');
+Route::get('/leacture/create', [App\Http\Controllers\LeactureController::class, 'create']);
+Route::post('/leacture/store', [App\Http\Controllers\LeactureController::class, 'store']);
+Route::get('/leacture/edit/{id}', [App\Http\Controllers\LeactureController::class, 'edit']);
+Route::post('/leacture/update', [App\Http\Controllers\LeactureController::class, 'update']);
+Route::get('/leacture/hapus/{id}', [App\Http\Controllers\LeactureController::class, 'destroy']);
+Route::get('/leactureprodi/cari', [App\Http\Controllers\LeactureController::class, 'searchprodi']);
+Route::get('/leacture/export_excel', [App\Http\Controllers\LeactureController::class, 'export_excel']);
+Route::post('/leacture/import_excel', [App\Http\Controllers\LeactureController::class, 'import_excel'])->name('import');;
 
 
 // ---------------------------------------END FITUR MAHASISWA-------------------------------------------------

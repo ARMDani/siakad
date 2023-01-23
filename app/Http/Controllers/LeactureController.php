@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Session;
 use App\Models\Lecturer;
-use App\Exports\LecturerExport;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
-use App\Imports\LecturerImport;
-use App\Models\Academic_Year;
-use App\Models\LectureScheduling;
-use App\Models\Study_Program;
 use App\Models\Study_Value;
+use Illuminate\Http\Request;
+use App\Models\Academic_Year;
+use App\Models\Study_Program;
+use App\Exports\LecturerExport;
+use App\Imports\LecturerImport;
+use App\Models\Academic_Advisor;
+use App\Models\LectureScheduling;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LeactureController extends Controller
 {
@@ -48,8 +50,18 @@ class LeactureController extends Controller
     }
 // -------------------------------------TAMPILAN PRODI DOSEN PENASEHAT AKADEMIK----------------------------------------------------
     public function indexprodidosen(){
-        $leacture = Lecturer::paginate(10);
-        return view('prodi.dosen.index', ['leacture' => $leacture]);
+        
+     
+        $leacture = Lecturer::select('*', DB::raw('(SELECT COUNT(academic_advisor.id ) 
+        FROM academic_advisor 
+        LEFT JOIN student 
+        ON student.id = academic_advisor.student_id 
+        WHERE academic_advisor.lecturer_id = lecturer.id) AS jumlah'))      
+    ->paginate(10);
+        return view('prodi.dosen.index', [
+            'leacture' => $leacture,
+           
+    ]);
 
     }
 
@@ -67,6 +79,7 @@ class LeactureController extends Controller
             'study_program' => $study_program,
         ]);
     }
+
     public function store(Request $request)
     {
         $photo = null;
@@ -136,6 +149,7 @@ class LeactureController extends Controller
         Session::flash('hapus','Berhasil menghapus data mahasiswa');
         return redirect('/student');
     }
+    // ============================================SEARCH ADMIN===============================================================
     public function search(Request $request)
     {
       
@@ -144,6 +158,16 @@ class LeactureController extends Controller
         $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
 
         return view('admin.leacture.index', ['leacture' => $leacture]);
+    }
+// ===================================================SEARCH PRODI======================================================================
+public function searchprodi(Request $request)
+    {
+      
+        $cari = $request->cari;
+
+        $leacture = Lecturer::where('nidn', 'like', "%" . $cari . "%")->orwhere('name', 'like', "%" . $cari . "%")->paginate(10);
+
+        return view('prodi.dosen.index', ['leacture' => $leacture]);
     }
 
     public function export_excel()

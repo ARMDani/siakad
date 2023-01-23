@@ -82,14 +82,14 @@
                   {{-- end Sesion --}}
                   {{-- Begin row --}}
                   <div class="row">
-                    <div class="col-2">
+                    <div class="col-4">
                         <form action="/matakuliah/create" method="get">
                           {{ csrf_field() }}
-                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
-                          <a class="btn btn-success" href="/matakuliah"><i class="fas fa-redo-alt"></i></a>
+                          <button type="submit" class="btn btn-sm btn-primary" ><i class="fas fa-plus"></i> Tambah</button>
+                          <a class="btn btn-sm btn-success" href="/matakuliah"><i class="fas fa-redo-alt"></i> Refresh</a>
                         </form>
                     </div>
-                    <div class="col-8">
+                    <div class="col-4">
                       <a class="nav-link" data-widget="navbar-search" href="#">
                         <i class="fas fa-search"></i>
                       </a>
@@ -109,9 +109,9 @@
                         </form>
                       </div>
                     </div>
-                    <div class="col-2">
-                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
-                          <a href="/matakuliah/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
+                    <div class="col-4">
+                          <button type="button" class="btn btn-sm btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i> Import</button>
+                          <a href="/matakuliah/export_excel" class="btn btn-sm btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i> Export</a>
                     </div>
                   </div>
                 {{-- end row --}}
@@ -135,8 +135,8 @@
                     <td class="text-center">{{ $courses->semester }}</td>
                     <td>{{ $courses->lecturer->name }}</td>
                     <td class="text-center">
-                        <a href="/matakuliah/edit/{{ $courses->id }}" class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
-                        <a href="/matakuliah/hapus/{{ $courses->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                        <a href="/matakuliah/edit/{{ $courses->id }}" class="btn btn-sm btn-secondary"> <i class="fas fa-edit"></i> </a>
+                        <a href="/matakuliah/hapus/{{ $courses->id }}"class="btn btn-sm  btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
                     </td>
                   </tr>
                   <?php $no++ ?>

@@ -146,7 +146,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/leacture" class="nav-link">
+          <a href="/leactureprodi" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
               Dosen
@@ -224,9 +224,9 @@
         <li class="nav-header">DOSEN</li>
         <li class="nav-item menu-open">
           <a href="/home" class="nav-link active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa"></i>
             <p>
-              Dashboard
+              Beranda
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -249,9 +249,9 @@
   <li class="nav-header">MAHASISWA</li>
   <li class="nav-item menu-open">
     <a href="/home" class="nav-link active">
-      <i class="nav-icon fas fa-tachometer-alt"></i>
+      <i class="nav-icon fas fa"></i>
       <p>
-        Dashboard
+        Beranda
         <i class="right fas fa-angle-left"></i>
       </p>
     </a>

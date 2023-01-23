@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('academic_advisor', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+
+            $table->unsignedBigInteger('lecturer_id');
+            $table->foreign('lecturer_id')->references('id')->on('lecturer');
 
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('student');
+
 
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');

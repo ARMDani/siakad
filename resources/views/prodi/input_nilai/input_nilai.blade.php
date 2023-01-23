@@ -12,7 +12,7 @@
         <div class="row">            {{-- begin card --}}
           {{-- @forelse ($mahasiswas as $mhs) --}}
               <div class="card-body col-12">
-                <h3>Penginputan Nilai Mahasiswa Mata Kuliah {{ $mahasiswas[0]->lecture_schedulings->subject_course->name }}</h3> 
+                <h3>Penginputan Nilai Mahasiswa Mata Kuliah <strong>{{ $mahasiswas[0]->lecture_schedulings->subject_course->name }}</strong></h3> 
               </div>
               {{-- @endforeach --}}
               

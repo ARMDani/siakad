@@ -33,7 +33,7 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
                           <div class="col-3">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pendidikan teknologi Informasi">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->name }}">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -128,7 +128,7 @@
                           <td>{{ $mhs->name }}</td>
                           <td>
                             <div class="form-group">
-                              <input class="form-control" type="number" value="{{ $mhs->sks }}" name="sks[{{ $mhs->id }}][jumlah_sks]" placeholder="Masukkan SKS ..." required="required">
+                              <input class="form-control" type="number" value="{{ $mhs->sks }}" name="sks[{{ $mhs->id }}][jumlah_sks]" required max="24" placeholder="Masukkan SKS ..." required="required">
                               <input type="hidden" name="sks[{{ $mhs->id }}][id_sksmhs]" value="{{ $mhs->id_sksmhs  }}">
                             </div>
                           </td> 

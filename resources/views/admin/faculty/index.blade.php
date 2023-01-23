@@ -91,8 +91,8 @@
                 <div class="col-4">
                   <form action="/fakultas/create" method="get">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i> Tambah Data</button>
-                    <a class="btn btn-success" href="/fakultas"><i class="fas fa-redo-alt"></i>Refresh Halaman</a>
+                    <button type="submit" class="btn btn-sm btn-primary" ><i class="fas fa-plus"></i> Tambah Data</button>
+                    <a class="btn btn-sm btn-success" href="/fakultas"><i class="fas fa-redo-alt"></i> Refresh Halaman</a>
                   </form>
                 </div>
                 <div class="col-4" >
@@ -116,8 +116,8 @@
                   </div>
                 </div>
                 <div class="col-4">
-                  <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"> <i class="fas fa-file-import"></i>Import Data </button>
-                  <a href="/fakultas/export_excel" class="btn btn-success mr-3 float-right" target="_blank"> <i class="fas fa-file-export"></i>Export Data</a>
+                  <button type="button" class="btn btn-sm btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"> <i class="fas fa-file-import"></i> Import Data </button>
+                  <a href="/fakultas/export_excel" class="btn btn-sm  btn-success mr-3 float-right" target="_blank"> <i class="fas fa-file-export"></i> Export Data</a>
                 </div>
               </div>
               {{-- end row --}}
@@ -136,8 +136,8 @@
                       <td class="text-center">{{ $facultys->code_faculty }}</td>
                       <td>{{ $facultys->name }}</td>
                       <td class="text-center">
-                          <a href="/fakultas/edit/{{ $facultys->id }}"class="btn btn-secondary"> <i class="fas fa-edit"></i> </a>
-                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                          <a href="/fakultas/edit/{{ $facultys->id }}"class="btn btn-sm btn-secondary"> <i class="fas fa-edit"></i> </a>
+                          <a href="/fakultas/hapus/{{ $facultys->id }}"class="btn btn-sm btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
                       </td>
                   </tr>
                   <?php $no++ ?>

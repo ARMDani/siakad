@@ -23,14 +23,13 @@ class KRSController extends Controller
 
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         $angkatan = $request->angkatan_id ?? null;
-        $krs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
-        ->select('student.*')
+        $krs = Study_Value::leftJoin('student', 'study_value.student_id', '=', 'student.id')
+        ->select('student.id','student.nim', 'student.name', 'lecture_schedulings.academic_year_id')
         ->where('student.generations_id', $angkatan)
-        ->select('study_value.*')
-        ->join('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
+        ->leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik)
-            ->orderBy('student.id', 'desc')
-            ->get();
+        ->distinct()
+        ->get();
 
         return view('prodi.krs.index')->with([
             'academic_year' => $academic_year,
@@ -95,6 +94,7 @@ class KRSController extends Controller
         $mahasiswa = $request->segment(3);
       
         $krs = Study_Value::join('student', 'study_value.student_id', '=', 'student.id')
+        ->select('student.id','student.nim', 'student.name')
             ->where('study_value.lecture_schedulings_id', $tahun_akademik->id)
             ->where('student.generations_id', $angkatan->id)
             ->where('study_value.student_id', $mahasiswa)   

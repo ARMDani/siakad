@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Academic_Advisor extends Model
 {
-    use HasFactory;
+    protected $table  = 'academic_advisor';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'lecturer_id', 'student_id'];
+
+    public function lecturer()
+    {
+        return $this->belongsTo('App\Models\Lecturer');
+    }
+    public function student()
+    {
+        return $this->belongsTo('App\Models\Student');
+    }
 }

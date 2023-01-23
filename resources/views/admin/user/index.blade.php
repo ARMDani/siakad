@@ -82,14 +82,14 @@
                   {{-- end Sesion --}}
                   {{-- Begin row --}}
                   <div class="row">
-                    <div class="col-2">
+                    <div class="col-4">
                         <form action="/user/create" method="get">
                           {{ csrf_field() }}
-                          <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
-                          <a class="btn btn-success" href="/user"><i class="fas fa-redo-alt"></i></a>
+                          <button type="submit" class="btn btn-sm btn-primary" ><i class="fas fa-plus"></i> Tambah</button>
+                          <a class="btn btn-sm btn-success" href="/user"><i class="fas fa-redo-alt"></i> Refresh</a>
                         </form>
                     </div>
-                    <div class="col-8">
+                    <div class="col-6">
                       <a class="nav-link" data-widget="navbar-search" href="#">
                         <i class="fas fa-search"></i>
                       </a>
@@ -110,8 +110,7 @@
                       </div>
                     </div>
                     <div class="col-2">
-                          <button type="button" class="btn btn-warning mr-5 float-right" data-toggle="modal" data-target="#importExcel"><i class="fas fa-file-import"></i></button>
-                          <a href="/user/export_excel" class="btn btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i></a>
+                        <a href="/user/export_excel" class="btn btn-sm btn-success mr-3 float-right" target="_blank"><i class="fas fa-file-export"></i> Export</a>
                     </div>
                   </div>
                 <table class="table table-bordered table-hover table-wrapper">
@@ -135,9 +134,9 @@
                         <h6 class="text-primary">{{  $penggunas->roles->name }}</h6>
                       </td>
                       <td>
-                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-light"> <i class="fas fa-edit"></i> </a>
-                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
-                          <a href="/user/aktif/{{ $penggunas->id }}"class="btn btn-primary"> Aktif </a>
+                          <a href="/user/edit/{{ $penggunas->id }}" class="btn btn-sm btn-light"> <i class="fas fa-edit"></i> </a>
+                          <a href="/user/hapus/{{ $penggunas->id }}"class="btn btn-sm btn-danger"> <i class="nav-icon fas fa-trash-alt"></i> </a>
+                          <a href="/user/aktif/{{ $penggunas->id }}"class="btn btn-sm btn-primary"> Aktif </a>
                       </td>
                   </tr>
               

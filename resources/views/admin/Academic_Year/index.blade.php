@@ -45,7 +45,7 @@
                     <div class="col">
                       <form action="/tahun_akademik/create" method="get">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                        <button type="submit" class="btn btn-sm btn-primary" ><i class="fas fa-plus"></i> Tambah</button>
                     </div>
                   </div>
                   <table class="table table-bordered table-hover table-wrapper">
@@ -71,9 +71,9 @@
                         <td>{{ $tahun_akademik->start_time_bidding ." sampai ". $tahun_akademik->end_of_time_bidding}}</td>
                         <td>{{ ($tahun_akademik->active == "Y") ? "Aktif" : "Tidak Aktif" }}</td>
                         <td>
-                          <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/Y" type="button" class="btn btn-success">Aktif</a>
-                          <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/N" type="button" class="btn btn-danger">Tidak Aktif</a>
-                          <a href="/tahun_akademik/edit{{ $tahun_akademik->id }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                          <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/Y" type="button" class="btn btn-sm btn-success">Aktif</a>
+                          <a href="/tahun_akademik/active/{{ $tahun_akademik->id }}/N" type="button" class="btn btn-sm btn-danger">Tidak Aktif</a>
+                          <a href="/tahun_akademik/edit{{ $tahun_akademik->id }}" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
                         </td>
                       </tr>
                       <?php $no++ ?>

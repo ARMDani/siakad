@@ -22,7 +22,7 @@ class KHSController extends Controller
         $angkatan = $request->angkatan_id ?? null;
 
         $khs = Study_Value::leftJoin('student', 'study_value.student_id', '=', 'student.id')
-        ->select('student.nim', 'student.name', 'lecture_schedulings.academic_year_id')
+        ->select('student.id','student.nim', 'student.name', 'lecture_schedulings.academic_year_id')
         ->where('student.generations_id', $angkatan)
         ->leftJoin('lecture_schedulings', 'study_value.lecture_schedulings_id', '=', 'lecture_schedulings.id')
         ->where('lecture_schedulings.academic_year_id', $tahun_akademik)

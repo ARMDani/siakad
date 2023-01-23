@@ -30,15 +30,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 <table border="0" width="100%">
     <tr class="text-center">
         <td width="35%"><b>Nama</b></td>
-        <td>: <?= $mhs->student->name ?></td>
+        <td>: <?= $mhs->name ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>NIM</b></td>
-        <td>: <?= $mhs->student->nim ?></td>
+        <td>: <?= $mhs->nim ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>Semester</b></td>
-        <td>: <?= $mhs->lecture_schedulings->subject_course->semester ?></td>
+        <td>: <?= $mhs->study_value->lecture_schedulings->subject_course->semester ?></td>
     </tr>
     <tr class="text-center">
         <td width="35%"><b>Jurusan/Program Studi</b></td>
@@ -67,7 +67,7 @@ tr:nth-child(even){background-color: #f2f2f2}
       <?php $no = 1  ?>
       @foreach($krs as $mk)
       <tr class="text-center">
-        <td class="text-center"><?= $i ?></td>
+        <td class="text-center"><?= $no ?></td>
         <td>
             <?= $mk->lecture_schedulings->subject_course->name ?>
         </td>

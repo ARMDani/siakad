@@ -68,11 +68,11 @@ class LectureSchedulingController extends Controller
 
     public function edit($id){
         $academic_year = Academic_Year::where('id' , $id)->get();
-        $subject_course = Subject_Course::where('id' , $id)->get();
-        $lecturer = Lecturer::where('id' , $id)->get();
-        $class = ClassModel::where('id' , $id)->get();
-        $academic_day = Academic_Day::where('id' , $id)->get();
-        $academic_room = Academic_Room::where('id' , $id)->get();
+        $subject_course = Subject_Course::get();
+        $lecturer = Lecturer::get();
+        $class = ClassModel::get();
+        $academic_day = Academic_Day::get();
+        $academic_room = Academic_Room::get();
         //memanggil view create
         return view('prodi.penjadwalankuliah.edit', [
             'academic_year' => $academic_year,
@@ -111,7 +111,7 @@ class LectureSchedulingController extends Controller
         $cari = $request->cari;
         $tahun_akademik = $request->tahun_akademik_id ?? null;
         // mengambil data dari table pegawai sesuai pencarian data
-        $matakuliah = LectureScheduling::  $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
+        $matakuliah = LectureScheduling::where('lecture_schedulings.academic_year_id', $tahun_akademik)                
         ->where('select count(*) as subject_course from lecture_schedlings where subject_course.name,', 'like', "%" . $cari . "%")->paginate(10);
         // dd($students);
   

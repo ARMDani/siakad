@@ -45,7 +45,7 @@
                   <div class="col">
                     <form action="/nilai_grade/create" method="get">
                       {{ csrf_field() }}
-                      <button type="submit" class="btn btn-primary" ><i class="fas fa-plus"></i></button>
+                      <button type="submit" class="btn btn-sm btn-primary" ><i class="fas fa-plus"></i> Tambah</button>
                   </div>
                 </div>
                   <table class="table table-bordered table-hover table-wrapper">
@@ -69,8 +69,8 @@
                         <td>{{ $nilai->poin}}</td>
                         <td>{{ $nilai->keterangan}}</td>
                         <td>
-                          <a href="/nilai_grade/edit{{ $nilai->id }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                          <a href="/nilai_grade/hapus/{{ $nilai->id }}" type="button" class="btn btn-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
+                          <a href="/nilai_grade/edit{{ $nilai->id }}" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                          <a href="/nilai_grade/hapus/{{ $nilai->id }}" type="button" class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
                         </td>
                       </tr>
                       <?php $no++ ?>

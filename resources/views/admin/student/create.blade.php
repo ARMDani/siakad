@@ -95,8 +95,8 @@
                                 </option>
                                 @endforeach 
                             </select>
-                           
                         </div>
+                        <input type="hidden" id="lecturer_id" name="lecturer_id" class="post-id" value="2">
                         <div class="form-group">
                             <label class=" control-label">Photo<span class="required" style="color: #dd4b39;">*</span></label>
                             <div class="">

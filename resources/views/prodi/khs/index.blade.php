@@ -29,7 +29,7 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
                           <div class="col-3">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pendidikan teknologi Informasi">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->name}}">
                           </div>
                         </div>
                         <div class="form-group row">

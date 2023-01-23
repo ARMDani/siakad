@@ -60,6 +60,7 @@ class StudentController extends Controller
             'districts_id' => $request->asal_daerah,
             'class_id' => $request->kelas,
             'generations_id' => $request->angkatan,
+            'lecturer_id' => $request->dosen,
             'photo' => $photo,
             'created_by' => 1,
             'updated_by' => 1

@@ -29,7 +29,7 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-2 col-form-label">Program Studi</label>
                           <div class="col-3">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pendidikan teknologi Informasi">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->name}}">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -119,8 +119,8 @@
                         @foreach ($krs as $student)
                         <tr>
                           <td class="text-center">{{ $no }}</td>
-                          <td class="text-center">{{ $student->student->nim }}</td>
-                          <td>{{ $student->student->name }}</td>
+                          <td class="text-center">{{ $student->nim }}</td>
+                          <td>{{ $student->name }}</td>
                           <td class="text-center">
                             <div class="form-group">
                               <div class="">
